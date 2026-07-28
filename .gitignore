@@ -1,0 +1,17 @@
+# Baza de date locala (contine datele tale reale - nu o urcam in git)
+data/*.db
+data/*.db-journal
+
+# Fisiere generate automat
+agent_idei/idei/*.md
+dashboard/dashboard.html
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Pastram folderele goale in git
+!data/.gitkeep
+!agent_idei/idei/.gitkeep

@@ -1,0 +1,10 @@
+{
+  "_comentariu": "Copiaza acest fisier ca 'config.json' (in acelasi folder) si completeaza cheile pe care le ai. Orice cheie lasata goala inseamna ca sursa respectiva e sarita (nu da eroare).",
+
+  "thingiverse_app_token": "",
+  "myminifactory_api_key": "",
+  "etsy_api_key": "",
+
+  "pret_curent_kwh": 0.9,
+  "marja_tinta_procent": 40
+}

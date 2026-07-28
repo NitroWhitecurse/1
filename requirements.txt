@@ -1,0 +1,9 @@
+# Acest proiect foloseste in cea mai mare parte doar libraria standard Python
+# (sqlite3, datetime, json, os, webbrowser) - nu ai nevoie de nimic instalat
+# pentru modulele 1, 2, 3 si 5.
+#
+# Pentru modulul 4 (agentul de cercetare idei), care face cereri catre internet,
+# ai nevoie de libraria "requests". Instaleaza cu:
+#   pip install -r requirements.txt
+
+requests>=2.31.0
