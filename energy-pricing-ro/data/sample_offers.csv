@@ -1,0 +1,11 @@
+furnizor,denumire_oferta,tip_client,pret_energie_activa_lei_kwh,abonament_lunar_lei,durata_contract_luni,sursa
+Electrica Furnizare,Electrica Confort,casnic,0.6890,0,12,sample
+E.ON Energie Romania,eON Simplu,casnic,0.6950,0,12,sample
+PPC Energie,PPC Fix,casnic,0.6790,4.95,12,sample
+Engie Romania,Engie Direct,casnic,0.7020,0,24,sample
+Premier Energy Furnizare,Premier Standard,casnic,0.7100,0,12,sample
+Restart Energy One,Restart Smart,casnic,0.6650,6.90,12,sample
+Next Energy Distribution,Next Flex,casnic,0.6600,9.90,12,sample
+Tinmar Green Energy,Tinmar Verde,casnic,0.7250,0,12,sample
+Hidroelectrica,Hidro Casnic,casnic,0.6720,0,12,sample
+MET Romania Energy,MET Home,casnic,0.6980,0,12,sample

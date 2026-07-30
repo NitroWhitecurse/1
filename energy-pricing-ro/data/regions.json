@@ -1,0 +1,41 @@
+{
+  "source": "ANRE regulated tariff orders, effective 2026-01-01 (transport/distribution), Order ANRE 49/2026 (cogenerare), Codul Fiscal (acciza). See README for links. VERIFY against current ANRE orders before relying on this for real financial decisions - tariffs are revised periodically (typically each January and July).",
+  "as_of": "2026-01-01",
+  "national": {
+    "transport_tl_lei_per_mwh": 36.45,
+    "transport_servicii_sistem_lei_per_mwh": 14.70,
+    "contributie_cogenerare_lei_per_mwh": 14.50,
+    "acciza_necomerciala_lei_per_mwh": 7.68,
+    "tva_rate": 0.21
+  },
+  "regions": [
+    {
+      "id": "rer",
+      "name": "Retele Electrice Romania",
+      "former_name": "Enel Distributie",
+      "distributie_jt_lei_per_mwh": 317.39,
+      "counties": ["Arad", "Caras-Severin", "Hunedoara", "Timis", "Calarasi", "Constanta", "Ialomita", "Tulcea", "Ilfov", "Giurgiu", "Bucuresti"]
+    },
+    {
+      "id": "delgaz",
+      "name": "Delgaz Grid",
+      "former_name": "E.ON Distributie",
+      "distributie_jt_lei_per_mwh": 387.91,
+      "counties": ["Botosani", "Suceava", "Neamt", "Iasi", "Bacau", "Vaslui"]
+    },
+    {
+      "id": "oltenia",
+      "name": "Distributie Oltenia",
+      "former_name": "CEZ Distributie",
+      "distributie_jt_lei_per_mwh": 333.25,
+      "counties": ["Arges", "Dolj", "Gorj", "Mehedinti", "Olt", "Teleorman", "Valcea"]
+    },
+    {
+      "id": "deer",
+      "name": "Distributie Energie Electrica Romania",
+      "former_name": "Electrica Distributie / E-Distributie",
+      "distributie_jt_lei_per_mwh": 355.34,
+      "counties": ["Prahova", "Buzau", "Dambovita", "Braila", "Galati", "Vrancea", "Cluj", "Maramures", "Satu Mare", "Salaj", "Bihor", "Bistrita-Nasaud", "Brasov", "Alba", "Sibiu", "Mures", "Harghita", "Covasna"]
+    }
+  ]
+}
