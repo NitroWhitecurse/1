@@ -40,6 +40,34 @@ Research date: 2026-07-29. Compiled by the market-research agent process (web se
 4. **Corporate/B2B seasonal gifting** (Mărțișor, Women's Day, year-end) — validated by a dedicated competitor (Print3D Bucuresti) targeting businesses specifically; larger order values, less price-sensitive, pairs well as a second channel alongside a consumer shop.
 5. **Personalized photo/lithophane wall art** — higher price point (~40-49 Lei), only one competitor spotted offering it, genuine personalization angle (portraits, fan art, pet photos).
 
+## 5. Full product list — validated vs. whitespace
+
+A second research pass specifically to separate "what's already being sold" from "what looks like real, underserved potential."
+
+### A. Validated — real Romanian sellers already exist (entry requires differentiation, not discovery)
+
+| Product | Evidence |
+|---|---|
+| Pop-culture / trending-character mărțișor brooches | [atelierul3d.ro](https://www.atelierul3d.ro) — 46+ SKUs, 10-12 Lei |
+| Gaming & desk accessories (controller stands, organizers) | atelierul3d.ro "Gaming Essentials" line, 25-60 Lei |
+| Lithophane-style photo/portrait wall art | atelierul3d.ro "Tablou 3D", 40-49 Lei |
+| **Mărturii** (wedding/baptism favors) | Actively competitive: [print3dbucuresti.ro](https://www.print3dbucuresti.ro/aplicatii-printare-3d/marturii-printate-3d-decoratiuni-nunti/) has a dedicated page, plus independent sellers CODEPRINT (codeprint.ro) and listings on [breslo.ro](https://www.breslo.ro) (a Romanian handmade marketplace) and Instagram |
+| Orthodox candle/icon stands ("efect ceară topită") | Sold on eMAG and via Instagram/Facebook sellers |
+| On-demand auto parts/adapters (clips, phone-mount adapters for specific car models) | Dedicated businesses: [autoprint3d.com](https://autoprint3d.com/ro/), TikTok accounts "3dprintromania" and "3ddot.ro", OLX listings |
+| Tabletop miniatures, statuettes, cosplay pieces | [hobbycustom.ro](https://hobbycustom.ro/) — a dedicated Romanian miniatures shop with "Artiști Români" — this corrects my earlier read; this niche is **not** a gap, it's already specialized |
+| Custom figurines from a photo/selfie | Instagram sellers doing this locally; comparable global services (minireal.com.au, mini-you.co.uk) confirm the format works |
+| Corporate seasonal gifting (B2B) | print3dbucuresti.ro markets to businesses specifically |
+
+### B. Real potential, thin or no local competition found
+
+Flagged as opportunities, not certainties — absence of a competitor in search results isn't proof of zero competition, just that none surfaced. Worth a small validation test before investing seriously.
+
+- **Romania-themed tourist souvenirs** (Bran Castle/Dracula, traditional Maramureș/painted-monastery motifs) — strong built-in tourist traffic, and 3D-printable Bran Castle models already exist online (yeggi, Sketchfab, Artstation) for anyone to reference or license — but no evidence found of an actual retail business selling finished 3D-printed souvenirs to tourists. Genuine first-mover angle.
+- **Garden/outdoor accessories** (plant markers, pot accessories, small tool holders) — real global demand (dedicated YouTube/Pinterest content) and Romania has a strong home-gardening culture, but current Romanian garden-label products found are traditional slate/wood (emag.ro, fluxshop.ro) — no 3D-printed version spotted in the local market.
+- **Educational/STEM kits for schools** — indirect signal only (a university project mentioning 3D printing being introduced "în școlile din comunitatea MSP"), but no dedicated supplier of 3D-printed teaching aids/kits for the Romanian school market found.
+- **Adaptive/ergonomic accessibility aids** (grips, reachers, mobility aids) — a well-documented global 3D-printing niche with strong goodwill, but no Romanian seller found. Flagged with a caveat: this category carries real responsibility (product failures can hurt someone who depends on it) — validate demand *and* liability/safety considerations carefully before treating it as a low-risk opportunity like the others.
+- **Small-apartment ("bloc") home organization** — less a brand-new product than an unclaimed marketing angle: atelierul3d.ro already sells general organizers, but nobody found is positioning specifically for typical small Romanian apartment kitchens/hallways/balconies. Lower-risk since it extends an already-validated category rather than inventing one.
+
 ## Caveats
 
 - Sources are Romanian-language web search results, general e-commerce market reports, and one deep scrape of a direct competitor — not a survey of Romanian consumers or a TikTok/Instagram trend-data pull. Treat this as a strong starting map, not a final validation.
