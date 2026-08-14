@@ -6,6 +6,20 @@
 
 ---
 
+## Sumar în formatul foii de ședință
+
+| Punct | Idee principală | Rezultat urmărit |
+|---|---|---|
+| Audit gratuit ca ofertă de intrare | înlocuim prețul din fereastra de abonamente cu „trimite factura, primești analiza în 48h"; landing /audit-firme + smart.reduco.ro conectat; prag minim factură 5.000 lei/lună | 20 facturi B2B primite în luna 1, 40 în luna 3; conversie raport → abonament 25% |
+| Outbound hibrid pe firme cu consum mare | 200 firme/lună Bacău-Suceava-Neamț, prioritate medie tensiune; secvență email → telefon → studiu de caz → vizită pe 8 zile; evidență unică în ClickUp | 10 facturi primite/săptămână; 3 abonamente semnate/săptămână în luna 3 |
+| Parteneriat cu contabili | 30 cabinete; Standard gratuit 12 luni + comision pe client adus; ei trimit facturile clienților cu acord scris | 10 parteneri în 90 zile; 5 leaduri calde/lună din luna 2, cost per lead ~0 |
+| Curățare site + măsurare | ștergem /cine-suntem (încă „Comparatot", text din 2022), consolidăm paginile juridice în /solutii-imm, 3 studii de caz cu cifre, GA4 cu eveniment „lead juridic" | zero „Comparatot" până vineri; conversie vizitator → factură măsurată din săptămâna 2; +30% organic B2B |
+| LinkedIn + ghid PDF | 3 postări/săptămână pe rotație fixă (eroare de facturare / reglementare ANRE / studiu de caz); ghid „7 linii unde pierzi bani" contra CUI + telefon | 30 descărcări/lună cu date de firmă; 5 cereri audit inbound/lună în luna 3 |
+
+Detalierea fiecărui punct urmează mai jos.
+
+---
+
 ## 0. Baza comună — cine suntem (30 de secunde la începutul ședinței)
 
 **ALMA SKY SRL** (RO28501770, Bacău–Mărgineni), brand **Reduco.ro**. Echipă cu peste 15 ani în furnizare de energie electrică și gaze.
