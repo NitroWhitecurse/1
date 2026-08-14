@@ -41,6 +41,22 @@ Varianta scurtă, pentru telefon și ușă:
 
 Patronul plătește lunar un contabil deși teoretic și-ar putea ține singur evidența — pentru că e specializat, cunoaște legea, și dacă apare o greșeală, amenda o plătește patronul. Identic la energie: o greșeală la contract sau la un ATR costă de zeci de ori mai mult decât onorariul lunar.
 
+**Pasul 2b — cea mai puternică dovadă o avem deja și nu o folosim: contractul de mandat.**
+
+Nu spunem nicăieri public că lucrăm pe **contract de mandat încheiat conform art. 2009 Cod civil**, prin care clientul ne împuternicește să acționăm **în numele și pe seama lui**. Aceasta este diferența juridică, nu de marketing, dintre noi și oricine altcineva:
+
+- un **comparator** îți arată oferte — nu poate semna nimic în numele tău;
+- un **consultant** îți spune ce să faci — tu rămâi cu treaba de făcut;
+- **noi avem mandat** — semnăm contractul de furnizare în numele tău, denunțăm contractul vechi, cerem ATR-ul, depunem reclamația la ANRE, și mergem până la instanță dacă e nevoie.
+
+Mandatul actual acoperă, concret: negocierea și încheierea contractelor de furnizare, întreaga procedură de schimbare a furnizorului cu toate părțile implicate, solicitarea și actualizarea Avizului Tehnic de Racordare (inclusiv spor de putere și mutare grup de măsură), sesizări și reclamații la furnizor, distribuitor și ANRE, **cereri de chemare în judecată și căi de atac**, rezilierea contractelor în curs, și obținerea adeverinței de rol de la primărie când clientul nu are actul de proprietate la îndemână.
+
+În plus, firma are **jurist propriu** — contractul e semnat prin reprezentant juridic. Asta transformă „te reprezentăm" din slogan în fapt verificabil.
+
+**Propoziția de vânzare care rezultă, și care nu poate fi copiată de nimeni:**
+
+> „Semnezi un contract de mandat și de acolo nu mai vorbești tu cu furnizorul. Vorbim noi, în numele tău — de la negociere până la instanță, dacă se ajunge acolo."
+
 **Pasul 3 — cele cinci mesaje, în ordinea în care trebuie spuse**, gata de pus pe site:
 
 1. *„Nu suntem un comparator de oferte. Comparatoarele sunt gratuite pentru că sunt plătite de furnizori prin poziții promovate — noi suntem plătiți de tine, ca să lucrăm pentru tine, nu pentru ei."*
@@ -331,12 +347,59 @@ Altcineva decât Marian poate primi o factură, o înregistra corect și program
 
 ---
 
+## P10. Contractul de mandat — cel mai bun activ al firmei, cu defecte care îl pot întoarce împotriva noastră
+
+### Ce e stricat
+
+Contractul de mandat este instrumentul pe care stă toată poziționarea din P1. Am citit versiunea actuală. Fondul e bun și bine construit — opt mandate distincte, temei legal corect, acoperire largă. **Forma are însă probleme care, la volum, devin riscuri.** Le enumăr în ordinea gravității:
+
+**1. Părțile sunt inversate în tabel.** Tabelul de la începutul contractului îl trece pe ALMA SKY drept „**Mandator**", iar clientul drept „**Mandant**". În Codul civil, *mandantul* este cel care dă mandatul — adică **clientul** — iar *mandatarul* este cel care îl primește, adică noi. Corpul contractului spune corect „Alma Sky S.R.L în calitate de **mandatar**", deci **tabelul contrazice textul**. Un jurist al furnizorului care vrea să ne blocheze o reclamație începe exact de aici.
+
+**2. Un câmp esențial e lăsat necompletat.** La obligațiile mandatarului scrie: *„Va încasa sumele din despăgubiri și va remite mandantului valoarea ce i se cuvine, în termen de …… zile de la încasarea acestora."* Termenul e gol. Este clauza cea mai sensibilă din tot contractul — este singurul loc unde **ținem banii clientului** — și e singura lăsată necompletată. Un director financiar se oprește acolo și nu semnează.
+
+**3. Două titluri și două adrese de e-mail.** Documentul începe cu antet „CONTRACT DE PRESTĂRI SERVICII" și adresa `almaskyro@gmail.com`, apoi devine „CONTRACT DE MANDAT" cu `info@reduco.ro`. Un document prin care o firmă ne dă puterea să semnăm în numele ei nu poate avea două titluri și o adresă de Gmail.
+
+**4. Domeniul mandatului 5 e mai îngust decât restul.** Toate celelalte clauze spun „energie electrică/gaze naturale". Mandatul 5, cel pentru încheierea de contracte noi, spune doar „energiei electrice". Un contract de gaze încheiat în baza lui poate fi contestat.
+
+**5. Lipsește clauza de prelucrare a datelor.** Manipulăm facturi, coduri POD, date de consum, și putem cere adeverință de rol la primărie. Nu există nicio mențiune privind prelucrarea datelor. Devine obligatoriu dacă primim facturi prin terți, cum ar fi contabilii.
+
+**6. Greșeli de redactare.** „îndreătăţit", „cererile pentru realizarea cailor de atat" în loc de „căilor de atac", „inlcusiv", diacritice inconsecvente. Într-un document juridic citit de un CFO înainte de semnătură, fiecare greșeală scade încrederea exact în momentul în care avem nevoie de ea.
+
+### Cât ne costă
+
+Dublu. **Comercial:** contractul este momentul semnăturii — orice ezitare acolo omoară o vânzare pe care am câștigat-o deja. **Juridic:** dacă ajungem în dispută cu un furnizor sau la ANRE, prima apărare a celeilalte părți va fi să atace validitatea mandatului. Un tabel care inversează părțile le oferă exact deschiderea.
+
+### Reparația
+
+1. **Corectăm inversarea părților** — clientul devine *Mandant*, ALMA SKY devine *Mandatar*, în tabel, în corpul contractului și la semnături. Aceasta e reparația numărul unu, se face astăzi.
+2. **Completăm termenul de remitere a despăgubirilor** cu o valoare fermă. Recomandare: **5 zile lucrătoare de la încasare**. Un termen scurt și explicit e un argument de vânzare, nu o concesie.
+3. **Un singur antet, un singur e-mail** — „CONTRACT DE MANDAT", `info@reduco.ro`. Adresa de Gmail dispare din toate documentele către clienți.
+4. **Uniformizăm domeniul** — „energie electrică și/sau gaze naturale" în toate cele opt mandate.
+5. **Adăugăm clauza de prelucrare a datelor**, cu temei, scop și durată.
+6. **Corectură completă** a textului, cu diacritice consecvente.
+7. **Verificare de către un avocat** înainte de a-l folosi la volum, pe două puncte pe care nu le pot evalua eu: limitarea răspunderii mandatarului și validitatea clauzei prin care putem angaja avocați și experți în numele clientului.
+
+### Ce am descoperit și trebuie folosit
+
+Mandatul 8 prevede deja un **onorariu de succes de 30% din despăgubirile încasate**. Deci firma **folosește deja modelul de plată la rezultat** — doar că exclusiv pe recuperarea de despăgubiri, nu și pe economia negociată. Când discutăm modelul de preț la P3, nu inventăm nimic nou: **extindem un mecanism pe care îl avem deja în contract și pe care clienții l-au acceptat.**
+
+### Cine și până când
+
+Mircea Neculcea, juristul firmei, pentru punctele 1–6. **Termen: înainte de următorul contract semnat.** Punctul 7, verificarea de avocat extern, în 30 de zile.
+
+### Cum știm că e reparat
+
+Contractul poate fi citit de un director financiar de la cap la coadă fără să se oprească la nimic — nicio contradicție, niciun câmp gol, nicio greșeală.
+
+---
+
 ## Ordinea de execuție
 
 Nu se pot face toate deodată. Ordinea de mai jos e aleasă după un singur criteriu: **ce deblochează altceva.**
 
 | Ordine | Ce | De ce înaintea celorlalte |
 |---|---|---|
+| 0 | Corectarea contractului de mandat (P10) | Se semnează la fiecare client nou; o oră de muncă, și blochează un risc juridic |
 | 1 | Decizia pe grila de preț (P3) | Fără ea nu se poate scrie niciun preț pe site și nicio ofertă corectă |
 | 2 | Tabelul de leaduri + coloana de expirări (P5, P6) | Cost zero, și fără el nu se poate măsura nimic |
 | 3 | Măsurarea pe site (P4) | Ca reparațiile următoare să poată fi evaluate |
@@ -348,6 +411,7 @@ Nu se pot face toate deodată. Ordinea de mai jos e aleasă după un singur crit
 
 ## Primele 7 zile, concret
 
+- [ ] **Contractul de mandat: părțile corectate (Mandant = clientul), termenul de remitere completat, un singur antet și un singur e-mail** — înainte de următoarea semnătură
 - [ ] CEO aprobă grila de preț și treapta Business Plus
 - [ ] Tabelul de leaduri există și e populat cu tot ce se poate recupera
 - [ ] Coloana „data expirării contractului" completată retroactiv din facturile din arhivă
