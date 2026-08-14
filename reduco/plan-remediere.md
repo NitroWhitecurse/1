@@ -285,7 +285,14 @@ Trei căi, care se pornesc în paralel, nu una după alta:
 2. **În 2–4 săptămâni:** parteneriat cu un auditor atestat. Noi aducem clientul și ținem relația, el semnează auditul, împărțim. Nu cere nicio investiție.
 3. **În 6–12 luni:** atestarea unei persoane din echipă ca manager energetic. Aceasta e investiția care schimbă categoria firmei.
 
-De verificat înainte de a comunica orice public: **costul, durata și condițiile de atestare** la Ministerul Energiei, și **termenul exact al declarației anuale** — sursele publice indică fie 30 aprilie, fie 30 iunie, în funcție de categoria operatorului. Nu punem nicio dată pe site fără confirmare scrisă de la Minister.
+**Un lucru de lămurit înainte de a comunica orice public — termenul declarației anuale.** Am verificat și sursele nu concordă:
+
+- **Textul legii** (Legea 121/2014, art. 9) prevede **30 aprilie** pentru operatorii peste 1.000 TEP — declarația de consum total plus chestionarul de analiză energetică, transmise Departamentului pentru Eficiență Energetică.
+- **Un ghid de conformare al unei firme de audit, actualizat în iunie 2026**, indică **30 iunie**, atât pentru IMM-uri cât și pentru cei peste prag.
+
+Diferența poate veni dintr-o modificare a legii, din categorii diferite de operatori sau din practica ministerului. **Nu punem nicio dată pe site, în e-mail sau în ofertă până nu avem confirmare scrisă de la Ministerul Energiei.** Dacă mesajul nostru e conformarea, o dată greșită ne distruge exact lucrul pe care îl vindem.
+
+Tot de verificat, în aceeași solicitare: **costul, durata și condițiile de atestare** ca manager energetic.
 
 ### Cine și până când
 
