@@ -99,9 +99,57 @@ Poziționarea completă, cu ton, exemple de bine/rău și segmentele de client, 
 
 ---
 
-## P3. Grila de preț nu are nici podea, nici tavan
+## P2. Site-ul se încarcă prea greu ca să fie citit, și arată prețuri din 2022
 
-*(P2 — site-ul — e în lucru separat și se completează mai jos.)*
+### Ce e stricat
+
+Auditul tehnic a lămurit o întrebare deschisă: **nu suntem blocați de nimeni, doar ne încărcăm prea greu.** `robots.txt` e permisiv și etichetele de indexare sunt corecte. Problema e alta — paginile au avut nevoie de **15 secunde de așteptare** ca să se afișeze complet. Cu setări normale, au eșuat pagina principală, `/abonamente`, `/solutii-imm`, `/audit-facturi`, `/despre-noi` și `/cine-suntem`.
+
+Cauza se vede în cod: pe fiecare pagină se încarcă în același timp Elementor, WooCommerce, Google Site Kit, chatul LiveAgent, butonul flotant WhatsApp, **patru formulare popup identice** și un script de cookie-uri care afișează în pagină tabelul complet. Google are un buget limitat de răbdare per pagină. Dacă un robot cu 15 secunde de răbdare abia intră, paginile noastre profunde sunt probabil indexate parțial sau deloc.
+
+**A doua problemă, mai gravă comercial:** paginile de ofertă pentru firme afișează tabele cu prețuri **valabile 24.05.2022 – 31.08.2022**, fără nicio avertizare că au expirat. Un director financiar care caută „ofertă energie firmă" aterizează pe prețuri vechi de trei ani, prezentate ca actuale. Nu e o problemă de SEO — e o problemă de credibilitate, exact la prima impresie.
+
+**A treia:** `/solutii-imm` este cea mai bună pagină B2B pe care o avem, actualizată și bine scrisă — și **nu trimite spre niciunul dintre serviciile noastre**. Nu leagă spre audit facturi, litigii ANRE, racordare, prosumatori sau recuperare compensații. Generează interes și îl lasă să se piardă.
+
+Detaliile complete, cu dovezi pe fiecare pagină, sunt în `audit-site.md`.
+
+### Cât ne costă
+
+Trei scurgeri simultane: vizitatori care pleacă pentru că pagina nu se încarcă; vizitatori care pleacă pentru că nu ne cred; și vizitatori interesați care nu găsesc drumul spre serviciul care le-ar rezolva problema.
+
+### Reparația
+
+**Se poate face săptămâna aceasta, fără dezvoltator:**
+
+1. `noindex` temporar pe cele ~14 pagini cu date din 2022, până sunt consolidate. Oprește sângerarea imediat.
+2. Linkuri din `/solutii-imm` spre `/audit-facturi`, `/litigii-anre`, `/racordare-energie-gaz`, `/consultanta-prosumator`, `/recuperare-compensatii`. Editare de text, o oră.
+3. Linkuri din `/servicii` spre `/recuperare-compensatii` și `/monitorizarea-inteligenta`, care lipsesc.
+4. Titlul și descrierea paginii principale — azi nu conțin cuvintele „firmă", „IMM" sau „business", deși avem o secțiune dedicată lor.
+5. Corectarea descrierii `/abonamente`, care conține numele brandului scris greșit („Recudo") și un preț vechi. Este exact ce se vede în Google înainte de click.
+6. Secțiune „Pentru firme" de 2–3 fraze pe `/audit-facturi`, `/litigii-anre`, `/racordare-energie-gaz` — azi pagina de audit e scrisă în registru casnic, deși articolele care îi trimit trafic sunt integral B2B.
+7. Un testimonial de la un client business real. Avem unul singur pe tot site-ul, pe `/recuperare-compensatii`.
+
+**Cere dezvoltator:**
+
+8. Diagnostic de viteză — se începe prin a scoate cele patru popup-uri identice și a amâna încărcarea chatului. 6–12 ore.
+9. Redirecturi 301: cele ~14 pagini vechi către `/solutii-imm` și comparatoarele curente; `/cine-suntem` către `/despre-noi`.
+10. H1 lipsește pe aproape tot site-ul — e o setare greșită în șablonul Elementor, nu greșeli izolate.
+11. Legarea `smart.reduco.ro` de site-ul principal. Astăzi e o platformă separată, fără link din pagina principală.
+
+### Cine și până când
+
+Marian sau redactorul, pentru punctele 1–7, **în prima săptămână**. Dezvoltatorul, pentru 8–11, în 30 de zile. Punctul 8 primul, pentru că de el atârnă tot restul.
+
+### Cum știm că e reparat
+
+- Nicio pagină publică nu mai afișează prețuri din 2022.
+- `/solutii-imm` trimite spre toate cele cinci servicii.
+- O pagină se încarcă complet în sub 5 secunde pe telefon.
+- În Search Console: paginile B2B apar ca indexate.
+
+---
+
+## P3. Grila de preț nu are nici podea, nici tavan
 
 ### Ce e stricat
 
@@ -401,11 +449,12 @@ Nu se pot face toate deodată. Ordinea de mai jos e aleasă după un singur crit
 |---|---|---|
 | 0 | Corectarea contractului de mandat (P10) | Se semnează la fiecare client nou; o oră de muncă, și blochează un risc juridic |
 | 1 | Decizia pe grila de preț (P3) | Fără ea nu se poate scrie niciun preț pe site și nicio ofertă corectă |
-| 2 | Tabelul de leaduri + coloana de expirări (P5, P6) | Cost zero, și fără el nu se poate măsura nimic |
-| 3 | Măsurarea pe site (P4) | Ca reparațiile următoare să poată fi evaluate |
-| 4 | Șablonul de raport (P7) | Scade timpul pe fiecare client, eliberează ore |
-| 5 | Parteneriatul cu auditor atestat (P8) | Deschide clienții mari fără investiție |
-| 6 | Decizia pe post și contract (P9) | Fără al doilea om, creșterea se oprește în luna a doua |
+| 2 | `noindex` pe paginile cu prețuri din 2022 + linkurile din `/solutii-imm` (P2) | O oră de muncă; oprește imediat pierderea de credibilitate |
+| 3 | Tabelul de leaduri + coloana de expirări (P5, P6) | Cost zero, și fără el nu se poate măsura nimic |
+| 4 | Măsurarea pe site (P4) | Ca reparațiile următoare să poată fi evaluate |
+| 5 | Șablonul de raport (P7) | Scade timpul pe fiecare client, eliberează ore |
+| 6 | Parteneriatul cu auditor atestat (P8) | Deschide clienții mari fără investiție |
+| 7 | Decizia pe post și contract (P9) | Fără al doilea om, creșterea se oprește în luna a doua |
 
 ---
 
