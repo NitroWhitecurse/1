@@ -92,6 +92,22 @@ Alte registre publice de verificat în aceeași direcție: [Informații de inter
 
 ---
 
+## E. Poziția de „expert independent" este liberă în răspunsurile AI
+
+Am testat ce returnează motoarele de căutare și de răspuns pentru întrebarea pe care și-o pune un patron: *„cum aleg furnizor de energie electrică pentru firma mea"*.
+
+**Cine este citat:** furnizorii înșiși — PPC Energy, MET, Premier Energy — plus portaluri generice de comparare (folositor.ro, economisi.ro, despre-energie.ro) și pagina ANRE.
+
+**Cine nu este citat:** niciun consultant independent. Reduco nu apare deloc.
+
+Asta înseamnă două lucruri. Primul: firma care întreabă primește răspunsul de la partea interesată să-i vândă energie — nimeni nu ocupă poziția de sfătuitor neutru. Al doilea: paginile care *sunt* citate sunt pagini obișnuite de conținut, deci poziția se poate câștiga.
+
+**De ce nu este același lucru cu „articole SEO pe blog":** aici scopul nu este locul 1 în Google, ci **să fim sursa citată în răspuns**. Asta cere altceva decât articole: informație structurată, verificabilă și datată — praguri, tabele de obligații, termene legale, cine ce datorează. Exact materialul din secțiunile A și B de mai sus, pe care nimeni din România nu l-a pus într-o formă citabilă.
+
+Avem un avantaj real aici: cunoașterea reglementării este conținutul cel mai greu de fabricat și cel mai ușor de citat. Un furnizor nu va publica niciodată un tabel care explică unei firme cum să plece de la el.
+
+---
+
 ## Ce se schimbă în modul nostru de a vinde
 
 | Astăzi | Cu declanșatoarele de reglementare |
