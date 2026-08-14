@@ -15,7 +15,7 @@ Nu idei noi. Lista problemelor reale găsite în firmă, fiecare cu reparația e
 
 ### Ce e stricat
 
-Site-ul ne comunică drept **comparator de oferte**. Pagina „cine suntem" conține încă textul brandului anterior, *Comparatot*, nemodificat din 2022 — nu e o greșeală de scriere, e o identitate veche rămasă pe site, care descrie firma ca pe un site de comparare. Restul structurii duce în aceeași direcție: pagini de comparare, fereastră de abonamente cu preț afișat.
+Site-ul ne comunică drept **comparator de oferte**. Pagina „cine suntem" — **[reduco.ro/cine-suntem](https://reduco.ro/cine-suntem)** — conține încă textul brandului anterior, *Comparatot*, nemodificat din 2022 — nu e o greșeală de scriere, e o identitate veche rămasă pe site, care descrie firma ca pe un site de comparare. Restul structurii duce în aceeași direcție: pagini de comparare, fereastră de abonamente cu preț afișat.
 
 Problema nu e că textul e vechi. Problema e că **descrie versiunea slabă a firmei**. ANRE oferă gratuit compararea ofertelor publicate, prin platforma POSF. Dacă ne prezentăm ca un comparator, ne prezentăm ca o variantă contra cost a unui serviciu public gratuit.
 
@@ -83,7 +83,7 @@ Mandatul actual acoperă, concret: negocierea și încheierea contractelor de fu
 - **„Furnizorul îmi face oricum audit."** → *„Un furnizor care îți verifică singur factura se verifică pe sine. N-a sunat încă niciun furnizor să spună «te-am facturat în plus, îți dăm banii înapoi». Noi verificăm ca parte independentă, plătită de tine."*
 - **„De ce să plătesc lunar dacă schimb furnizorul o dată pe an?"** → *„Nu plătești schimbarea furnizorului, aia e un moment. Plătești pe cineva care îți verifică fiecare factură lunar, intervine la o reclamație sau un ATR, și renegociază când piața se mișcă. E ca la contabil, nu ca la notar."*
 
-**Pasul 6 — pagina „cine suntem" nu se rescrie, se elimină.** Există deja `/despre-noi` cu text actual. Pagina veche se redirecționează acolo. Două pagini care spun cine suntem, dintre care una cu alt nume de firmă, sunt mai rele decât una singură.
+**Pasul 6 — pagina „cine suntem" nu se rescrie, se elimină.** Există deja **[reduco.ro/despre-noi](https://reduco.ro/despre-noi)** cu text actual, corect scris, actualizat 10 noiembrie 2025. Pagina veche se redirecționează acolo. Două pagini care spun cine suntem, dintre care una cu alt nume de firmă, sunt mai rele decât una singură.
 
 ### Cine și până când
 
@@ -103,13 +103,24 @@ Poziționarea completă, cu ton, exemple de bine/rău și segmentele de client, 
 
 ### Ce e stricat
 
-Auditul tehnic a lămurit o întrebare deschisă: **nu suntem blocați de nimeni, doar ne încărcăm prea greu.** `robots.txt` e permisiv și etichetele de indexare sunt corecte. Problema e alta — paginile au avut nevoie de **15 secunde de așteptare** ca să se afișeze complet. Cu setări normale, au eșuat pagina principală, `/abonamente`, `/solutii-imm`, `/audit-facturi`, `/despre-noi` și `/cine-suntem`.
+Auditul tehnic a lămurit o întrebare deschisă: **nu suntem blocați de nimeni, doar ne încărcăm prea greu.** `robots.txt` e permisiv și etichetele de indexare sunt corecte. Problema e alta — paginile au avut nevoie de **15 secunde de așteptare** ca să se afișeze complet. Cu setări normale, au eșuat pagina principală, **[reduco.ro/abonamente](https://reduco.ro/abonamente)**, **[/solutii-imm](https://reduco.ro/solutii-imm)**, **[/audit-facturi](https://reduco.ro/audit-facturi)**, **[/despre-noi](https://reduco.ro/despre-noi)** și **[/cine-suntem](https://reduco.ro/cine-suntem)**.
 
 Cauza se vede în cod: pe fiecare pagină se încarcă în același timp Elementor, WooCommerce, Google Site Kit, chatul LiveAgent, butonul flotant WhatsApp, **patru formulare popup identice** și un script de cookie-uri care afișează în pagină tabelul complet. Google are un buget limitat de răbdare per pagină. Dacă un robot cu 15 secunde de răbdare abia intră, paginile noastre profunde sunt probabil indexate parțial sau deloc.
 
 **A doua problemă, mai gravă comercial:** paginile de ofertă pentru firme afișează tabele cu prețuri **valabile 24.05.2022 – 31.08.2022**, fără nicio avertizare că au expirat. Un director financiar care caută „ofertă energie firmă" aterizează pe prețuri vechi de trei ani, prezentate ca actuale. Nu e o problemă de SEO — e o problemă de credibilitate, exact la prima impresie.
 
-**A treia:** `/solutii-imm` este cea mai bună pagină B2B pe care o avem, actualizată și bine scrisă — și **nu trimite spre niciunul dintre serviciile noastre**. Nu leagă spre audit facturi, litigii ANRE, racordare, prosumatori sau recuperare compensații. Generează interes și îl lasă să se piardă.
+**Paginile exacte, ca să nu le căutăm din nou** — confirmate direct, cu data ultimei modificări citită din pagină:
+
+| Pagină | Ultima modificare |
+|---|---|
+| [reduco.ro/oferta-energie-electrica-juridic](https://reduco.ro/oferta-energie-electrica-juridic) | 2022 |
+| [reduco.ro/juridic-energie-fix](https://reduco.ro/juridic-energie-fix) | 2022 |
+| [reduco.ro/oferta-gaze-juridic](https://reduco.ro/oferta-gaze-juridic) | 2022 |
+| [reduco.ro/juridic-gaz-variabil](https://reduco.ro/juridic-gaz-variabil) | 2022 |
+
+Restul familiei, aceeași structură și același conținut static, nu au fost deschise individual, dar apar cu titluri identice în harta site-ului — de tratat la fel până la verificare: [`/juridic-energie-variabil`](https://reduco.ro/juridic-energie-variabil), [`/juridic-gaz-fix`](https://reduco.ro/juridic-gaz-fix), [`/juridic-energie-si-gaze-fix`](https://reduco.ro/juridic-energie-si-gaze-fix), [`/juridic-energie-si-gaz-variabil`](https://reduco.ro/juridic-energie-si-gaz-variabil), [`/oferta-energie-si-gaze-juridic`](https://reduco.ro/oferta-energie-si-gaze-juridic), plus echivalentele casnice: [`/casnic-pret-fix-gaz`](https://reduco.ro/casnic-pret-fix-gaz), [`/casnic-pret-variabil-gaze`](https://reduco.ro/casnic-pret-variabil-gaze), [`/casnic-pret-variabil-energie`](https://reduco.ro/casnic-pret-variabil-energie), [`/casnic-energie-si-gaze-variabil`](https://reduco.ro/casnic-energie-si-gaze-variabil), [`/casnic-energie-si-gaz-fix`](https://reduco.ro/casnic-energie-si-gaz-fix).
+
+**A treia:** **[reduco.ro/solutii-imm](https://reduco.ro/solutii-imm)** este cea mai bună pagină B2B pe care o avem, actualizată și bine scrisă — și **nu trimite spre niciunul dintre serviciile noastre**. Nu leagă spre [`/audit-facturi`](https://reduco.ro/audit-facturi), [`/litigii-anre`](https://reduco.ro/litigii-anre), [`/racordare-energie-gaz`](https://reduco.ro/racordare-energie-gaz), [`/consultanta-prosumator`](https://reduco.ro/consultanta-prosumator) sau [`/recuperare-compensatii`](https://reduco.ro/recuperare-compensatii). Generează interes și îl lasă să se piardă.
 
 Detaliile complete, cu dovezi pe fiecare pagină, sunt în `audit-site.md`.
 
@@ -121,20 +132,20 @@ Trei scurgeri simultane: vizitatori care pleacă pentru că pagina nu se încarc
 
 **Se poate face săptămâna aceasta, fără dezvoltator:**
 
-1. `noindex` temporar pe cele ~14 pagini cu date din 2022, până sunt consolidate. Oprește sângerarea imediat.
-2. Linkuri din `/solutii-imm` spre `/audit-facturi`, `/litigii-anre`, `/racordare-energie-gaz`, `/consultanta-prosumator`, `/recuperare-compensatii`. Editare de text, o oră.
-3. Linkuri din `/servicii` spre `/recuperare-compensatii` și `/monitorizarea-inteligenta`, care lipsesc.
-4. Titlul și descrierea paginii principale — azi nu conțin cuvintele „firmă", „IMM" sau „business", deși avem o secțiune dedicată lor.
-5. Corectarea descrierii `/abonamente`, care conține numele brandului scris greșit („Recudo") și un preț vechi. Este exact ce se vede în Google înainte de click.
-6. Secțiune „Pentru firme" de 2–3 fraze pe `/audit-facturi`, `/litigii-anre`, `/racordare-energie-gaz` — azi pagina de audit e scrisă în registru casnic, deși articolele care îi trimit trafic sunt integral B2B.
-7. Un testimonial de la un client business real. Avem unul singur pe tot site-ul, pe `/recuperare-compensatii`.
+1. `noindex` temporar pe cele ~14 pagini cu date din 2022 listate mai sus, până sunt consolidate. Oprește sângerarea imediat.
+2. Linkuri din [`/solutii-imm`](https://reduco.ro/solutii-imm) spre [`/audit-facturi`](https://reduco.ro/audit-facturi), [`/litigii-anre`](https://reduco.ro/litigii-anre), [`/racordare-energie-gaz`](https://reduco.ro/racordare-energie-gaz), [`/consultanta-prosumator`](https://reduco.ro/consultanta-prosumator), [`/recuperare-compensatii`](https://reduco.ro/recuperare-compensatii). Editare de text, o oră.
+3. Linkuri din [`/servicii`](https://reduco.ro/servicii) spre [`/recuperare-compensatii`](https://reduco.ro/recuperare-compensatii) și [`/monitorizarea-inteligenta`](https://reduco.ro/monitorizarea-inteligenta), care lipsesc.
+4. Titlul și descrierea paginii principale ([reduco.ro](https://reduco.ro)) — azi nu conțin cuvintele „firmă", „IMM" sau „business", deși avem o secțiune dedicată lor.
+5. Corectarea descrierii [`/abonamente`](https://reduco.ro/abonamente), care conține numele brandului scris greșit („Recudo") și un preț vechi. Este exact ce se vede în Google înainte de click.
+6. Secțiune „Pentru firme" de 2–3 fraze pe [`/audit-facturi`](https://reduco.ro/audit-facturi), [`/litigii-anre`](https://reduco.ro/litigii-anre), [`/racordare-energie-gaz`](https://reduco.ro/racordare-energie-gaz) — azi pagina de audit e scrisă în registru casnic, deși articolele care îi trimit trafic ([`/audit-facturi-energie-imm`](https://reduco.ro/audit-facturi-energie-imm), [`/schimbare-furnizor-energie-firma`](https://reduco.ro/schimbare-furnizor-energie-firma)) sunt integral B2B.
+7. Un testimonial de la un client business real. Avem unul singur pe tot site-ul, pe [`/recuperare-compensatii`](https://reduco.ro/recuperare-compensatii).
 
 **Cere dezvoltator:**
 
 8. Diagnostic de viteză — se începe prin a scoate cele patru popup-uri identice și a amâna încărcarea chatului. 6–12 ore.
-9. Redirecturi 301: cele ~14 pagini vechi către `/solutii-imm` și comparatoarele curente; `/cine-suntem` către `/despre-noi`.
+9. Redirecturi 301: cele ~14 pagini vechi către [`/solutii-imm`](https://reduco.ro/solutii-imm) și comparatoarele curente ([`/compara-oferte-de-energie`](https://reduco.ro/compara-oferte-de-energie), [`/compara-oferte-de-gaz`](https://reduco.ro/compara-oferte-de-gaz)); [`/cine-suntem`](https://reduco.ro/cine-suntem) către [`/despre-noi`](https://reduco.ro/despre-noi).
 10. H1 lipsește pe aproape tot site-ul — e o setare greșită în șablonul Elementor, nu greșeli izolate.
-11. Legarea `smart.reduco.ro` de site-ul principal. Astăzi e o platformă separată, fără link din pagina principală.
+11. Legarea **[smart.reduco.ro/prosumatori](https://smart.reduco.ro/prosumatori)** de site-ul principal. Astăzi e o platformă separată, fără link din pagina principală.
 
 ### Cine și până când
 
