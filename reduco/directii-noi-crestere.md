@@ -6,27 +6,37 @@ Documente-sursă în același folder: `declansatoare-reglementare.md` (obligați
 
 ---
 
-## Unde suntem strânși astăzi
+## Poziția noastră reală — și de ce site-ul o ascunde
 
-Înainte de idei, diagnosticul — pentru că el explică de ce mai mult marketing pentru același produs nu rezolvă problema. Cerem astăzi unei firme mici să plătească **un abonament fix, înainte de a vedea rezultatul**, pentru un lucru pe care:
+O primă versiune a acestui document spunea că suntem strânși între POSF, furnizori și comparatoarele naționale. Nu este corect, și diferența contează pentru tot ce urmează.
 
-- îl poate face **gratuit singură** pe POSF, platforma oficială ANRE de comparare și schimbare a furnizorului;
-- îl primește **gratuit de la propriul furnizor** — ENGIE oferă audit energetic direct pe site-ul de business, adică exact serviciul nostru de bază, oferit de partea cu interes comercial opus;
-- îl găsește **la același preț la un concurent național** — EnergoPartner (schimbafurnizorul.ro) vinde abonamente de monitorizare și audit facturi, se declară „100% independent", are peste 120 de recenzii cu 4,8/5 și testimoniale de la firme.
+**POSF nu este un substitut, este prețul de raft.** Platforma oficială ANRE arată **ofertele standard, publicate**. Noi nu comparăm oferte publicate — **negociem individual pentru client**. Tariful de 1,04 lei/kWh obținut la GRIDOMA nu se găsește pe POSF, pentru că nu este o ofertă de raft. Asta transformă POSF din amenințare în **argument de vânzare**: „uită-te pe POSF ce se oferă public, apoi uită-te ce am obținut noi". Este singura comparație pe care o putem invita clientul să o facă singur, iar ea ne avantajează.
 
-Suntem strânși din trei părți deodată. Și mai există un lucru pe care trebuie să-l spunem cu voce tare: în 2025 **19.586 de firme și-au suspendat activitatea** la nivel național, iar în județul Bacău suspendările au crescut de la 408 la 513. Baza de clienți nu doar că e disputată — se și contractă.
+**Un furnizor care îți auditează factura se auditează pe sine.** ENGIE oferă audit energetic pe site-ul de business, dar niciun furnizor nu te va reprezenta vreodată *împotriva lui însuși*. Noi verificăm facturi, facem audit și **reprezentăm clientul în raport cu furnizorul și cu distribuitorul, pe legislația ANRE**. Acesta nu este un serviciu de consultanță pe care îl poate copia un furnizor — este structural imposibil pentru el.
 
-**Concluzia:** nu avem o problemă de vizibilitate. Avem o problemă de poziție. Cele de mai jos mută poziția.
+**Comparatoarele naționale au exact conflictul pe care noi nu îl avem.** EnergoPartner este broker cu cod CAEN 3540, monetizat prin poziții „Promovat" plătite de furnizori. Se declară independent, dar este plătit de partea pe care ar trebui să o evalueze. Noi suntem plătiți de client. Și nu am găsit la niciunul dintre comparatoare serviciul de reprezentare în dispute.
+
+**Ce vindem, de fapt: siguranță și confort.** Clientul nu cumpără un preț. Cumpără să nu mai piardă timp: verificăm noi, negociem noi, ne certăm noi cu furnizorul dacă e cazul. Este exact poziționarea unui contabil sau a unui avocat de firmă — plătești pe cineva ca să nu te mai gândești la asta.
+
+### Problema reală
+
+Nu suntem strânși. **Comunicăm versiunea slabă a ofertei.** Site-ul ne prezintă ca un comparator — pagina „cine suntem" spune încă literalmente *Comparatot*, structura duce spre pagini de comparare, iar fereastra de abonamente afișează un preț. Un comparator este exact lucrul pe care POSF îl face gratis. Un negociator care te și reprezintă în fața furnizorului este altceva, și nu spunem asta nicăieri.
+
+Aceasta este o veste bună: o problemă de comunicare se repară mai repede decât una de poziție.
+
+Rămâne totuși o constrângere reală de piață: în 2025 **19.586 de firme și-au suspendat activitatea** la nivel național, iar în județul Bacău suspendările au crescut de la 408 la 513. Baza de clienți se contractă, oricât de bine ne-am poziționa.
+
+**Concluzia:** avem o poziție mai bună decât o arătăm. Direcțiile de mai jos o extind — nu o înlocuiesc.
 
 ---
 
 ## Teza
 
-Trei mișcări, care se susțin reciproc:
+Trei mișcări, care se susțin reciproc. Niciuna nu cere să devenim altceva — toate extind ceva ce facem deja.
 
-1. **În sus, prin reglementare** — vindem *termen legal*, nu economie. Acolo nu ne pot urma nici POSF, nici ENGIE, nici un comparator național: cere atestare, și nu este un serviciu de furnizare.
-2. **În lateral, prin agregare** — vindem *grupurilor*, nu firmelor una câte una. Acolo nu ne poate urma un comparator național impersonal: cere relații instituționale locale în Bacău, exact ce avem noi și nu are Bucureștiul.
-3. **Altfel la preț** — încasăm *proporțional cu valoarea produsă*, nu o sumă fixă plafonată. Aceasta este singura replică onestă la „de ce n-aș folosi POSF gratis?": pentru că noi suntem plătiți doar dacă tu chiar economisești.
+1. **În sus, prin reglementare** — vindem *termen legal*, nu doar economie. Aceasta **nu este o direcție nouă pentru noi**: reprezentăm deja clienți pe legislația ANRE în fața furnizorilor și distribuitorilor. Trecem de la reprezentare în dispute la conformare cu termen fix — același mușchi, folosit înainte de apariția problemei, nu după. Aici nu ne pot urma nici furnizorii, nici comparatoarele.
+2. **În lateral, prin agregare** — vindem *grupurilor*, nu firmelor una câte una. Negocierea este deja ce facem; a negocia pentru 15 firme deodată în loc de una este aceeași muncă, cu putere de negociere mult mai mare. Aici nu ne poate urma un comparator național impersonal: cere relații instituționale locale în Bacău.
+3. **Altfel la preț** — grila actuală nu poate încasa proporțional cu ce producem, pentru că Premium este ultima treaptă. Nu e vorba de a schimba ce vindem, ci de a putea factura corect un client mare.
 
 ---
 
@@ -112,7 +122,11 @@ Calculele complete în `economie-modele.md`. Trei concluzii schimbă decizii:
 
 **c) Abonamentul fix devine capcană când marja se comprimă.** La un delta de 0,05 lei/kWh, un client mic pe Standard **pierde bani net**. Doar un model procentual din economie rămâne structural pozitiv pentru client indiferent de piață.
 
-**Recomandarea:** o secvență, nu un model unic — **success fee** ca ușă de intrare, **retainer în trepte** după ce economia e dovedită pe factură reală, **grup de cumpărare** ca destinație pentru clienții sub prag, ca să nu-i refuzăm.
+**Recomandarea, corectată după clarificarea poziționării.** Dacă ceea ce vindem este siguranță și confort — „nu te mai gândi la asta, ne ocupăm noi" — atunci **abonamentul recurent este forma corectă a produsului**, nu una de înlocuit. Un contabil nu se plătește din procent, se plătește lunar tocmai pentru că îi cumperi liniștea. Modelul procentual rezolvă altceva: **bariera de la prima tranzacție**, unde clientul nu ne cunoaște încă și nu vrea să plătească înainte să vadă ceva.
+
+Deci: **success fee doar ca ușă de intrare** — pe prima negociere, plătești o parte din ce îți obținem sub oferta publică; **retainer în trepte ca produs de bază**, imediat ce economia e dovedită pe factură reală, pentru că asta e ce cumpără de fapt clientul; **grup de cumpărare** ca destinație pentru cei sub prag, ca să nu-i refuzăm.
+
+Ceea ce trebuie reparat urgent nu este modelul, ci **grila**: pragul de calificare prea jos (de aici cazul notariatului) și lipsa unei trepte peste Premium (de aici cei 10,5% la GRIDOMA).
 
 **Ce nu recomand: comisionul de la furnizor.** Cadrul legal există în România (cod CAEN 3540, licențiabil ANRE), iar în UK modelul e dominant — circa 3.000 de intermediari activi, cu comision plătit de furnizor și transparență devenită obligatorie prin Ofgem. Tentația e reală: „gratuit pentru tine, plătit de furnizor" elimină bariera de conversie. Dar ne-ar costa exact activul pe care îl construim. EnergoPartner atacă deja public această practică — *„mulți intermediari lucrează pe comision și îți recomandă tot timpul aceeași ofertă"* — și are dreptate. **Success fee-ul obține același efect de „nu plătești până nu vezi rezultatul", fără conflictul de interese.** Comisionul poate exista ca venit secundar declarat transparent, niciodată ca model principal.
 
@@ -129,6 +143,8 @@ Calculele complete în `economie-modele.md`. Trei concluzii schimbă decizii:
 **Validare externă.** Startup-ul britanic tem.energy, finanțat de Atomico, vinde exact acest lucru ca „infrastructură AI care detectează momentul optim de reînnoire", cu peste 6.000 de puncte de consum pe platformă. Partea de „AI" este în mare parte marketing: mecanismul de bază este un calendar de expirări plus alerte automate. **Se poate construi în 2–4 săptămâni, cu un tabel și o automatizare simplă.**
 
 **De ce e diferit de tot ce facem.** O listă de apelări la rece se consumă. Un calendar de expirări **se acumulează** — singurul mecanism din acest document care transformă efortul de azi în leaduri automate peste un an. Cost de implementare: o coloană în evidența pe care oricum o ținem.
+
+**Și, mai important decât ca sursă de leaduri: este chiar produsul pe care îl vindem.** Dacă promisiunea noastră este „nu te mai gândi la asta, ne ocupăm noi", atunci un client care ratează fereastra de renegociere pentru că nu i-am spus la timp nu a primit ce a cumpărat. Calendarul de expirări nu este un instrument de vânzare adăugat pe lângă abonament — **este mecanismul prin care abonamentul își respectă promisiunea**. Fără el, „siguranță și confort" rămâne un slogan. Cu el, devine un serviciu verificabil, și justifică singur plata lunară.
 
 ---
 
@@ -162,6 +178,7 @@ Calculele complete în `economie-modele.md`. Trei concluzii schimbă decizii:
 
 | Când | Ce | De ce acum |
 |---|---|---|
+| Săptămâna 1 | **Rescrierea mesajului: de la „comparator" la „negociem, verificăm și te reprezentăm"** | Cea mai ieftină mișcare din tot documentul; azi ne prezentăm ca lucrul pe care POSF îl face gratis |
 | Săptămâna 1 | Campanie pe termenul de 30 septembrie către firme peste 1.000 TEP | Fereastra se închide în 6 săptămâni |
 | Săptămâna 1 | Coloana „data expirării contractului" în evidență, retroactiv pe tot ce avem | Cost zero, se acumulează din prima zi |
 | Săptămâna 2 | Contact cu un auditor energetic atestat pentru parteneriat | Deschide auditurile fără investiție |
