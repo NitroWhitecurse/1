@@ -60,9 +60,19 @@ Analiza consumului curent, identificarea pierderilor și a consumului nejustific
 recomandări de reducere.
 
 ### 2.7 Conformare Legea 121/2014
-Pentru consumatori peste 500 MWh/an: declarația anuală de consum, programul de eficiență,
-coordonarea auditului energetic, legătura cu managerul energetic atestat.
-Preț de proiect: 2.500–6.000 lei.
+Declarația anuală de consum, programul de eficiență, coordonarea auditului energetic,
+legătura cu managerul energetic atestat. Preț de proiect: 2.500–6.000 lei.
+
+> **CORECȚIE FACTUALĂ — de aplicat înainte de orice publicare.** Documentul intern
+> „Copy Pagina Abonamente B2B" folosește pragul de **500 MWh/an**. Este greșit, cu două ordine
+> de mărime. Pragul legal real este de **1.000 tep/an ≈ 11.630 MWh/an** (art. 9, Legea 121/2014).
+> Articolul-pilon intern despre Legea 121/2014 conține pragul corect — cele două documente interne
+> se contrazic. Publicarea pragului greșit ar promite conformare unor firme care nu au obligația,
+> exact în fața clientului cel mai valoros. Vezi `01-cercetare-piata.md`, concluzia 6.
+>
+> Reținut suplimentar: obligația de audit energetic la 4 ani se aplică **tuturor** întreprinderilor
+> non-IMM, indiferent de consum — este obligația cel mai frecvent ratată, pentru că firmele o
+> asociază cu pragul de consum, nu cu dimensiunea companiei.
 
 ### 2.8 Monitorizare inteligentă și management de contract
 Verificare lunară a facturii, alertă când apare în piață o ofertă mai bună, verificarea

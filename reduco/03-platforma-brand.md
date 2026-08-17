@@ -218,7 +218,11 @@ energie reactivă și dimensionarea compensării (1.200–2.500 lei) ca serviciu
 **Cum se leagă de grila de abonamente:** Business Start (149 lei/lună) acoperă familia A pentru un
 punct de consum; Business Control (349 lei/lună, până la 4 puncte) adaugă acces la familia B;
 Multi-Locație (89 lei/lună/locație, minimum 595 lei) extinde A+B pe rețea; Industrial (de la 1.500
-lei/lună) adaugă familiile C și D pentru consumatori peste 500 MWh/an sau sub Legea 121/2014.
+lei/lună) adaugă familiile C și D pentru consumatori mari sau cu obligații sub Legea 121/2014.
+
+> **Corecție aplicată:** versiunea inițială a acestei secțiuni prelua din brief pragul de
+> „500 MWh/an". Pragul legal real este **1.000 tep/an ≈ 11.630 MWh/an**. Nu folosiți niciun prag
+> numeric în copy comercial până nu e verificat la textul legii — vezi `00-brief-context.md`, 2.7.
 
 ---
 
