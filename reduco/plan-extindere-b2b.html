@@ -1,0 +1,683 @@
+<title>Extindere B2B Reduco</title>
+<style>
+  :root {
+    --ground: #F1F3F2;
+    --surface: #FFFFFF;
+    --surface-sunk: #E7EBE9;
+    --ink: #121917;
+    --ink-soft: #4A5A55;
+    --ink-faint: #74837E;
+    --rule: #D3DAD7;
+    --rule-strong: #B6C1BD;
+    --grid: #0F5C4E;
+    --grid-wash: #E2EDE9;
+    --copper: #A8481F;
+    --copper-wash: #F6E7DF;
+
+    --display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1211;
+      --surface: #141B19;
+      --surface-sunk: #1B2422;
+      --ink: #E7ECEA;
+      --ink-soft: #A6B4B0;
+      --ink-faint: #7D8C88;
+      --rule: #2A3634;
+      --rule-strong: #3C4A47;
+      --grid: #58C4A8;
+      --grid-wash: #16302A;
+      --copper: #E08A5C;
+      --copper-wash: #332016;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0D1211;
+    --surface: #141B19;
+    --surface-sunk: #1B2422;
+    --ink: #E7ECEA;
+    --ink-soft: #A6B4B0;
+    --ink-faint: #7D8C88;
+    --rule: #2A3634;
+    --rule-strong: #3C4A47;
+    --grid: #58C4A8;
+    --grid-wash: #16302A;
+    --copper: #E08A5C;
+    --copper-wash: #332016;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 940px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 72px 0 34px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--grid);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+    font-weight: 800;
+    margin: 0;
+    max-width: 17ch;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+  .meta b { color: var(--ink-soft); font-weight: 500; }
+
+  /* ---------- generic sections ---------- */
+
+  section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(23px, 3.4vw, 31px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 750;
+    margin: 0;
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  p { margin: 0; max-width: 68ch; }
+  p + p { margin-top: 14px; }
+
+  a { color: var(--grid); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--grid); outline-offset: 3px; }
+
+  strong { font-weight: 700; }
+  em { font-style: italic; color: var(--ink-soft); }
+
+  ol, ul { margin: 0; padding-left: 1.35em; max-width: 68ch; }
+  li { margin-bottom: 10px; }
+  li::marker { color: var(--ink-faint); font-family: var(--mono); font-size: 0.86em; }
+
+  .lede {
+    font-size: 18.5px;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  /* ---------- definition block ---------- */
+
+  .definition {
+    background: var(--grid-wash);
+    border-left: 3px solid var(--grid);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .definition .term {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grid);
+  }
+  .definition p { max-width: 62ch; }
+
+  /* ---------- the five points ---------- */
+
+  .point {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr);
+    gap: 0 32px;
+  }
+
+  .point-num {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--copper);
+    letter-spacing: 0.04em;
+    padding-top: 6px;
+    border-top: 3px solid var(--copper);
+    align-self: start;
+  }
+
+  .point-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ---------- outcome strip ---------- */
+
+  .outcome {
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-top: 3px solid var(--grid);
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .outcome .term {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grid);
+  }
+  .outcome p { font-size: 16.5px; max-width: 64ch; }
+
+  /* ---------- callout for the pricing-threshold warning ---------- */
+
+  .flag {
+    background: var(--copper-wash);
+    border-left: 3px solid var(--copper);
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+  .flag .term {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--copper);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ---------- tables ---------- */
+
+  .scroller {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 480px;
+    font-family: var(--display);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  caption {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-bottom: 10px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  thead th {
+    background: var(--surface-sunk);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  .target { color: var(--grid); font-weight: 650; }
+  .idx { font-family: var(--mono); color: var(--ink-faint); font-size: 13px; }
+
+  /* ---------- decisions ---------- */
+
+  .decisions { counter-reset: dec; list-style: none; padding: 0; display: flex; flex-direction: column; gap: 18px; max-width: 70ch; }
+  .decisions li {
+    counter-increment: dec;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 0 14px;
+    margin: 0;
+  }
+  .decisions li::before {
+    content: counter(dec);
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--copper);
+    padding-top: 4px;
+  }
+
+  /* ---------- closing notes ---------- */
+
+  .notes { background: var(--surface-sunk); padding: 28px 30px; display: flex; flex-direction: column; gap: 16px; }
+  .notes h2 { font-size: 20px; }
+  .notes p { font-size: 16px; }
+
+  footer {
+    padding: 40px 0 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 620px) {
+    body { font-size: 16.5px; padding: 0 18px 72px; }
+    .point { grid-template-columns: 1fr; gap: 18px; }
+    .point-num { border-top: none; border-left: 3px solid var(--copper); padding: 0 0 0 12px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Reduco · ALMA SKY SRL</span>
+      <span>Ședință săptămânală CEO</span>
+      <span>Orizont 90 de zile</span>
+    </div>
+    <h1>Extindere B2B: de la vizitatori la facturi pe masă</h1>
+    <p class="standfirst">Cinci puncte acționabile pentru mai multe leaduri calde persoană juridică, fiecare cu instrucțiuni și cu rezultatul urmărit.</p>
+    <div class="meta">
+      <span>Pregătit de <b>Marian</b></span>
+      <span>Surse: <b>Drive</b> (Reduco / Reduco, info · „Idei Reduco" · rapoarte de audit) + structura live <b>reduco.ro</b></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-label">Sumar în formatul foii de ședință</div>
+    <h2>Cele cinci puncte, pe scurt</h2>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Punct</th><th>Idee principală</th><th>Rezultat urmărit</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Audit gratuit ca ofertă de intrare</td>
+            <td>înlocuim prețul din fereastra de abonamente cu „trimite factura, primești analiza în 48h"; landing /audit-firme + smart.reduco.ro conectat; prag minim factură 5.000 lei/lună</td>
+            <td>20 facturi B2B primite în luna 1, 40 în luna 3; conversie raport → abonament 25%</td>
+          </tr>
+          <tr>
+            <td>Outbound hibrid pe firme cu consum mare</td>
+            <td>200 firme/lună Bacău-Suceava-Neamț, prioritate medie tensiune; secvență email → telefon → studiu de caz → vizită pe 8 zile; evidență unică în ClickUp</td>
+            <td>10 facturi primite/săptămână; 3 abonamente semnate/săptămână în luna 3</td>
+          </tr>
+          <tr>
+            <td>Parteneriat cu contabili</td>
+            <td>30 cabinete; Standard gratuit 12 luni + comision pe client adus; ei trimit facturile clienților cu acord scris</td>
+            <td>10 parteneri în 90 zile; 5 leaduri calde/lună din luna 2, cost per lead ~0</td>
+          </tr>
+          <tr>
+            <td>Curățare site + măsurare</td>
+            <td>ștergem /cine-suntem (încă „Comparatot", text din 2022), consolidăm paginile juridice în /solutii-imm, 3 studii de caz cu cifre, GA4 cu eveniment „lead juridic"</td>
+            <td>zero „Comparatot" până vineri; conversie vizitator → factură măsurată din săptămâna 2; +30% organic B2B</td>
+          </tr>
+          <tr>
+            <td>LinkedIn + ghid PDF</td>
+            <td>3 postări/săptămână pe rotație fixă (eroare de facturare / reglementare ANRE / studiu de caz); ghid „7 linii unde pierzi bani" contra CUI + telefon</td>
+            <td>30 descărcări/lună cu date de firmă; 5 cereri audit inbound/lună în luna 3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Detalierea fiecărui punct — problema, instrucțiunile pas cu pas și rezultatul urmărit — urmează mai jos.</p>
+  </section>
+
+  <section>
+    <div class="sec-label">Baza comună — 30 de secunde la deschidere</div>
+    <h2>Cine suntem și cu ce vindem astăzi</h2>
+    <p><strong>ALMA SKY SRL</strong> (RO28501770, Bacău–Mărgineni), brand <strong>Reduco.ro</strong>. Echipă cu peste 15 ani în furnizarea de energie electrică și gaze naturale.</p>
+
+    <div class="scroller">
+      <table>
+        <caption>Ofertă curentă către persoane juridice</caption>
+        <thead>
+          <tr><th>Linie</th><th>Detaliu</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Abonamente B2B</td>
+            <td>Basic 99 lei + TVA · Standard 199 lei + TVA · Premium 399 lei + TVA (lunar), plus loc suplimentar de consum; variantă anuală „Smart" 12 + 1 lună gratuită</td>
+          </tr>
+          <tr>
+            <td>Servicii punctuale</td>
+            <td>Audit facturi · Litigii / ANRE · Recuperare compensații · Racordare energie-gaz (ATR) · Consultanță prosumator · Eficiență energetică · Monitorizare consum</td>
+          </tr>
+          <tr>
+            <td>Produse</td>
+            <td>Panouri fotovoltaice · Pompe de căldură · Centrale termice și aer condiționat în rate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Activul care convertește cel mai bine este Raportul de Optimizare.</strong> Exemplul GRIDOMA SERV-COM (medie tensiune, Suceava): tarif plătit 1,24 lei/kWh față de optimul disponibil de 1,04 lei/kWh, adică <strong>3.804 lei economie lunară, 45.647 lei pe an</strong>, contra unui abonament de 240,79 lei/lună. Raport valoare/cost aproximativ <strong>16×</strong>, pus pe hârtie, cu cifrele clientului. Acesta este argumentul de vânzare — nu pagina de prezentare.</p>
+
+    <div class="definition">
+      <span class="term">Definiția pe care o adoptăm astăzi</span>
+      <p><strong>Lead cald persoană juridică</strong> = firmă cu CUI identificat, <strong>cel puțin o factură primită</strong>, decident cu nume și telefon, și factură lunară peste pragul de calificare.</p>
+      <p>Orice altceva — formular fără factură, click, follower — este <em>lead rece</em> și se numără separat.</p>
+    </div>
+  </section>
+
+  <div class="point">
+    <div class="point-num">01</div>
+    <div class="point-body">
+      <h2>Auditul gratuit devine oferta unică de intrare pentru firme</h2>
+
+      <div class="block">
+        <h3>Problema</h3>
+        <p>Site-ul îi cere azi vizitatorului juridic să aleagă între aproximativ douăsprezece pagini de ofertă — fix sau variabil, energie, gaz sau ambele — și să vadă un preț de abonament. Firma nu caută un abonament. Caută să afle cât pierde. Vindem produsul greșit la prima atingere.</p>
+      </div>
+
+      <div class="block">
+        <h3>Ce facem</h3>
+        <p>Un singur CTA pe toate paginile B2B — <strong>„Trimite ultima factură. Primești în 48h analiza a cât pierdea firma ta"</strong> — care înlocuiește afișarea prețului în fereastra de abonamente. Ideea există deja în „Idei Reduco"; o promovăm la prioritate.</p>
+      </div>
+
+      <div class="block">
+        <h3>Instrucțiuni</h3>
+        <ol>
+          <li>Landing dedicat <strong>reduco.ro/audit-firme</strong> cu un singur formular: CUI, nume și telefon decident, încărcare factură (PDF sau fotografie). Fără alte câmpuri.</li>
+          <li>Conectăm <strong>smart.reduco.ro</strong> ca instrument de pre-calificare — există deja construit și nu îl folosim.</li>
+          <li>Standardizăm Raportul de Optimizare ca șablon fix: antet → analiză → tabel comparativ → soluție → pas următor, exact structura raportului GRIDOMA. Ținta: <strong>raport livrat în maximum 48 de ore</strong>, altfel leadul se răcește.</li>
+          <li>Fiecare raport se încheie cu o singură întrebare de închidere și cu tipul de abonament recomandat.</li>
+          <li>Introducem un prag de calificare — vezi mai jos, este o decizie pentru CEO.</li>
+        </ol>
+      </div>
+
+      <div class="flag">
+        <span class="term">De calibrat înainte de lansare</span>
+        <p>Propunere: audit complet gratuit doar pentru factură lunară de la <strong>5.000 lei</strong> în sus; sub prag, Basic la 99 lei sau audit contra cost 250 lei, deductibil din primul abonament. Motivul vine din propriul portofoliu: la notariatul din Bacău economia calculată a fost 262 lei/lună, iar abonamentul Standard costă 240,79 lei/lună — economie netă circa 21 lei. Un asemenea raport nu se vinde și consumă aceleași ore ca unul de 45.000 lei pe an.</p>
+      </div>
+
+      <div class="outcome">
+        <span class="term">Rezultat urmărit</span>
+        <p>Cel puțin <strong>20 de facturi B2B primite în luna 1</strong> și 40 pe lună în luna 3; timp mediu de livrare a raportului sub 48 de ore; conversie raport → abonament de minimum 25%.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">02</div>
+    <div class="point-body">
+      <h2>Motor de outbound hibrid pe firme cu consum mare</h2>
+
+      <div class="block">
+        <h3>Problema</h3>
+        <p>Organicul aduce volum mic și lent, iar noi ne construim încă reputația. Leadurile calde trebuie generate activ. Punctul „abordare în regim hibrid" din notițe îl transformăm din idee în proces cu cifre.</p>
+      </div>
+
+      <div class="block">
+        <h3>Ce facem</h3>
+        <p>Două sute de firme țintă pe lună în Bacău, Suceava și Neamț, cu profil de consum ridicat: producție și prelucrare, morărit-panificație, HoReCa, ferme și sere, clinici, spălătorii, service auto, depozite frigorifice. Prioritate pe cele racordate în medie tensiune — acolo diferența de tarif produce sume care justifică singure abonamentul.</p>
+      </div>
+
+      <div class="block">
+        <h3>Instrucțiuni</h3>
+        <ol>
+          <li>Listă săptămânală de 50 de firme, construită din ONRC, Google Maps și hărțile de distribuție pe care le avem deja în Drive. Coloane: CUI, localitate, operator de distribuție, estimare consum, decident, telefon.</li>
+          <li>Secvență fixă pe opt zile lucrătoare: <strong>ziua 1</strong> e-mail scurt cu cârligul de preț, <strong>ziua 3</strong> telefon, <strong>ziua 5</strong> mesaj cu un studiu de caz anonimizat, <strong>ziua 8</strong> vizită pentru firmele din primele 20%.</li>
+          <li>Cârligul, o singură frază: <em>„Firme cu profilul dumneavoastră de consum, pe medie tensiune în zona X, plătesc astăzi 1,04 lei/kWh. Trimiteți-mi ultima factură și vă spun în 48 de ore unde sunteți."</em> Nu vindem abonament la telefon — vindem auditul.</li>
+          <li>Un singur loc pentru evidență, în ClickUp sau într-o foaie din Drive, cu stările: Contactat → Factură primită → Raport livrat → Ofertat → Semnat. Fără acest tabel nu avem ce raporta săptămânal.</li>
+          <li>Obiecțiile repetate se scriu într-un fișier comun; la fiecare două săptămâni actualizăm scriptul.</li>
+        </ol>
+      </div>
+
+      <div class="outcome">
+        <span class="term">Rezultat urmărit</span>
+        <p>50 de firme contactate pe săptămână produc cel puțin <strong>10 facturi primite pe săptămână</strong> (conversie contact → lead cald de 20%) și minimum 3 abonamente semnate pe săptămână până în luna 3. Indicator de sănătate: rata de răspuns pe e-mail și pe telefon, măsurate separat.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">03</div>
+    <div class="point-body">
+      <h2>Canal de recomandare prin contabili</h2>
+
+      <div class="block">
+        <h3>De ce acesta are cel mai bun raport efort/rezultat</h3>
+        <p>Un expert contabil are între 30 și 80 de firme în portofoliu, vede facturile lor lunar și are deja încrederea patronului. Recomandarea lui sare peste toată etapa de construire a credibilității pe care încercăm să o rezolvăm cu LinkedIn și SEO. Ideea este deja în „Idei Reduco" — propun să devină prioritate, nu experiment.</p>
+      </div>
+
+      <div class="block">
+        <h3>Instrucțiuni</h3>
+        <ol>
+          <li>Listă de 30 de cabinete de contabilitate din Bacău și Piatra Neamț.</li>
+          <li>Ofertă: <strong>abonament Standard gratuit 12 luni pentru cabinet</strong>, plus comision pe fiecare client adus — procent din abonament pe primul an, nivelul îl stabilește CEO.</li>
+          <li>Le dăm un kit de o pagină: ce facem, ce trebuie să ceară clientului (o factură), la ce număr trimit. Nimic mai complicat.</li>
+          <li>Contract simplu de recomandare și acordul scris al clientului pentru transmiterea facturii. Verificarea GDPR se face înainte de primul partener, nu după.</li>
+          <li>Raport lunar către fiecare partener cu ce am obținut pentru clienții lui. Contabilul recomandă a doua oară doar dacă vede rezultatul primei recomandări.</li>
+        </ol>
+      </div>
+
+      <div class="outcome">
+        <span class="term">Rezultat urmărit</span>
+        <p><strong>Zece parteneri semnați în 90 de zile</strong>; minimum 5 leaduri calde pe lună pe acest canal începând din luna 2; cost de achiziție per lead aproape zero.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">04</div>
+    <div class="point-body">
+      <h2>Curățarea site-ului pentru încredere B2B și instalarea măsurării</h2>
+
+      <div class="block">
+        <h3>Problema, verificată astăzi pe site</h3>
+        <p>Pagina <strong>reduco.ro/cine-suntem</strong> vorbește încă despre <strong>„Comparatot"</strong>, cu text nemodificat din 2022, și se suprapune cu <strong>/despre-noi</strong>. Un director financiar care verifică cine suntem înainte să ne trimită o factură găsește un alt nume de firmă. Este cel mai ieftin lucru de reparat și cel mai scump dacă rămâne așa.</p>
+      </div>
+
+      <div class="block">
+        <h3>Instrucțiuni</h3>
+        <ol>
+          <li><strong>Săptămâna aceasta:</strong> ștergem sau redirecționăm <strong>/cine-suntem</strong> către <strong>/despre-noi</strong>, cu textul actual Reduco.</li>
+          <li>Consolidăm paginile subțiri de ofertă juridică — <em>juridic-energie-fix</em>, <em>juridic-gaz-variabil</em> și celelalte — într-un hub unic <strong>/solutii-imm</strong>, cu redirecturi. Zece pagini slabe concurează între ele; una puternică se poziționează.</li>
+          <li>Adăugăm dovezi: trei studii de caz anonimizate cu cifre reale din rapoartele noastre — economie lunară, economie anuală, tarif înainte și după. Exact ce prevede și nota „situații rezolvate fără datele clienților".</li>
+          <li>Semnale de încredere vizibile: denumire legală, CUI, sediu, ANPC/SAL, plăți Netopia, contract-model descărcabil.</li>
+          <li><strong>Măsurare</strong> — fără ea, ședința de săptămâna viitoare se ține pe ghicite: GA4 cu un eveniment distinct „lead juridic" pe formularul de audit, sursa de trafic marcată, plus verificarea vitezei site-ului. Câteva pagini nu au răspuns astăzi la accesare automată repetată; de verificat cu găzduirea.</li>
+        </ol>
+      </div>
+
+      <div class="outcome">
+        <span class="term">Rezultat urmărit</span>
+        <p>Zero mențiuni „Comparatot" pe site până vineri. Rata de conversie vizitator B2B → factură trimisă <strong>măsurată</strong> din săptămâna 2 și raportată la fiecare ședință. Plus 30% trafic organic pe paginile B2B în 90 de zile.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">05</div>
+    <div class="point-body">
+      <h2>Autoritate pe LinkedIn și un ghid PDF pentru decidenți</h2>
+
+      <div class="block">
+        <h3>Ce facem</h3>
+        <p>Trecem conținutul de la registrul casnic la cel de decident de firmă și îl legăm de un lead magnet care produce contacte, nu aprecieri. Punctele „postări zilnice LinkedIn", „generare de ghiduri PDF" și „studii de caz" din agenda anterioară se strâng într-un singur flux.</p>
+      </div>
+
+      <div class="block">
+        <h3>Instrucțiuni</h3>
+        <ol>
+          <li><strong>Trei postări pe săptămână</strong> — ritm sustenabil, mai valoros decât unul zilnic abandonat după zece zile — pe rotație fixă: <strong>luni</strong> o eroare de facturare găsită la un client, cu suma recuperată; <strong>miercuri</strong> o schimbare de reglementare ANRE explicată în limbaj de patron; <strong>vineri</strong> un studiu de caz scurt, cu tarif înainte și după și economia anuală.</li>
+          <li><strong>Lead magnet:</strong> ghidul <em>„Factura de energie a firmei tale: 7 linii unde pierzi bani"</em>, PDF de șase–opt pagini, descărcabil în schimbul CUI, e-mail și telefon. Refolosim structura rapoartelor pe care le producem deja.</li>
+          <li>Fiecare postare se închide cu același CTA ca la punctul 01 — trimite factura.</li>
+          <li>Legăm profilul personal al lui Marian de pagina Reduco. În B2B oamenii urmăresc un specialist, nu un logo.</li>
+          <li>Descărcarea ghidului declanșează automat secvența de la punctul 02: e-mail, apoi telefon în 48 de ore.</li>
+        </ol>
+      </div>
+
+      <div class="outcome">
+        <span class="term">Rezultat urmărit</span>
+        <p>Minimum <strong>30 de descărcări de ghid pe lună</strong> cu date complete de firmă; cel puțin 5 cereri de audit inbound pe lună venite din LinkedIn până în luna 3. Creșterea de urmăritori se măsoară doar ca indicator secundar.</p>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-label">Tabloul de bord</div>
+    <h2>Cele șase numere care se raportează la fiecare ședință</h2>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr>
+            <th class="idx">#</th>
+            <th>Indicator</th>
+            <th class="num">Ținta lunii 1</th>
+            <th class="num">Ținta lunii 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="idx">1</td><td>Firme contactate (outbound)</td><td class="num">200</td><td class="num">200</td></tr>
+          <tr><td class="idx">2</td><td><strong>Facturi B2B primite = leaduri calde</strong></td><td class="num target">20</td><td class="num target">40</td></tr>
+          <tr><td class="idx">3</td><td>Rapoarte livrate / timp mediu</td><td class="num">20 · &lt; 48h</td><td class="num">40 · &lt; 48h</td></tr>
+          <tr><td class="idx">4</td><td>Abonamente B2B semnate</td><td class="num target">5</td><td class="num target">12–15</td></tr>
+          <tr><td class="idx">5</td><td>Parteneri contabili activi</td><td class="num">3</td><td class="num">10</td></tr>
+          <tr><td class="idx">6</td><td>Conversie vizitator site → factură trimisă</td><td class="num"><em>de măsurat</em></td><td class="num">≥ 3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Regula ședinței:</strong> dacă un număr lipsește, se raportează „nu îl avem" — nu se estimează. Un indicator neștiut este el însuși un punct de acțiune.</p>
+  </section>
+
+  <section>
+    <div class="sec-label">Desfășurare</div>
+    <h2>Agenda ședinței, 30 de minute</h2>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th class="num">Minute</th><th>Ce se întâmplă</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">0–5</td><td>Cele șase numere de săptămâna trecută, citite fără comentarii</td></tr>
+          <tr><td class="num">5–15</td><td>Cele cinci puncte: stadiu, ce s-a blocat, ce se deblochează săptămâna asta</td></tr>
+          <tr><td class="num">15–25</td><td>Deciziile de mai jos</td></tr>
+          <tr><td class="num">25–30</td><td>Cine face ce până vineri — o singură propoziție de persoană</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Pentru CEO</div>
+    <h2>Deciziile care se iau în această ședință</h2>
+
+    <ol class="decisions">
+      <li><strong>Pragul auditului gratuit.</strong> Factură lunară de la 5.000 lei în sus? Sub prag taxăm 250 lei, deductibil? Fără prag, capacitatea de audit se umple cu clienți la care economia nu acoperă abonamentul — cazul notariatului.</li>
+      <li><strong>Comisionul pentru contabili.</strong> Ce procent din abonament pe primul an, și dacă abonamentul Standard gratuit al cabinetului se acordă imediat sau după primul client adus.</li>
+      <li><strong>Cine deține outbound-ul.</strong> Postul nou de manager de proiect, punctul HR din agenda de pe 6 august, preia lista, secvența și evidența — sau rămâne la Marian? Auditul și vânzarea nu încap în aceeași persoană la 40 de rapoarte pe lună.</li>
+      <li><strong>Buget.</strong> Reparațiile de site de la punctul 04 și, eventual, un test plătit pe Google Ads pentru „ofertă energie electrică firme". Recomandarea mea: întâi reparăm și măsurăm, abia apoi plătim trafic.</li>
+    </ol>
+  </section>
+
+  <section class="notes">
+    <div class="sec-label">Onestitate asupra cifrelor</div>
+    <h2>Ce trebuie știut despre țintele de mai sus</h2>
+    <p><strong>Țintele sunt calibrate, nu măsurate.</strong> Nu avem astăzi un istoric de leaduri B2B accesibil: contul de e-mail la care am avut acces este cel personal, nu <strong>info@reduco.ro</strong>, iar site-ul nu are un eveniment de conversie definit. Prima săptămână servește la stabilirea nivelului real de plecare, iar țintele se ajustează în ședința următoare.</p>
+    <p><strong>Abonamentul nu este profitul, este ușa.</strong> Cincisprezece abonamente noi înseamnă în jur de 3.000 lei pe lună recurent. Banii adevărați sunt în ce urmează după audit — racordare și ATR, litigii ANRE, recuperare compensații, fotovoltaice — unde valoarea unei singure lucrări depășește un an întreg de abonament. De aceea toate cele cinci puncte împing spre același prim pas: <strong>factura clientului ajunge la noi</strong>.</p>
+    <p><strong>Punctul Novex</strong> — prezența lui Marian la rezolvarea amiabilă cu Electrica — rămâne pe agendă ca venit suplimentar punctual, dar este muncă de execuție și nu intră în cele cinci puncte de creștere.</p>
+  </section>
+
+  <footer>Reduco · ALMA SKY SRL · plan de extindere B2B · revizuire săptămânală</footer>
+
+</div>

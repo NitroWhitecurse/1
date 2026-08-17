@@ -1,0 +1,648 @@
+<title>Trei Mișcări Reduco</title>
+<style>
+  :root {
+    --ground: #F1F3F2;
+    --surface: #FFFFFF;
+    --surface-sunk: #E7EBE9;
+    --ink: #121917;
+    --ink-soft: #4A5A55;
+    --ink-faint: #74837E;
+    --rule: #D3DAD7;
+    --rule-strong: #B6C1BD;
+    --grid: #0F5C4E;
+    --grid-wash: #E2EDE9;
+    --copper: #A8481F;
+    --copper-wash: #F6E7DF;
+
+    --display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1211;
+      --surface: #141B19;
+      --surface-sunk: #1B2422;
+      --ink: #E7ECEA;
+      --ink-soft: #A6B4B0;
+      --ink-faint: #7D8C88;
+      --rule: #2A3634;
+      --rule-strong: #3C4A47;
+      --grid: #58C4A8;
+      --grid-wash: #16302A;
+      --copper: #E08A5C;
+      --copper-wash: #332016;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0D1211;
+    --surface: #141B19;
+    --surface-sunk: #1B2422;
+    --ink: #E7ECEA;
+    --ink-soft: #A6B4B0;
+    --ink-faint: #7D8C88;
+    --rule: #2A3634;
+    --rule-strong: #3C4A47;
+    --grid: #58C4A8;
+    --grid-wash: #16302A;
+    --copper: #E08A5C;
+    --copper-wash: #332016;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 940px; margin: 0 auto; }
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 72px 0 34px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--grid);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+    font-weight: 800;
+    margin: 0;
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+  .meta b { color: var(--ink-soft); font-weight: 500; }
+
+  section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(23px, 3.4vw, 31px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 750;
+    margin: 0;
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  p { margin: 0; max-width: 68ch; }
+  p + p { margin-top: 14px; }
+  strong { font-weight: 700; }
+  em { font-style: italic; color: var(--ink-soft); }
+
+  ul, ol { margin: 0; padding-left: 1.35em; max-width: 68ch; }
+  li { margin-bottom: 10px; }
+  li::marker { color: var(--ink-faint); font-family: var(--mono); font-size: 0.86em; }
+
+  a { color: var(--grid); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--grid); outline-offset: 3px; }
+
+  /* ---- diagnosis ---- */
+  .squeeze {
+    background: var(--copper-wash);
+    border-left: 3px solid var(--copper);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .squeeze ul { padding-left: 1.2em; }
+  .squeeze li { margin-bottom: 8px; }
+
+  /* ---- thesis: three moves ---- */
+  .moves {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+    background: var(--rule-strong);
+    border: 1px solid var(--rule-strong);
+  }
+  .move {
+    background: var(--surface);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .move .dir {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grid);
+  }
+  .move .what {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 750;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .move p { font-size: 15.5px; line-height: 1.5; }
+
+  /* ---- convergence ---- */
+  .converge {
+    background: var(--grid-wash);
+    border-left: 3px solid var(--grid);
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .converge .term {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grid);
+  }
+  .converge ul { padding-left: 1.2em; }
+  .converge .punch {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    max-width: 52ch;
+  }
+
+  /* ---- numbered directions ---- */
+  .point {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr);
+    gap: 0 32px;
+  }
+  .point-num {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--copper);
+    padding-top: 6px;
+    border-top: 3px solid var(--copper);
+    align-self: start;
+  }
+  .point-body { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+  .block { display: flex; flex-direction: column; gap: 10px; }
+
+  .flag {
+    background: var(--copper-wash);
+    border-left: 3px solid var(--copper);
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+  .flag .term {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--copper);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .move-strip {
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-top: 3px solid var(--grid);
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .move-strip .term {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grid);
+  }
+  .move-strip p { font-size: 16.5px; }
+
+  /* ---- tables ---- */
+  .scroller { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 520px;
+    font-family: var(--display);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+  }
+  th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th {
+    background: var(--surface-sunk);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.when { white-space: nowrap; font-family: var(--mono); font-size: 13px; color: var(--ink-faint); }
+
+  .decisions { counter-reset: dec; list-style: none; padding: 0; display: flex; flex-direction: column; gap: 18px; max-width: 70ch; }
+  .decisions li {
+    counter-increment: dec;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 0 14px;
+    margin: 0;
+  }
+  .decisions li::before {
+    content: counter(dec);
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--copper);
+    padding-top: 4px;
+  }
+
+  .notes { background: var(--surface-sunk); padding: 28px 30px; display: flex; flex-direction: column; gap: 16px; }
+  .notes h2 { font-size: 20px; }
+  .notes p { font-size: 16px; }
+
+  footer {
+    padding: 40px 0 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 760px) {
+    .moves { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    body { font-size: 16.5px; padding: 0 18px 72px; }
+    .point { grid-template-columns: 1fr; gap: 18px; }
+    .point-num { border-top: none; border-left: 3px solid var(--copper); padding: 0 0 0 12px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Reduco · ALMA SKY SRL</span>
+      <span>Cercetare independentă</span>
+      <span>August 2026</span>
+    </div>
+    <h1>Trei mișcări care schimbă terenul de joc</h1>
+    <p class="standfirst">Direcții de creștere găsite din afara backlogului existent, pe trei fire paralele: reglementare, hartă competitivă, economia modelelor de venit.</p>
+    <div class="meta">
+      <span>Documente-sursă: <b>declansatoare-reglementare.md</b> · <b>cercetare-piata.md</b> · <b>economie-modele.md</b></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-label">Diagnostic</div>
+    <h2>Poziția noastră reală — și de ce site-ul o ascunde</h2>
+    <p>O primă versiune a acestui document spunea că suntem strânși între POSF, furnizori și comparatoarele naționale. Nu este corect, și diferența contează pentru tot ce urmează.</p>
+
+    <ul>
+      <li><strong>POSF nu este un substitut, este prețul de raft.</strong> Platforma oficială ANRE arată <strong>ofertele standard, publicate</strong>. Noi nu comparăm oferte publicate — <strong>negociem individual</strong>. Tariful de 1,04 lei/kWh obținut la GRIDOMA nu se găsește pe POSF, pentru că nu este o ofertă de raft. Asta transformă POSF din amenințare în <strong>argument de vânzare</strong>: „uită-te pe POSF ce se oferă public, apoi uită-te ce am obținut noi". Este singura comparație pe care o putem invita clientul să o facă singur, și ea ne avantajează.</li>
+      <li><strong>Un furnizor care îți auditează factura se auditează pe sine.</strong> ENGIE oferă audit energetic pe site, dar niciun furnizor nu te va reprezenta vreodată <em>împotriva lui însuși</em>. Noi verificăm facturi, facem audit și <strong>reprezentăm clientul în raport cu furnizorul și distribuitorul, pe legislația ANRE</strong>. Structural imposibil de copiat de un furnizor.</li>
+      <li><strong>Comparatoarele au exact conflictul pe care noi nu îl avem.</strong> EnergoPartner e broker monetizat prin poziții „Promovat" plătite de furnizori — se declară independent, dar e plătit de partea pe care ar trebui să o evalueze. Noi suntem plătiți de client. Și niciunul dintre comparatoare nu oferă reprezentare în dispute.</li>
+    </ul>
+
+    <div class="converge">
+      <span class="term">Ce vindem, de fapt</span>
+      <p class="punch">Siguranță și confort. Clientul nu cumpără un preț — cumpără să nu mai piardă timp: verificăm noi, negociem noi, ne certăm noi cu furnizorul dacă e cazul.</p>
+    </div>
+
+    <h3>Problema reală</h3>
+    <p>Nu suntem strânși. <strong>Comunicăm versiunea slabă a ofertei.</strong> Site-ul ne prezintă ca un comparator — pagina „cine suntem" spune încă literalmente <em>Comparatot</em>, structura duce spre pagini de comparare, iar fereastra de abonamente afișează un preț. Un comparator este exact lucrul pe care POSF îl face gratis. Un negociator care te și reprezintă în fața furnizorului este altceva, și nu spunem asta nicăieri.</p>
+
+    <div class="squeeze">
+      <p>Vestea bună: o problemă de comunicare se repară mai repede decât una de poziție. Rămâne totuși o constrângere reală de piață — în 2025 <strong>19.586 de firme și-au suspendat activitatea</strong> la nivel național, iar în Bacău suspendările au crescut de la 408 la 513. Baza de clienți se contractă, oricât de bine ne-am poziționa.</p>
+    </div>
+
+    <p><strong>Concluzia:</strong> avem o poziție mai bună decât o arătăm. Direcțiile de mai jos o extind — nu o înlocuiesc.</p>
+  </section>
+
+  <section>
+    <div class="sec-label">Teza</div>
+    <h2>Trei mișcări care se susțin reciproc</h2>
+    <p>Niciuna nu cere să devenim altceva — toate extind ceva ce facem deja.</p>
+
+    <div class="moves">
+      <div class="move">
+        <span class="dir">În sus</span>
+        <span class="what">Prin reglementare</span>
+        <p>Reprezentăm deja clienți pe legislația ANRE. Trecem de la reprezentare în dispute la conformare cu termen fix — același mușchi, folosit înainte de apariția problemei, nu după.</p>
+      </div>
+      <div class="move">
+        <span class="dir">În lateral</span>
+        <span class="what">Prin agregare</span>
+        <p>Negocierea e deja ce facem. A negocia pentru 15 firme deodată în loc de una e aceeași muncă, cu putere de negociere mult mai mare — și cere relații locale pe care Bucureștiul nu le are.</p>
+      </div>
+      <div class="move">
+        <span class="dir">Altfel</span>
+        <span class="what">La preț</span>
+        <p>Grila actuală nu poate încasa proporțional cu ce producem, pentru că Premium e ultima treaptă. Nu schimbăm ce vindem — putem doar să facturăm corect un client mare.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Semnalul cel mai puternic</div>
+    <h2>Convergența</h2>
+    <div class="converge">
+      <span class="term">Trei fire pornite separat, aceeași destinație</span>
+      <ul>
+        <li><strong>Cercetarea de piață</strong> a găsit că modelul italian de consorțiu de achiziție (Consorzio Gruppo Acquisti, 600+ firme membre) funcționează pe principiul declarat public <em>„compensul nostru vine doar dacă îți obținem o economie"</em>.</li>
+        <li><strong>Modelul economic</strong> a ajuns independent la concluzia că success fee-ul este singurul model imun la comprimarea marjei și singurul care elimină bariera „plătește înainte să vezi rezultatul".</li>
+        <li><strong>Cercetarea de reglementare</strong> a găsit că România tocmai a deschis, prin Ordinul ANRE 50/25.06.2026, cadrul pentru comunitățile de energie — versiunea românească, reglementată, a grupului de achiziție.</li>
+      </ul>
+      <p class="punch">Grup de firme plus plată din rezultat. Când trei drumuri ajung în același loc, de obicei nu e coincidență.</p>
+    </div>
+  </section>
+
+  <div class="point">
+    <div class="point-num">01</div>
+    <div class="point-body">
+      <h2>Motorul de conformare — vinde termen limită, nu economie</h2>
+
+      <div class="block">
+        <h3>Ce este</h3>
+        <p>Legea 121/2014 impune obligații cu dată fixă: declarația anuală de consum pentru <em>toate</em> firmele, audit energetic la 4 ani pentru <em>orice</em> companie non-IMM indiferent de consum, iar peste 1.000 TEP/an — manager energetic și Program anual de îmbunătățire.</p>
+      </div>
+
+      <div class="block">
+        <h3>De ce schimbă jocul</h3>
+        <p>O firmă cu obligație legală și termen nu se gândește dacă vrea — caută pe cine sună. Nu trebuie convinsă, nu ne trebuie reputație, nu concurăm cu furnizorul. Și, spre deosebire de compararea de prețuri, <strong>nu se poate face gratuit pe POSF</strong>.</p>
+      </div>
+
+      <div class="block">
+        <h3>Efectul secundar care contează cel mai mult</h3>
+        <p>Declarația anuală o datorează <em>toate</em> firmele, inclusiv IMM-urile mici, și aproape niciun patron nu știe. Dacă o depunem gratuit în numele firmei, primim — legal, cu acordul ei, ca parte a serviciului — <strong>exact datele de consum pe care azi le cerem sub formă de factură și de multe ori nu le obținem.</strong></p>
+        <p>Cercetarea de piață a găsit, independent, a doua rută către același activ: în UK, brokerii folosesc o <strong>împuternicire de o pagină</strong> prin care clientul îi autorizează să ia datele direct de la furnizor, în locul cererii „trimite-mi ultimele trei facturi în PDF" — pasul la care se pierd cei mai mulți.</p>
+      </div>
+
+      <div class="flag">
+        <span class="term">De verificat înainte de execuție</span>
+        <p>Nu am putut confirma dacă furnizorii români acceptă un terț împuternicit să obțină datele de consum — necesită verificare juridică. Iar termenul declarației diferă între surse (30 aprilie vs. 30 iunie, după categorie): nicio dată în comunicare publică înainte de confirmare scrisă de la Ministerul Energiei.</p>
+      </div>
+
+      <div class="move-strip">
+        <span class="term">Prima mișcare</span>
+        <p>Suntem la <strong>~6 săptămâni de 30 septembrie</strong>, termenul Programului de îmbunătățire pentru firmele peste 1.000 TEP. Singura campanie din acest an cu urgență reală, nu fabricată.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">02</div>
+    <div class="point-body">
+      <h2>Statut de societate prestatoare de servicii energetice</h2>
+
+      <div class="block">
+        <h3>Ce este</h3>
+        <p>ALMA SKY SRL poate fi <strong>agreată de ANRE ca societate prestatoare de servicii energetice</strong>. Condiția centrală: serviciile de management energetic în obiectul de activitate și <strong>cel puțin un manager energetic atestat, angajat cu contract individual de muncă</strong>.</p>
+      </div>
+
+      <div class="block">
+        <h3>De ce este mutarea cu cel mai mare efect de levier</h3>
+        <p>Firmele peste 1.000 TEP sunt obligate prin lege să aibă manager energetic atestat <em>sau să contracteze o persoană juridică autorizată</em>. Odată agreați, nu mai vindem un abonament pe care trebuie să convingem pe cineva să-l cumpere — <strong>furnizăm un serviciu pe care legea îl impune</strong>, la contract recurent de alt ordin de mărime decât 199 lei/lună. Este și singura poziție din acest document în care nu ne poate ajunge niciun comparator, oricât buget ar avea.</p>
+      </div>
+
+      <div class="block">
+        <h3>Legătura cu ce se întâmplă deja la noi</h3>
+        <p>Pe agenda din 6 august există punctul HR — contractul de muncă pentru noua poziție de manager de proiect. Dacă acea persoană obține atestatul, condiția de angajare cu contract individual se îndeplinește prin <strong>aceeași angajare pe care oricum o facem. Aceeași cheltuială, alt statut de firmă.</strong></p>
+      </div>
+
+      <div class="scroller">
+        <table>
+          <thead>
+            <tr><th>Cale</th><th>Ce deschide</th><th>Când începe</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Conformare fără atestat — declarații, termene, documentație</td><td>Ușa de intrare, datele de consum</td><td class="when">Imediat</td></tr>
+            <tr><td>Parteneriat cu un auditor atestat — noi aducem clientul, el semnează</td><td>Auditurile obligatorii, fără investiție</td><td class="when">Săptămâna aceasta</td></tr>
+            <tr><td>Atestare proprie + agreere ANRE</td><td>Contracte de management energetic, recurente și obligatorii</td><td class="when">Strategic</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">03</div>
+    <div class="point-body">
+      <h2>Agregarea — singurul canal care se multiplică</h2>
+
+      <div class="block">
+        <h3>Ce funcționează deja în alte țări</h3>
+        <p><strong>Polonia.</strong> Mecanismul „grupa zakupowa" a pornit de la administrații publice — Poznań a organizat prima licitație de grup în 2011; zona metropolitană Gdańsk-Sopot a licitat în 2012 pentru 1.911 obiective, cu economii de ~4 milioane zloți față de achiziția individuală. <strong>Mărimea optimă a grupului: 10–30 de entități</strong> — sub 10 nu se atinge volumul, peste 30 devine greu de gestionat. Modelul s-a extins apoi de la primării la firme private.</p>
+        <p><strong>Italia.</strong> Modelul e reglementat de autoritatea națională de energie (ARERA), care a publicat linii directoare pentru „gruppi d'acquisto energia": organizatorul strânge firmele, selectează ofertele, membrii semnează individual cu furnizorul ales. Consorzio Gruppo Acquisti are peste 600 de firme membre din 2017.</p>
+      </div>
+
+      <div class="block">
+        <h3>Versiunea românească s-a deschis acum șapte săptămâni</h3>
+        <p><strong>Ordinul ANRE nr. 50 din 25 iunie 2026</strong> a făcut operațional Registrul național al comunităților de energie — un grup de IMM-uri, cetățeni și autorități locale poate produce, consuma, stoca și gestiona energie în comun. <strong>Nimeni din România nu are încă experiență practică</strong>: poziția de expert nu trebuie luată de la un concurent, este liberă. Iar procedura este recunoscut birocratică, ceea ce este exact produsul nostru — noi facem hârtiile, clientul ia rezultatul. Același model ca la racordare/ATR, unde deja lucrăm.</p>
+      </div>
+
+      <div class="block">
+        <h3>De ce este singura idee cu efect de multiplicare</h3>
+        <p>Tot ce facem astăzi aduce <strong>un client per audit</strong> — creșterea e liniară cu orele disponibile, deci plafonată. Un grup aduce <strong>10–30 de firme printr-o singură vânzare</strong>, cu relație de administrare continuă, nu tranzacție. Și e apărat exact acolo unde suntem slabi: un comparator național nu poate construi relația cu Camera de Comerț Bacău. Noi putem.</p>
+      </div>
+
+      <div class="move-strip">
+        <span class="term">Unde începem — nu de la firme, ci de la cine le agregă deja</span>
+        <p>Camera de Comerț și Industrie Bacău, patronatele locale, administratorii de parcuri industriale, Zona Metropolitană Bacău, grupuri de ferme și sere învecinate. <strong>Test în 4–8 săptămâni:</strong> un parteneriat, 10–15 firme, o rundă de ofertare către 3–5 furnizori. Fără construcție tehnică.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">04</div>
+    <div class="point-body">
+      <h2>Încasăm 10,5% din valoarea pe care o producem</h2>
+
+      <div class="block">
+        <h3>Cazul notariatului nu a fost o excepție, a fost matematică</h3>
+        <p>Pragul de rentabilitate al abonamentului Standard este o factură de ~1.376 lei/lună. Notariatul avea 1.408 lei — vândut fix pe linia de breakeven, de aceea economia netă a ieșit 21 lei. Pragul sănătos, la care clientul chiar simte valoarea: <strong>~2.750 lei/lună factură</strong>.</p>
+      </div>
+
+      <div class="block">
+        <h3>Lăsăm bani pe masă la clienții mari</h3>
+        <p>La GRIDOMA producem 3.804 lei/lună economie și încasăm 399 lei — <strong>10,5%</strong>, plafonat artificial pentru că Premium este ultima treaptă. O treaptă peste 15.000 kWh/lună, la ~899 lei, ar însemna <strong>+6.000 lei/an de la un singur client</strong>, care rămâne oricum cu 2.905 lei/lună economie netă. Grila noastră nu are unde să pună clientul mare.</p>
+      </div>
+
+      <div class="block">
+        <h3>Abonamentul fix devine capcană când marja se comprimă</h3>
+        <p>La un delta de 0,05 lei/kWh, un client mic pe Standard <strong>pierde bani net</strong>. Doar un model procentual din economie rămâne structural pozitiv pentru client indiferent de piață.</p>
+      </div>
+
+      <div class="flag">
+        <span class="term">Ce nu recomand: comisionul de la furnizor</span>
+        <p>Cadrul legal există în România (cod CAEN 3540, licențiabil ANRE), iar în UK modelul e dominant — circa 3.000 de intermediari activi. Tentația e reală: „gratuit pentru tine, plătit de furnizor" elimină bariera de conversie. Dar ne-ar costa exact activul pe care îl construim. EnergoPartner atacă deja public această practică — <em>„mulți intermediari lucrează pe comision și îți recomandă tot timpul aceeași ofertă"</em> — și are dreptate. <strong>Success fee-ul obține același efect, fără conflictul de interese.</strong></p>
+      </div>
+
+      <div class="move-strip">
+        <span class="term">Recomandare, corectată după clarificarea poziționării</span>
+        <p>Dacă vindem siguranță și confort, <strong>abonamentul recurent este forma corectă a produsului</strong>, nu una de înlocuit — un contabil nu se plătește din procent, se plătește lunar tocmai pentru că îi cumperi liniștea. Modelul procentual rezolvă altceva: <strong>bariera de la prima tranzacție</strong>.</p>
+        <p>Deci: <strong>success fee doar ca ușă de intrare</strong> (pe prima negociere, o parte din ce obținem sub oferta publică), <strong>retainer în trepte ca produs de bază</strong> imediat ce economia e dovedită, <strong>grup de cumpărare</strong> pentru cei sub prag. Ce trebuie reparat urgent nu e modelul, ci <strong>grila</strong>: pragul prea jos și lipsa unei trepte peste Premium.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">05</div>
+    <div class="point-body">
+      <h2>Calendarul de expirare a contractelor</h2>
+
+      <div class="block">
+        <h3>Activul pe care nu îl acumulăm</h3>
+        <p>Fiecare factură care ne trece prin mână conține data de început și durata contractului, deci <strong>data de expirare</strong>. Astăzi nu o înregistrăm nicăieri.</p>
+        <p>Plafonarea la energie electrică a expirat la 1 iulie 2025, cea la gaze în martie–aprilie 2026. Fiecare firmă a semnat sau a acceptat tacit un contract sub presiune. Acele contracte <strong>ajung la scadență în lunile următoare</strong>, iar o firmă poate schimba furnizorul doar în fereastra ei.</p>
+      </div>
+
+      <div class="block">
+        <h3>Mecanismul</h3>
+        <p>Înregistrăm data de expirare a fiecărei firme cu care vorbim — <strong>inclusiv a celor care ne refuză acum</strong> — și programăm reapelarea exact în luna în care schimbarea e posibilă. Un „nu" de azi devine lead cald peste opt luni, la o dată pe care o știm noi și nu o știe concurența.</p>
+        <p><strong>Validare externă:</strong> startup-ul britanic tem.energy, finanțat de Atomico, vinde exact acest lucru ca „infrastructură AI care detectează momentul optim de reînnoire", cu peste 6.000 de puncte de consum pe platformă. Partea de „AI" este în mare parte marketing — mecanismul de bază este un calendar plus alerte automate.</p>
+      </div>
+
+      <div class="move-strip">
+        <span class="term">Nu e doar o sursă de leaduri — e chiar produsul</span>
+        <p>Dacă promisiunea noastră e „nu te mai gândi la asta, ne ocupăm noi", atunci un client care ratează fereastra de renegociere pentru că nu i-am spus la timp <strong>nu a primit ce a cumpărat</strong>. Calendarul de expirări este mecanismul prin care abonamentul își respectă promisiunea. Fără el, „siguranță și confort" rămâne un slogan; cu el, devine un serviciu verificabil care justifică singur plata lunară.</p>
+        <p>Și, spre deosebire de o listă de apelări care se consumă, un calendar <strong>se acumulează</strong>. Cost: o coloană în evidența pe care oricum o ținem. <strong>MVP în 2–4 săptămâni.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-num">06</div>
+    <div class="point-body">
+      <h2>Poziția de expert independent în răspunsurile AI</h2>
+
+      <div class="block">
+        <h3>Ce am verificat</h3>
+        <p>Am testat ce citează motoarele de răspuns la întrebarea pe care și-o pune un patron: <em>„cum aleg furnizor de energie electrică pentru firma mea"</em>. Sunt citați furnizorii înșiși — PPC, MET, Premier Energy — plus portaluri generice și pagina ANRE. <strong>Niciun consultant independent. Reduco nu apare deloc.</strong></p>
+      </div>
+
+      <div class="block">
+        <h3>De ce nu este „SEO pe blog"</h3>
+        <p>Ținta nu este locul 1 în Google, ci <strong>să fim sursa citată în răspuns</strong> — ceea ce cere informație structurată, verificabilă, datată: praguri, tabele de obligații, termene legale. Materialul cel mai citabil este exact cel produs la punctele 01–03.</p>
+      </div>
+
+      <div class="move-strip">
+        <span class="term">Avantajul care nu poate fi copiat</span>
+        <p><strong>Un furnizor nu va publica niciodată tabelul care explică unei firme cum să plece de la el.</strong> Noi putem.</p>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-label">Pentru CEO</div>
+    <h2>Deciziile</h2>
+    <ol class="decisions">
+      <li><strong>Investim în atestarea de manager energetic și în agreerea ALMA SKY ca societate prestatoare de servicii energetice?</strong> Decizia cu cel mai mare efect din tot documentul, și cu cea mai lungă durată de execuție — de aceea trebuie luată prima.</li>
+      <li>Rata de success fee acceptabilă, și dacă introducem treapta 4 în grila de abonamente.</li>
+      <li>Ridicăm pragul de calificare pentru abonament la ~2.750 lei/lună factură?</li>
+      <li>Cine deschide relația instituțională cu Camera de Comerț Bacău — este o vânzare de alt tip decât cea către o firmă.</li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="sec-label">Calendar</div>
+    <h2>Secvența pe 90 de zile</h2>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Când</th><th>Ce</th><th>De ce acum</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="when">Săpt. 1</td><td><strong>Rescrierea mesajului: de la „comparator" la „negociem, verificăm și te reprezentăm"</strong></td><td>Cea mai ieftină mișcare din document; azi ne prezentăm ca lucrul pe care POSF îl face gratis</td></tr>
+          <tr><td class="when">Săpt. 1</td><td>Campanie pe termenul de 30 septembrie către firme peste 1.000 TEP</td><td>Fereastra se închide în 6 săptămâni</td></tr>
+          <tr><td class="when">Săpt. 1</td><td>Coloana „data expirării contractului", retroactiv pe tot ce avem</td><td>Cost zero, se acumulează din prima zi</td></tr>
+          <tr><td class="when">Săpt. 2</td><td>Contact cu un auditor energetic atestat pentru parteneriat</td><td>Deschide auditurile fără investiție</td></tr>
+          <tr><td class="when">Săpt. 2–3</td><td>Prima întâlnire la Camera de Comerț Bacău sau la un parc industrial</td><td>Testează multiplicatorul</td></tr>
+          <tr><td class="when">Săpt. 3–4</td><td>Calendar de reînnoiri + alerte automate pe portofoliul actual</td><td>MVP fără dependențe externe</td></tr>
+          <tr><td class="when">Luna 1</td><td>Cerere la Ministerul Energiei: clarificarea termenelor + informații de interes public</td><td>Răspuns în 10–30 de zile</td></tr>
+          <tr><td class="when">Luna 1–2</td><td>Decizie și înscriere la cursul de atestare manager energetic</td><td>Cea mai lungă execuție — începe devreme</td></tr>
+          <tr><td class="when">Luna 2</td><td>Serviciul gratuit de depunere a declarației anuale</td><td>După confirmarea termenelor</td></tr>
+          <tr><td class="when">Luna 2–3</td><td>Pilot grup de achiziție: 10–15 firme, o rundă de ofertare</td><td>Mărimea validată în Polonia</td></tr>
+          <tr><td class="when">Luna 2–3</td><td>Publicarea materialului structurat de referință</td><td>Poziția de sursă citată</td></tr>
+          <tr><td class="when">Luna 3</td><td>Test success fee pe un segment delimitat</td><td>După ce grila e decisă</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="notes">
+    <div class="sec-label">Onestitate</div>
+    <h2>Ce nu știm și cât de mare e de fapt piața</h2>
+    <p><strong>Cifre care lipsesc:</strong> costul orar real al specialistului, costul lunar de deservire per client, rata de success fee acceptabilă, și mai multe cazuri reale — avem doar două, iar procentul mediu de economie (17,5%) e calculat pe baza lor și trebuie recalibrat după fiecare 10–20 de audituri.</p>
+    <p><strong>Reper de mărime, ca să nu ne mințim:</strong> o estimare conservatoare pune plafonul realist la ~300 de clienți cu abonament în 24 de luni, adică ordinul a 720.000 lei/an venit recurent, plus serviciile punctuale — care, pe piețele comparabile, depășesc frecvent veniturile din abonament. Piața e reală, dar nu e uriașă. <strong>Direcțiile 02 și 03 sunt cele care ridică acest plafon</strong>, pentru că nu se mai măsoară în abonamente.</p>
+  </section>
+
+  <footer>Reduco · ALMA SKY SRL · direcții noi de creștere · august 2026</footer>
+
+</div>
