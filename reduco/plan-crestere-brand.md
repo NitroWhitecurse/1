@@ -14,8 +14,24 @@ O firmă de 1–3 oameni nu poate rula zece inițiative deodată. Planul are de 
 |---|---|---|---|
 | Fundația | Cele 10 reparații interne (P0–P10) | Săptămâna 1 | Fără grilă de preț, contract corect și evidență, orice lead nou se pierde sau se vinde prost |
 | Motorul 1 | Recolta proprie: calendar de reînnoiri + success fee ca ușă de intrare | Săptămâna 1–2 | Cost zero, folosește arhiva existentă de facturi |
-| Motorul 2 | Conformarea legală: Legea 121/2014 + comunități de energie | Săptămâna 2–4 | Termenul de 30 septembrie e la ~6 săptămâni; vinde termen, nu promisiune |
+| Motorul 2 | Conformare și bani publici: Legea 121/2014, granturi, comunități de energie | Săptămâna 2–4 | Termenul de 30 septembrie e la ~6 săptămâni; vinde termen, nu promisiune |
 | Motorul 3 | Agregarea: grupul de cumpărare Bacău | Săptămâna 4–8 | Cere o relație instituțională; un contract = 10–30 de firme |
+
+---
+
+## Trei ferestre care se închid în săptămâni (cercetare independentă, august 2026)
+
+Cercetarea independentă (`cercetare-independenta-2026.md`, toate cu surse verificate) a găsit trei termene pe care planul de 90 de zile nu are voie să le trateze ca „luna 2":
+
+**1. Criza energetică e acum, nu ipotetică.** Stare de alertă națională declarată pe 31 iulie 2026 (secetă, Dunărea la cel mai mic debit din ~40 de ani, Cernavodă Unitatea 1 oprită din 28 iulie). Pe 6–7 august, Guvernul a autorizat Transelectrica să **limiteze forțat consumul marilor consumatori industriali**, cu preaviz de doar 24 de ore; Ministerul cere reduceri voluntare în intervalul 19:00–23:00 până la 31 august.
+→ **Serviciu de vândut săptămâna aceasta, nu în luna 2:** audit rapid de risc și flexibilitate pentru firmele industriale — cine riscă limitarea, ce poate muta în afara orelor de vârf, cum arată factura dacă criza continuă. 10–15 apeluri către industrialii mari din Bacău–Moldova, cât fereastra e deschisă.
+
+**2. SME Eco-Tech expiră pe 24 septembrie.** Grant + credit pentru IMM-uri pe eficiență energetică, prelungit deja de două ori (semn că firmele nu reușesc singure dosarele), cu pragul pentru microîntreprinderi eliminat recent. Rulat prin bănci (BT și alte 4).
+→ **Primul pas:** sucursala BT IMM Bacău — ne propunem ca partener de dosar pentru clienții lor. Canal nou (banca), termen real, cerere dovedită de prelungirile repetate.
+
+**3. Programul de eficiență energetică — 30 septembrie** (firmele >1.000 TEP, deja în plan la Motorul 2).
+
+**Bonus de context local, pentru toate scripturile de vânzare:** de la 1 ianuarie 2026, **Delgaz Grid — exact zona Moldova/Bacău — are cea mai mare creștere de tarif de distribuție din țară: +9,8%** (față de +1,25% la Electrica și −8,3% în Oltenia). Firmele din regiunea noastră sunt lovite mai tare decât restul țării — argument verificabil, local, pe care niciun concurent național nu îl folosește. Iar președintele ANRE confirmă public că **renegocierea activă aduce 15–20% reducere** (oferte scăzute de la ~1,55 la ~1,30 lei/kWh) — validarea oficială a serviciului nostru de bază.
 
 ---
 
@@ -83,12 +99,16 @@ Startup-ul britanic tem.energy (6.000+ locații active, finanțat de Atomico) a 
 
 Economia e o promisiune pe care firma o poate amâna oricând; un termen legal cu amendă nu se amână — iar noi putem fi cei care sună înainte de termen, nu după.
 
-### Cele trei declanșatoare, în ordinea aprinderii
+### Cele patru declanșatoare, în ordinea aprinderii
+
+**2-zero. Criza din august (fereastra cea mai scurtă).** Cât ține starea de alertă și riscul de limitare a consumului industrial, oferim **auditul de risc și flexibilitate**: cine e expus limitării, ce consum se poate muta din orele 19:00–23:00, planul B dacă criza continuă. Nu cere atestare, cere doar cunoașterea pieței — și deschide ușa exact firmelor mari pe care le vrem apoi pe conformare și management energetic. **Primele apeluri: săptămâna aceasta.**
 
 **2a. Termenul de 30 septembrie (acum!).** Firmele peste 1.000 TEP/an trebuie să depună Programul de îmbunătățire a eficienței energetice până la 30 septembrie. Suntem la ~6 săptămâni. Campanie țintită: lista firmelor mari consumatoare din Bacău–Neamț–Suceava (industrie, morărit, depozite frigorifice — racordate MT), apel direct: *„aveți Programul depus? Dacă nu, îl pregătim noi cu partenerul nostru auditor."*
 → Cere parteneriatul cu un **auditor energetic atestat** (P8, calea 2): noi aducem clientul și relația, el semnează, împărțim. Prima discuție de parteneriat: săptămâna aceasta.
 
 **2b. Serviciul de conformare permanent.** Toate firmele — inclusiv IMM-urile — datorează declarația anuală de consum. Aproape nimeni nu știe. Depunerea ei, gratuită, ca serviciu de intrare: firma primește conformare, noi primim **legal, cu acord, exact datele de consum** pe care altfel le cerșim sub formă de factură. ⚠️ Termenul exact (30 aprilie vs. 30 iunie — sursele diferă) se confirmă **în scris la Ministerul Energiei înainte de orice comunicare publică**.
+
+**2b-bis. Banii publici — serviciul „dosar pregătit din timp".** Peste 10 programe de finanțare, ~1,4 miliarde EUR pentru companii, se deschid în 2026–2027 (Fondul pentru Modernizare, AFIR agroalimentar T3 2026, PRO INFRA, stocare, EU-ETS pentru energointensivi). Regula pieței, spusă explicit de experți: „primul venit, primul servit" — firmele care nu au dosarul pregătit înainte de deschiderea apelului pierd. Serviciul nostru: audit + studiu de fezabilitate + dosar, vândut **proactiv, înainte de apel**, către sectoarele eligibile (agroalimentar, materiale de construcții, energointensivi). Imediat: **SME Eco-Tech, termen 24 septembrie**, prin parteneriatul cu BT Bacău. Și onestitatea ca armă: **Electric Up nu are ediție 2026 confirmată** — spre deosebire de zecile de site-uri care o promit, noi spunem adevărul și redirecționăm către programele reale. Diferențiator de încredere gratuit.
 
 **2c. Comunitățile de energie (fereastra nouă).** Ordinul ANRE 50/25.06.2026 a operaționalizat Registrul național — piața are șapte săptămâni de existență și **nimeni nu are încă experiență practică**. Procedura e birocratică; birocrația e produsul nostru (același mușchi ca la racordare/ATR). Un singur proiect-pilot — un parc industrial, un grup de ferme, o primărie mică cu firmele din jur — ne face „primul facilitator de comunități de energie din Moldova" și aduce 10–30 de membri într-un contract.
 
@@ -138,14 +158,25 @@ Economia e o promisiune pe care firma o poate amâna oricând; un termen legal c
 
 ## Site-ul — vitrina care trebuie să susțină toate motoarele
 
-*Sursa: `audit-site.md` + re-auditul complet în curs (`re-audit-site.md` — secțiunea se actualizează la sosire).*
+*Sursa: `audit-site.md` + re-auditul complet, finalizat (`re-audit-site.md` — inventar total de URL-uri cu verdict pe fiecare, title/meta propuse pagină cu pagină, arborele final, harta 301, JSON-LD).*
 
-Site-ul nu e un motor de creștere în sine la dimensiunea actuală de trafic — e **locul unde cele trei motoare trimit oamenii ca să verifice că suntem reali**. De aceea prioritatea nu e SEO, ci credibilitatea la prima vizită:
+Site-ul nu e un motor de creștere în sine la dimensiunea actuală de trafic — e **locul unde cele trei motoare trimit oamenii ca să verifice că suntem reali**. Re-auditul a confirmat tot ce știam și a adăugat constatări noi:
 
-1. **Săptămâna 1, fără dezvoltator:** `noindex` pe cele ~14 pagini cu prețuri din 2022; linkuri din `/solutii-imm` spre cele cinci servicii; corectarea descrierii `/abonamente` („Recudo", preț vechi); redirect `/cine-suntem` → `/despre-noi`.
-2. **Luna 1, cu dezvoltator:** diagnosticul de viteză (pagina se randează în ~15 secunde — patru popup-uri identice, chat, scripturi); H1 la nivel de șablon; consolidarea celor 14 pagini vechi cu redirecturi 301.
-3. **Pagina nouă care servește motoarele:** un landing `/audit-firme` (sau echivalent) cu un singur mesaj — „Trimite factura sau semnează mandatul de o pagină. Negociem noi. Plătești doar din ce economisești." — și formular cu CUI + telefon + upload factură.
-4. **Re-auditul în curs** livrează: inventarul complet al URL-urilor cu verdict păstrează/consolidează/șterge, title/meta propuse pagină cu pagină, arborele final al site-ului, harta 301, verdictul pe zona WooCommerce (coșul de cumpărături pentru un serviciu de consultanță B2B e de re-evaluat) și JSON-LD pentru date structurate. Se execută ca listă de lucru pentru dezvoltator.
+**Confirmate și agravate:** randarea lentă e mai gravă decât părea — 4 pagini (`/servicii`, `/racordare-energie-gaz`, `/comanda`, `/contul-meu`) au picat la prima accesare chiar și pentru un crawler răbdător; `<head>`-ul paginii principale cară **~197.000 de caractere de CSS inline** generat de Elementor. H1 lipsește pe 10 din 11 pagini testate.
+
+**Noi:**
+- **Tensiunea structurală de fond:** site-ul e construit tehnic ca un comparator (40+ pagini `/oferte-*`, subdomeniu smart.reduco.ro) în timp ce brandul spune acum „nu suntem comparator". Consolidarea nu e doar SEO — e alinierea site-ului cu identitatea.
+- Un **widget public rupt** pe `/consultanta-prosumator` („Project not found") — vizibil oricărui vizitator.
+- **4 linkuri moarte** pe pagina principală, în secțiunea „Produse populare".
+- **Treapta Business Plus (899 lei) nu există nicăieri pe site** — grila nouă trebuie publicată odată cu decizia CEO.
+- **Blogul e o resursă nefolosită:** ~41 de articole pe 5 pagini de arhivă, dintre care ~15 din iulie–august 2026 sunt conținut B2B bun — fără niciun link către paginile de servicii care ar converti cititorii.
+- Nuanță: smart.reduco.ro are exact un link de intrare (de pe `/consultanta-prosumator`), nu zero.
+
+**Ordinea de execuție:**
+1. **Săptămâna 1, fără dezvoltator:** `noindex` pe paginile cu prețuri din 2022; linkuri din `/solutii-imm` spre cele cinci servicii; corectarea descrierii `/abonamente`; redirect `/cine-suntem` → `/despre-noi`; ștergerea widgetului rupt și a celor 4 linkuri moarte.
+2. **Luna 1, cu dezvoltator:** diagnosticul de viteză (CSS-ul inline de 197KB + patru popup-uri identice + chat); H1 la nivel de șablon; consolidarea pe arborele final din `re-audit-site.md`, cu harta 301 gata scrisă acolo.
+3. **Pagina nouă care servește motoarele:** landing `/audit-firme` cu un singur mesaj — „Trimite factura sau semnează mandatul de o pagină. Negociem noi. Plătești doar din ce economisești." — formular CUI + telefon + upload factură.
+4. **Interlinking blog → servicii:** cele ~15 articole B2B recente primesc linkuri către paginile de serviciu — muncă de redactor, o zi, trafic existent convertit în loc de irosit.
 
 ---
 
@@ -170,10 +201,12 @@ Site-ul nu e un motor de creștere în sine la dimensiunea actuală de trafic �
 
 | Săptămâna | Fundația | Motorul 1 | Motorul 2 | Motorul 3 |
 |---|---|---|---|---|
-| 1 | Contract mandat corectat (jurist, azi) · grila 30% aprobată (CEO) · noindex + linkuri site · GA4 | Tabel + expirări populate retroactiv | Cerere scrisă la Minister (termen declarație) · listă firme >1.000 TEP | — |
-| 2 | Șablonul de raport 48h | Primele 5 apeluri de reînnoire | Prima discuție cu auditor atestat | — |
-| 3 | Textele de poziționare pe site | 10 apeluri; primele mandate success fee | Campania „30 septembrie" pornește | Lista structurilor-țintă |
+| 1 | Contract mandat corectat (jurist, azi) · grila 30% aprobată (CEO) · noindex + linkuri site + widget rupt scos · GA4 | Tabel + expirări populate retroactiv | **Apeluri „criza august" la 10–15 industriali** · cerere scrisă la Minister · listă firme >1.000 TEP · **contact BT Bacău pe SME Eco-Tech** | — |
+| 2 | Șablonul de raport 48h | Primele 5 apeluri de reînnoire | Prima discuție cu auditor atestat · primele dosare SME Eco-Tech | — |
+| 3 | Textele de poziționare pe site + interlinking blog | 10 apeluri; primele mandate success fee | Campania „30 septembrie" pornește | Lista structurilor-țintă |
 | 4 | Decizia pe al doilea om (P9) | Bilanț: apeluri→mandate | Parteneriat auditor semnat; primele oferte de conformare | Prima întâlnire instituțională |
+
+**De ce săptămâna 1 e atât de încărcată pe Motorul 2:** două ferestre (criza + SME Eco-Tech) nu așteaptă calendarul nostru. Dacă trebuie tăiat ceva din săptămâna 1, se taie din fundația de site (alunecă în săptămâna 2), nu din apelurile de criză — reparațiile nu expiră, ferestrele da.
 
 ---
 
