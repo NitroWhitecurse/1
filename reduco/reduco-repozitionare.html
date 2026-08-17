@@ -1,0 +1,821 @@
+<title>Reduco: Manager Energetic</title>
+<style>
+  :root {
+    --ground: #F4F3F0;
+    --surface: #FFFFFF;
+    --surface-2: #EDEBE6;
+    --ink: #17140F;
+    --muted: #6B655B;
+    --rule: #DCD8D0;
+    --accent: #9A3E0A;
+    --accent-fill: #F99E0A;
+    --on-fill: #1B1409;
+    --good: #2F6B45;
+    --warn: #8A5A0B;
+    --crit: #96331F;
+
+    --f-display: ui-sans-serif, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-body: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --f-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+    --step: clamp(1.6rem, 1.1rem + 1.6vw, 2.4rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131110;
+      --surface: #1C1917;
+      --surface-2: #24201D;
+      --ink: #F1EEE8;
+      --muted: #9C948A;
+      --rule: #322C26;
+      --accent: #F2A03C;
+      --accent-fill: #F99E0A;
+      --on-fill: #1B1409;
+      --good: #6FBE8C;
+      --warn: #E0A63F;
+      --crit: #E58A72;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #131110;
+    --surface: #1C1917;
+    --surface-2: #24201D;
+    --ink: #F1EEE8;
+    --muted: #9C948A;
+    --rule: #322C26;
+    --accent: #F2A03C;
+    --accent-fill: #F99E0A;
+    --on-fill: #1B1409;
+    --good: #6FBE8C;
+    --warn: #E0A63F;
+    --crit: #E58A72;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 clamp(1.2rem, 4vw, 3rem);
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .eyebrow {
+    font-family: var(--f-data);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.6rem;
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-weight: 800;
+    letter-spacing: -0.028em;
+    line-height: 1.02;
+    text-wrap: balance;
+    font-size: clamp(2.6rem, 1.4rem + 5.2vw, 5.2rem);
+    margin: 0 0 1.4rem;
+  }
+
+  h1 .quiet { color: var(--muted); font-weight: 600; }
+
+  .standfirst {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+    line-height: 1.5;
+    max-width: 40ch;
+    color: var(--ink);
+    margin: 0 0 2.4rem;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 2.4rem;
+    font-family: var(--f-data);
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .meta-row b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- section scaffolding : meter rail ---------- */
+
+  section { padding: clamp(3rem, 7vw, 5.5rem) 0; border-bottom: 1px solid var(--rule); }
+
+  .sec-head {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0 1.5rem;
+    align-items: start;
+    margin-bottom: 2.6rem;
+  }
+
+  .tick {
+    font-family: var(--f-data);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    padding-top: 0.55rem;
+    border-top: 2px solid var(--accent);
+  }
+
+  h2 {
+    font-family: var(--f-display);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+    font-size: var(--step);
+    margin: 0;
+  }
+
+  .sec-head p {
+    grid-column: 2;
+    margin: 0.9rem 0 0;
+    color: var(--muted);
+    max-width: 62ch;
+  }
+
+  .body-col { max-width: 68ch; }
+  .body-col p { margin: 0 0 1.1rem; }
+  .body-col p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 700; }
+  em.term { font-style: normal; color: var(--accent); font-weight: 700; }
+
+  /* ---------- verdict panel ---------- */
+
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent-fill);
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+    margin: 2.2rem 0 0;
+  }
+
+  .verdict h3 {
+    font-family: var(--f-display);
+    font-size: 1.08rem;
+    font-weight: 750;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+  }
+
+  .verdict p { margin: 0; color: var(--muted); max-width: 64ch; }
+
+  /* ---------- before / after ---------- */
+
+  .shift {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .shift > div { background: var(--surface); padding: clamp(1.3rem, 3vw, 2rem); }
+  .shift .to { background: var(--surface-2); }
+
+  .shift-label {
+    font-family: var(--f-data);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.9rem;
+  }
+
+  .shift .to .shift-label { color: var(--accent); }
+
+  .shift-line {
+    font-family: var(--f-display);
+    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+
+  .shift ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.95rem; }
+  .shift li { margin-bottom: 0.4rem; }
+  .shift li:last-child { margin-bottom: 0; }
+
+  /* ---------- quadrant map ---------- */
+
+  .map-frame { overflow-x: auto; }
+
+  .map {
+    min-width: 540px;
+    display: grid;
+    grid-template-columns: 8.5rem 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 0.5rem;
+  }
+
+  .map > * { background: var(--surface); padding: 1.1rem 1.2rem; }
+
+  .axis-y, .axis-x, .map-corner {
+    background: var(--ground);
+    font-family: var(--f-data);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+  }
+
+  .axis-y { writing-mode: vertical-rl; transform: rotate(180deg); justify-content: center; text-align: center; }
+  .axis-x { justify-content: center; }
+
+  .cell-title {
+    font-family: var(--f-data);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.7rem;
+  }
+
+  .cell ul { margin: 0; padding-left: 1rem; font-size: 0.92rem; color: var(--ink); }
+  .cell li { margin-bottom: 0.3rem; }
+
+  .cell.free {
+    background: var(--accent-fill);
+    color: var(--on-fill);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cell.free .cell-title { color: var(--on-fill); opacity: 0.75; }
+
+  .cell.free .free-line {
+    font-family: var(--f-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 1.22rem;
+    line-height: 1.15;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+
+  .cell.free p.sub { margin: 0; font-size: 0.9rem; opacity: 0.85; }
+
+  /* ---------- generic tables ---------- */
+
+  .table-frame { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-family: var(--f-display);
+    font-size: 0.93rem;
+  }
+
+  th {
+    text-align: left;
+    font-family: var(--f-data);
+    font-size: 0.66rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 0 0.9rem 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  td {
+    padding: 0.85rem 0.9rem 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink);
+  }
+
+  td.num {
+    font-family: var(--f-data);
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    white-space: nowrap;
+    width: 2.5rem;
+  }
+
+  td.why { color: var(--muted); }
+
+  /* ---------- families ---------- */
+
+  .families {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .fam { background: var(--surface); padding: 1.4rem; }
+
+  .fam-key {
+    font-family: var(--f-data);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+  }
+
+  .fam h3 {
+    font-family: var(--f-display);
+    font-size: 1.06rem;
+    font-weight: 750;
+    letter-spacing: -0.012em;
+    margin: 0 0 0.6rem;
+  }
+
+  .fam p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+
+  /* ---------- phases ---------- */
+
+  .phase { margin-bottom: 2.6rem; }
+  .phase:last-child { margin-bottom: 0; }
+
+  .phase-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.7rem;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 1.1rem;
+  }
+
+  .phase-head h3 {
+    font-family: var(--f-display);
+    font-size: 1.16rem;
+    font-weight: 750;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .phase-head .when {
+    font-family: var(--f-data);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---------- risk list ---------- */
+
+  .risks { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+
+  .risk {
+    background: var(--surface);
+    padding: 1.15rem 1.3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 0.4rem 1.8rem;
+    align-items: baseline;
+  }
+
+  @media (max-width: 640px) { .risk { grid-template-columns: 1fr; } }
+
+  .risk-what { font-family: var(--f-display); font-weight: 650; font-size: 0.97rem; }
+  .risk-how { color: var(--muted); font-size: 0.93rem; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--f-data);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.5rem;
+    border: 1px solid currentColor;
+    margin-right: 0.55rem;
+    vertical-align: 0.1em;
+  }
+
+  .pill.c { color: var(--crit); }
+  .pill.w { color: var(--warn); }
+  .pill.g { color: var(--good); }
+
+  /* ---------- asks ---------- */
+
+  .asks { counter-reset: ask; display: grid; gap: 1.2rem; max-width: 70ch; }
+
+  .ask {
+    display: grid;
+    grid-template-columns: 2.3rem 1fr;
+    gap: 0 1rem;
+    align-items: baseline;
+  }
+
+  .ask::before {
+    counter-increment: ask;
+    content: counter(ask, decimal-leading-zero);
+    font-family: var(--f-data);
+    font-size: 0.76rem;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ask h3 {
+    font-family: var(--f-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .ask p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3rem, 8vw, 5rem);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  footer p { margin: 0 0 0.8rem; max-width: 68ch; }
+  footer .files { font-family: var(--f-data); font-size: 0.78rem; line-height: 2; }
+  footer .files span { color: var(--accent); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .verdict, .fam, .shift > div { transition: none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Repoziționare de brand · august 2026</p>
+    <h1>De la comparator<br><span class="quiet">la</span> manager energetic</h1>
+    <p class="standfirst">Reduco vinde abonamente de management energetic. Site-ul comunică un instrument gratuit folosit o dată pe an. Acesta este planul care închide distanța dintre cele două.</p>
+    <div class="meta-row">
+      <span>Domeniu <b>reduco.ro</b></span>
+      <span>Segment principal <b>IMM și rețele multi-locație</b></span>
+      <span>Documente sursă <b>7</b></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">00 / MIZA</div>
+      <div>
+        <h2>Nu mai este o opțiune strategică. Statul a preluat produsul.</h2>
+      </div>
+    </div>
+    <div class="body-col">
+      <p>POSF.ro, platforma ANRE, oferă astăzi gratuit și oficial — cu semnătură electronică și schimbare de furnizor în 24 de ore — exact funcția pe care o îndeplinește un comparator privat. Poziția de comparator se erodează indiferent ce face Reduco. Nu din slăbiciune competitivă, ci pentru că funcția a fost naționalizată.</p>
+      <p>Asta schimbă întrebarea. Nu <em class="term">dacă</em> ne repoziționăm, ci <em class="term">cât de repede</em>.</p>
+      <p>Vestea bună: terenul-țintă este liber. Pe două axe — cine plătește serviciul și ce fel de angajament — cadranul „plătit de client, relație continuă, accesibil IMM-ului” nu are niciun ocupant.</p>
+      <div class="verdict">
+        <h3>Combinația pe care nimeni nu o poate copia</h3>
+        <p>Independență structurală față de furnizori, competență juridică demonstrată în fața ANRE, și abonament recurent cu preț public. Niciun competitor identificat nu le are simultan — iar un imitator ar trebui să-și schimbe modelul de business ca să le obțină.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">01 / MUTAREA</div>
+      <div>
+        <h2>Ce încetăm să fim și ce devenim</h2>
+        <p>Categoria revendicată este „management energetic externalizat”, nu „manager energetic”. Al doilea este un rol atestat sub Legea 121/2014 — revendicarea directă ar fi atacabilă.</p>
+      </div>
+    </div>
+    <div class="shift">
+      <div>
+        <p class="shift-label">Astăzi</p>
+        <p class="shift-line">Comparator de oferte</p>
+        <ul>
+          <li>Instrument gratuit, folosit o dată pe an</li>
+          <li>Valoare la momentul schimbării furnizorului</li>
+          <li>Butonul „Alege” duce direct în coșul WooCommerce</li>
+          <li>Concurează cu o platformă de stat, gratuită</li>
+          <li>Nu justifică niciun abonament recurent</li>
+        </ul>
+      </div>
+      <div class="to">
+        <p class="shift-label">După repoziționare</p>
+        <p class="shift-line">Departamentul tău de energie</p>
+        <ul>
+          <li>Verificare lunară a fiecărui punct de consum</li>
+          <li>Reprezentare în litigii și în fața ANRE</li>
+          <li>Intrare prin auditul gratuit al facturii, în 48 de ore</li>
+          <li>Plătit exclusiv de client, niciodată de furnizor</li>
+          <li>Facturare pe punct de consum, nu pe firmă</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">02 / PIAȚA</div>
+      <div>
+        <h2>Harta competitivă, pe două axe</h2>
+        <p>Fiecare jucător identificat în cercetare, poziționat după cine îl plătește și ce fel de angajament oferă.</p>
+      </div>
+    </div>
+    <div class="map-frame">
+      <div class="map">
+        <div class="map-corner"></div>
+        <div class="axis-x">Tranzacție punctuală</div>
+        <div class="axis-x">Relație continuă</div>
+
+        <div class="axis-y">Plătit de furnizor</div>
+        <div class="cell">
+          <p class="cell-title">Comparatoare private</p>
+          <ul>
+            <li>Brokeri pe comision</li>
+            <li>Model declarat public: vând prospecți furnizorilor</li>
+          </ul>
+        </div>
+        <div class="cell">
+          <p class="cell-title">Furnizorii înșiși</p>
+          <ul>
+            <li>Servicii de monitorizare proprii</li>
+            <li>Conflict de interese structural</li>
+          </ul>
+        </div>
+
+        <div class="axis-y">Plătit de client</div>
+        <div class="cell">
+          <p class="cell-title">Avocați și auditori</p>
+          <ul>
+            <li>Contestă facturi, dar nu recalculează prețul unitar real</li>
+            <li>Audit energetic tehnic, punctual</li>
+          </ul>
+        </div>
+        <div class="cell free">
+          <p class="cell-title">Cadranul liber</p>
+          <p class="free-line">Relație continuă, plătită de client, accesibilă IMM-ului</p>
+          <p class="sub">Consultanții industriali nu coboară rentabil la 1–10 puncte de consum. Nimeni nu afișează un preț de abonament B2B.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">03 / DECIZII</div>
+      <div>
+        <h2>Ce s-a hotărât</h2>
+        <p>Opt decizii care determină tot restul implementării.</p>
+      </div>
+    </div>
+    <div class="table-frame">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Decizia</th><th>Motivul</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">01</td><td>Categoria: management energetic externalizat</td><td class="why">„Manager energetic” e rol atestat legal. „Externalizat” e o categorie deja familiară, ca „contabilitate externalizată”</td></tr>
+          <tr><td class="num">02</td><td>Tagline: „Departamentul tău de energie”</td><td class="why">Comunică relație continuă fără să atingă termenul reglementat</td></tr>
+          <tr><td class="num">03</td><td>Un singur CTA: „Cere auditul gratuit al facturii”</td><td class="why">Nimeni nu cumpără consultanță de 4.000 lei/an la prima vizită</td></tr>
+          <tr><td class="num">04</td><td>Cele 8 servicii se regrupează în 4 familii</td><td class="why">Lista actuală pare o înșiruire disparată; familiile se mapează pe treptele de abonament</td></tr>
+          <tr><td class="num">05</td><td>Facturare pe punct de consum, nu pe firmă</td><td class="why">Prețul per firmă lasă bani pe masă la rețelele multi-locație</td></tr>
+          <tr><td class="num">06</td><td>Publicăm prima grilă de preț B2B din piață</td><td class="why">Zero competitori afișează preț recurent. Primul care publică definește ancora</td></tr>
+          <tr><td class="num">07</td><td>Comparatorul rămâne unealtă, nu identitate</td><td class="why">Util pentru captarea de trafic, dezastruos ca poziționare</td></tr>
+          <tr><td class="num">08</td><td>Dovezile juridice se folosesc anonimizat</td><td class="why">Dosarul principal este litigiu în curs, cu client real</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">04 / OFERTA</div>
+      <div>
+        <h2>Patru familii, nu opt servicii</h2>
+        <p>Un administrator de firmă trebuie să înțeleagă din prima ce cumpără.</p>
+      </div>
+    </div>
+    <div class="families">
+      <div class="fam">
+        <p class="fam-key">FAMILIA A</p>
+        <h3>Control lunar</h3>
+        <p>Auditul de factură și monitorizarea continuă. Același job — „vezi dacă plătești corect” — la două frecvențe. Baza fiecărui abonament.</p>
+      </div>
+      <div class="fam">
+        <p class="fam-key">FAMILIA B</p>
+        <h3>Apărare și recuperare</h3>
+        <p>Reprezentare în litigii, relația cu ANRE, recuperare de compensații. Intervenție activă, nu analiză. Plată din rezultat.</p>
+      </div>
+      <div class="fam">
+        <p class="fam-key">FAMILIA C</p>
+        <h3>Racordare și conformare</h3>
+        <p>Avize tehnice de racordare și dosarul de conformare Legea 121/2014. Proceduri reglementate, cu preț de proiect.</p>
+      </div>
+      <div class="fam">
+        <p class="fam-key">FAMILIA D</p>
+        <h3>Eficiență și regenerabile</h3>
+        <p>Reducerea pierderilor, energia reactivă, consultanța pentru prosumatori. Optimizare pe termen mediu, nu factura curentă.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">05 / EXECUȚIE</div>
+      <div>
+        <h2>Ordinea de lucru</h2>
+        <p>Primele două săptămâni nu necesită niciun conținut nou. Sunt exclusiv reparații.</p>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3>Oprim pierderile</h3>
+        <span class="when">Săptămânile 1–2</span>
+      </div>
+      <div class="table-frame">
+        <table>
+          <thead><tr><th>#</th><th>Acțiune</th><th>Efort</th></tr></thead>
+          <tbody>
+            <tr><td class="num">01</td><td>Repară H1 în șablonul Elementor — o setare repară tot site-ul</td><td class="why">1–2 ore</td></tr>
+            <tr><td class="num">02</td><td>Șterge brandul vechi „Comparatot” și eroarea „Recudo” din meta</td><td class="why">1 oră</td></tr>
+            <tr><td class="num">03</td><td>Înlocuiește butonul „Alege” cu CTA-ul de audit gratuit</td><td class="why">2 ore</td></tr>
+            <tr><td class="num">04</td><td>Curăță formularul, adaugă Companie și CUI</td><td class="why">1 oră</td></tr>
+            <tr><td class="num">05</td><td>Rescrie title și meta pe 16 pagini prioritare</td><td class="why">3–4 ore</td></tr>
+            <tr><td class="num">06</td><td>Scoate „Comparator Furnizori” de pe subdomeniu</td><td class="why">30 min</td></tr>
+            <tr><td class="num">07</td><td>Implementează redirecturile pentru paginile din 2022</td><td class="why">2–3 ore</td></tr>
+            <tr><td class="num">08</td><td>Aplică fixul de contrast și elimină popup-urile duplicate</td><td class="why">3–4 ore</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3>Construim structura B2B</h3>
+        <span class="when">Luna 1 · copy-ul e deja scris</span>
+      </div>
+      <div class="table-frame">
+        <table>
+          <thead><tr><th>#</th><th>Acțiune</th><th>De ce contează</th></tr></thead>
+          <tbody>
+            <tr><td class="num">09</td><td>Rescrie pagina de audit în registru B2B</td><td class="why">Primește deja trafic de firme pe care îl pierde</td></tr>
+            <tr><td class="num">10</td><td>Rescrie pagina de litigii ANRE</td><td class="why">Diferențiatorul cel mai puternic, azi invizibil</td></tr>
+            <tr><td class="num">11</td><td>Construiește pagina dedicată pentru firme</td><td class="why">Pilonul comercial care leagă tot</td></tr>
+            <tr><td class="num">12</td><td>Rescrie „Despre noi” cu independența ca argument principal</td><td class="why">Pagina pe care o verifică un director financiar</td></tr>
+            <tr><td class="num">13</td><td>Reorganizează abonamentele: B2B primul</td><td class="why">Azi vizitatorul de firmă derulează tot tabelul casnic</td></tr>
+            <tr><td class="num">14</td><td>Adaugă secțiunea „Cine ne plătește”</td><td class="why">Singurul argument imposibil de copiat</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head">
+        <h3>Creștem</h3>
+        <span class="when">Trimestrul 1</span>
+      </div>
+      <div class="table-frame">
+        <table>
+          <thead><tr><th>#</th><th>Acțiune</th><th>De ce contează</th></tr></thead>
+          <tbody>
+            <tr><td class="num">15</td><td>Pagini noi de serviciu: energie reactivă, conformare, licitație de furnizare</td><td class="why">Servicii cu preț de proiect, azi fără pagină</td></tr>
+            <tr><td class="num">16</td><td>Studii de caz cu cifre reale, anonimizate</td><td class="why">Repară golul total de dovadă socială B2B</td></tr>
+            <tr><td class="num">17</td><td>Programul editorial B2B, 24 de articole</td><td class="why">Ocupă categoriile libere înainte de competiție</td></tr>
+            <tr><td class="num">18</td><td>Canalul de parteneri-contabili</td><td class="why">Leaduri calificate prin recomandare, cost minim</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">06 / TEREN LIBER</div>
+      <div>
+        <h2>Ce nu ocupă nimeni</h2>
+        <p>Verificat pe rezultate reale de căutare, nu estimat.</p>
+      </div>
+    </div>
+    <div class="body-col">
+      <p><strong>„Audit de factură” este o categorie liberă.</strong> Căutarea returnează exclusiv audit energetic tehnic. Nimeni nu servește intenția reală — „verifică-mi factura și spune-mi prețul real per kWh”. Categoria poate fi creată și deținută.</p>
+      <p><strong>Zona ANRE și litigii este nepăzită.</strong> Rankează portaluri generaliste și bloguri personale. Zero jucători B2B, deși Reduco are dosare reale cu articole de lege citabile.</p>
+      <p><strong>Reforma Legii 121/2014 aduce clientul-țintă prin lege.</strong> Noua versiune extinde obligațiile de la marii consumatori la firme mici și mijlocii. Exemplele citate public — hoteluri medii, platforme industriale mici, spitale, firme de transport — sunt literalmente lista de clienți-țintă. Jucătorii industriali nu vor coborî rentabil la acest nivel.</p>
+      <div class="verdict">
+        <h3>Poziția nu este poarta de intrare</h3>
+        <p>Clientul nu caută „management energetic”. Caută „factură prea mare la energie” și „cum contest factura”. Poziția este ce suntem; limbajul durerii este cum intră omul. A confunda cele două înseamnă să câștigi identitatea și să pierzi traficul.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">07 / RISCURI</div>
+      <div>
+        <h2>Ce trebuie ținut sub control</h2>
+      </div>
+    </div>
+    <div class="risks">
+      <div class="risk">
+        <div class="risk-what"><span class="pill c">Critic</span>Publicarea unui dosar aflat în curs de soluționare</div>
+        <div class="risk-how">Doar mecanismul juridic generic, impersonal, fără nume și fără sumă atribuibilă. Publicarea completă abia după soluționare, cu acord scris și aviz juridic.</div>
+      </div>
+      <div class="risk">
+        <div class="risk-what"><span class="pill c">Critic</span>Praguri legale greșite în copy comercial</div>
+        <div class="risk-how">Un document intern folosea 500 MWh/an. Pragul real este 1.000 tep/an, aproximativ 11.630 MWh — o eroare de două ordine de mărime, corectată.</div>
+      </div>
+      <div class="risk">
+        <div class="risk-what"><span class="pill w">Atenție</span>Confuzia cu rolul de manager energetic atestat</div>
+        <div class="risk-how">Formularea rămâne „coordonăm conformarea și lucrăm cu manager energetic atestat”, niciodată „suntem”.</div>
+      </div>
+      <div class="risk">
+        <div class="risk-what"><span class="pill w">Atenție</span>Promisiunea de 48 de ore nerespectată</div>
+        <div class="risk-how">Se calibrează capacitatea reală de livrare înainte de a promite public. O promisiune de viteză ratată face mai mult rău decât lipsa ei.</div>
+      </div>
+      <div class="risk">
+        <div class="risk-what"><span class="pill g">De urmărit</span>Trafic împins pe pagini fără dovezi</div>
+        <div class="risk-how">Nicio campanie plătită și niciun outreach la rece înainte de minimum trei dovezi publicate.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="tick">08 / DE LA TINE</div>
+      <div>
+        <h2>Ce nu se poate decide din documente</h2>
+        <p>Șase puncte care depind de operațiuni, nu de strategie.</p>
+      </div>
+    </div>
+    <div class="asks">
+      <div class="ask">
+        <div>
+          <h3>Grila de prețuri finală</h3>
+          <p>Treptele propuse sunt estimări interne, necalibrate cu timpul real de livrare per client.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div>
+          <h3>Capacitatea de livrare a auditurilor</h3>
+          <p>Câte audituri gratuite pe lună pot fi livrate în 48 de ore fără a rupe promisiunea?</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div>
+          <h3>Acordul scris al celor doi clienți</h3>
+          <p>Pentru studiile de caz anonimizate cu cifre reale. Momentul optim a trecut, dar merită cerut.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div>
+          <h3>Politica de perioadă minimă contractuală</h3>
+          <p>Documentul intern o marchează „de confirmat”. Apare în copy-ul paginii de abonamente.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div>
+          <h3>Ce se întâmplă cu comparatorul</h3>
+          <p>Rămâne gratuit ca poartă de intrare, sau devine beneficiu pentru abonați? Documentele interne conțin ambele variante.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div>
+          <h3>Echipa</h3>
+          <p>Nume, roluri și fotografii pentru pagina „Despre noi”.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>O limită de care să ții cont.</strong> Domeniul reduco.ro a fost blocat integral de proxy-ul de rețea în sesiunea în care a fost produs acest plan. Tot ce este descris despre starea actuală a site-ului provine din auditurile interne din august 2026 și din rezultate de căutare publice. Verifică pe site structura exactă a URL-urilor și lista reală a paginilor vechi înainte de implementare.</p>
+    <p class="files">
+      <span>00</span> brief de context · <span>01</span> cercetare de piață · <span>02</span> strategie SEO · <span>03</span> platformă de brand<br>
+      <span>04</span> plan de conversie · <span>05</span> dovezi și studii de caz · <span>06</span> copy pagini · <span>07</span> plan executiv
+    </p>
+  </footer>
+
+</div>
