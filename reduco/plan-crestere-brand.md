@@ -51,43 +51,46 @@ Nu reiau aici conținutul — doar ce deblochează fiecare pentru creștere:
 
 ---
 
-## Motorul 1 — Recolta proprie: reînnoiri + success fee
+## Motorul 1 — Abonamentul-asigurare + recolta din portofoliul propriu
 
-*Sursa: `economie-modele.md` (Model B + E), `cercetare-piata.md` (mecanismul F — tem.energy, UK).*
+*Sursa: verificat live pe [reduco.ro/abonamente](https://reduco.ro/abonamente), [/litigii-anre](https://reduco.ro/litigii-anre), [/audit-facturi](https://reduco.ro/audit-facturi), contractul de mandat. Corectat față de versiunea anterioară — detaliul corecției e în `corectii-model-afaceri.md`.*
+
+> **Corecție de fond, aplicată aici:** versiunea anterioară a acestui motor se baza pe două lucruri greșite — (1) success fee ca preț normal al negocierii, și (2) un calendar cu datele de expirare a contractelor de furnizare ale clienților, pe care Reduco nu are de unde să-l aibă (pentru un prospect care a refuzat, nu există factura lui, deci nu există nicio dată de reținut). Ambele corectate mai jos.
 
 ### Ideea într-o frază
 
-Cel mai ieftin client nou e cel care ne-a refuzat acum șase luni — dacă știm luna în care contractul lui expiră și îl sunăm exact atunci, cu o ofertă în care nu are nimic de pierdut.
+Abonamentul nu se vinde ca „plătești doar dacă avem rezultat" — se vinde **ca o asigurare auto**: plătești o primă lunară, și dacă ai un incident cu furnizorul, ești deja acoperit, fără facturare suplimentară.
 
-### De ce funcționează, cu dovada din piață
+### Ce include de fapt abonamentul (verificat pe site, azi)
 
-Startup-ul britanic tem.energy (6.000+ locații active, finanțat de Atomico) a construit o companie întreagă pe exact acest mecanism: detectarea momentului optim de reînnoire și acțiune automată. Partea de „AI" e ambalaj — mecanismul de bază e **un calendar de expirări + alerte + ofertă pregătită dinainte**, replicabil cu un tabel și disciplină.
+Toate cele trei trepte Business includ audit de factură lunar și consultanță în litigii comerciale. Diferența reală dintre trepte e **numărul de reprezentări juridice incluse pe an**: 1 caz la Basic și Standard, 3 cazuri la Premium — exact ca la plafonul de despăgubire dintr-o poliță de asigurare.
 
-### Cum îl construim (2–4 săptămâni, MVP)
+**Unde apare 30%, și doar acolo:** mandatul 8 din contractul de mandat e un mandat separat, plătit, exclusiv pentru **recuperarea de despăgubiri** de la furnizor/distribuitor/transportator. Nu e prețul negocierii unui tarif — e comisionul pe banii recuperați, un produs suplimentar, activat *peste* abonament, nu în locul lui.
 
-1. Coloana „data expirării contractului" în tabelul de leaduri (P5/P6) — populată **retroactiv din toate facturile din arhivă**, inclusiv de la firmele care ne-au refuzat.
-2. Alertă la **90 de zile** înainte de expirare — atât durează o schimbare de furnizor fără grabă.
-3. Scriptul apelului (schelet, nu literă): *„Știu că data trecută nu era momentul potrivit. Fereastra dumneavoastră de reînnoire se deschide în mai puțin de 90 de zile — ați primit deja o propunere proactivă de la actualul furnizor, sau v-au lăsat pe prețurile standard?"*
-4. Oferta din apel e **success fee, nu abonament**: „nu plătiți nimic înainte — negociem, iar dacă obținem economie, oprim un procent din ea în primul an."
+### Scriptul corect de vânzare
 
-### De ce success fee la intrare (cifrele din `economie-modele.md`)
+> *„Plătești lunar, și dacă ai un incident cu furnizorul — o factură greșită, un litigiu — ești deja acoperit, până la 3 cazuri pe an, fără cost suplimentar."*
 
-- E singurul model din cinci în care **clientul nu poate pierde bani** — elimină exact bariera care face firmele să ezite la abonament.
-- La clientul mare captează corect valoarea: cazul GRIDOMA ar genera ~13.700 lei/an la 30% success fee, față de maxim 4.788 lei/an pe Premium.
-- La clientul mic rămâne proporțional: notariatul ar plăti ~943 lei/an, în loc de un abonament care îi lasă 21 lei net și se anulează după trei luni.
-- **Migrare după dovadă:** după 1–2 cicluri de facturare cu economia vizibilă pe factură, propunem trecerea la retainer (grila cu Business Plus) — predictibilitate pentru noi, „liniște" pentru client.
-- **Mandatul 8 din contractul existent prevede deja 30% onorariu de succes pe despăgubiri** — nu introducem un model nou, extindem unul semnat și acceptat de clienți.
+30% se menționează separat, doar când auditul lunar inclus găsește o sumă recuperabilă: *„Am găsit X lei pe care furnizorul ți-i datorează. Îi recuperăm — reținem 30% din suma recuperată, restul e al tău, imediat."*
+
+### Cum recoltăm din portofoliul propriu — fără date pe care nu le avem
+
+Nu putem construi un calendar pe contractele de furnizare ale clienților. Putem construi pe **ce controlăm noi**:
+
+1. **Upsell Basic → Premium**, pe baza propriei evidențe: un client Basic sau Standard are 1 reprezentare/an inclusă; dacă a folosit-o deja, e candidat natural pentru Premium (3/an). Nu cere nicio dată externă.
+2. **Data de reînnoire a propriului abonament** (lunar, sau „Smart" 12+1 luni) — controlată de noi, folosită ca moment de recontact și verificare a satisfacției.
+3. **Durata mandatului — 3 ani de la semnare**, prevăzută explicit în contract — reper real de recontact pentru relația pe termen lung.
+4. Detaliul operațional complet — scripturi, canale, obiecții — e în `plan-business-development.md`.
 
 ### Avantajul pe care nu-l știam că îl avem
 
-În UK, reductorul #1 de fricțiune la intrare e „Letter of Authority" — o împuternicire de o pagină prin care brokerul obține direct datele clientului, în loc să-i ceară facturi PDF. **Contractul nostru de mandat este exact acest instrument**, deja redactat, cu temei în art. 2009 Cod civil. De verificat juridic un singur lucru: dacă furnizorii/distribuitorii români eliberează istoricul de consum către mandatar — dacă da, „trimite-mi 3 facturi" devine „semnează o pagină", și rata de abandon la intrare scade masiv.
+Contractul de mandat, cu temei în art. 2009 Cod civil, e echivalentul românesc al „Letter of Authority" din UK — instrumentul care acolo reduce cel mai mult fricțiunea la intrare, pentru că împuternicește brokerul să obțină direct datele clientului. De verificat juridic: dacă furnizorii/distribuitorii români eliberează istoricul de consum către mandatar — dacă da, „trimite-mi 3 facturi" devine „semnează o pagină".
 
 ### Ținte și responsabil
 
-- Calendarul populat retroactiv: **săptămâna 1** (Marian).
-- Primele apeluri pe expirări: **săptămâna 2**.
-- Țintă luna 1: **15 apeluri de reînnoire, 5 mandate semnate pe success fee.**
-- Metrică de sănătate: % din leadurile noi cărora li se înregistrează data de expirare (ținta: 100%).
+- Segmentarea portofoliului propriu (cine e Basic/Standard cu reprezentarea folosită): **săptămâna 1** (Marian).
+- Primele apeluri de upsell: **săptămâna 2**.
+- Țintă luna 1: **10 upsell-uri Basic/Standard → Premium**, plus țintele din `plan-business-development.md` pentru clienți noi.
 
 ---
 
