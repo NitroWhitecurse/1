@@ -78,6 +78,23 @@ legătura cu managerul energetic atestat. Preț de proiect: 2.500–6.000 lei.
 Verificare lunară a facturii, alertă când apare în piață o ofertă mai bună, verificarea
 clauzelor înainte de semnare, renegociere, rapoarte pentru conducere.
 
+### 2.9 Linie de produse și echipamente — NEDOCUMENTATĂ INTERN
+
+Descoperită prin verificarea indexului public, nu apare în niciun document intern.
+Vezi `08-verificare-site.md` pentru detalii și implicații.
+
+- `/centrale-termice-rate/` — vânzare de centrale termice, plata în până la 36 de rate direct
+  pe factura de energie sau gaz, instalare prin echipe autorizate, garanție extinsă.
+- `/produse/` — catalog de produse WooCommerce.
+- `/eficienta-energetica/` — nu doar recomandă, ci **implementează** iluminat LED industrial,
+  panouri fotovoltaice și sisteme de monitorizare.
+
+> **ATENȚIE — atinge fundația repoziționării.** Dacă Reduco câștigă marjă sau comision din
+> vânzarea acestor echipamente, afirmația de independență („nu primim comision de la niciun
+> furnizor") este compromisă material — este același conflict de interese ca al unui comparator
+> plătit de furnizori, mutat pe echipamente. Modelul de venit al acestei linii trebuie clarificat
+> **înainte** de publicarea oricărui text despre independență.
+
 ## 3. Modelul de business și prețurile
 
 ### Abonamente actuale (pe site, problematice)
