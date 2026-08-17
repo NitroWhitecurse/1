@@ -360,14 +360,13 @@ Trei căi, care se pornesc în paralel, nu una după alta:
 2. **În 2–4 săptămâni:** parteneriat cu un auditor atestat. Noi aducem clientul și ținem relația, el semnează auditul, împărțim. Nu cere nicio investiție.
 3. **În 6–12 luni:** atestarea unei persoane din echipă ca manager energetic. Aceasta e investiția care schimbă categoria firmei.
 
-**Un lucru de lămurit înainte de a comunica orice public — termenul declarației anuale.** Am verificat și sursele nu concordă:
+**Termenul declarației anuale — clarificat.** Contradicția semnalată anterior (30 aprilie vs. 30 iunie) e rezolvată: am citit direct art. 9 alin. (4) și (7) din Legea 121/2014, formă consolidată. Termenul de **30 aprilie era dintr-o versiune veche a legii** — OUG 184/2020 l-a mutat la **30 iunie** și a schimbat și autoritatea destinatară, de la ANRE la Direcția Eficiență Energetică din Ministerul Energiei. Se aplică tuturor firmelor, indiferent de mărime. Poate fi comunicat public de acum, cu acest termen.
 
-- **Textul legii** (Legea 121/2014, art. 9) prevede **30 aprilie** pentru operatorii peste 1.000 TEP — declarația de consum total plus chestionarul de analiză energetică, transmise Departamentului pentru Eficiență Energetică.
-- **Un ghid de conformare al unei firme de audit, actualizat în iunie 2026**, indică **30 iunie**, atât pentru IMM-uri cât și pentru cei peste prag.
+**Descoperire nouă — mandatul nu acoperă explicit Ministerul Energiei.** Contractul de mandat enumeră relația cu furnizorul, distribuitorul și ANRE, dar declarația de mai sus se depune la **Ministerul Energiei**, o autoritate diferită, neenumerată în contract. De adăugat o clauză simplă odată cu restul corecțiilor de la P10: *„depunerea declarațiilor și rapoartelor anuale obligatorii privind consumul de energie către Ministerul Energiei / Direcția Eficiență Energetică, conform Legii nr. 121/2014."* Nu cere atestare, doar text.
 
-Diferența poate veni dintr-o modificare a legii, din categorii diferite de operatori sau din practica ministerului. **Nu punem nicio dată pe site, în e-mail sau în ofertă până nu avem confirmare scrisă de la Ministerul Energiei.** Dacă mesajul nostru e conformarea, o dată greșită ne distruge exact lucrul pe care îl vindem.
+**Descoperire nouă — formularea de pe site e un risc legal, nu doar o imprecizie.** Pe **[reduco.ro/abonamente](https://reduco.ro/abonamente)**, toate cele trei trepte Business promit *„1 audit energetic complet/an"*. Un „audit de facturi" (ce facem azi) nu e legal același lucru cu un „audit energetic" (cerut de lege, obligă la un auditor atestat pe întregul contur de consum fizic). Dacă un client mare crede că fraza de pe site îi acoperă obligația legală și la un control nu are un audit valabil, amenda cade pe el, dar reputația lovește Reduco. **De redenumit** — „audit de facturi și eficiență comercială" sau similar — până avem auditor atestat sau partener.
 
-Tot de verificat, în aceeași solicitare: **costul, durata și condițiile de atestare** ca manager energetic.
+**Costul, durata și condițiile de atestare, verificate.** Tarif oficial: **1.500 lei** persoană fizică / 2.500 lei persoană juridică pentru auditor energetic; **2.000 lei** pentru manager energetic (Ordinul ministrului energiei nr. 64/24.02.2021), valabilitate **3 ani**. **Costul mic al taxei nu e bariera reală** — bariera e vechimea profesională tehnică cerută de regulament (sursele găsite variază între 3 și 10 ani, în funcție de clasă; de clarificat exact înainte de a trimite pe cineva la curs). Legea permite explicit ca funcția de manager energetic să fie **contractată extern**, nu neapărat angajată intern — exact modelul de parteneriat din calea 2.
 
 ### Cine și până când
 
@@ -424,6 +423,8 @@ Contractul de mandat este instrumentul pe care stă toată poziționarea din P1.
 
 **6. Greșeli de redactare.** „îndreătăţit", „cererile pentru realizarea cailor de atat" în loc de „căilor de atac", „inlcusiv", diacritice inconsecvente. Într-un document juridic citit de un CFO înainte de semnătură, fiecare greșeală scade încrederea exact în momentul în care avem nevoie de ea.
 
+**7. Lipsește Ministerul Energiei din lista autorităților.** Mandatul enumeră explicit relația cu furnizorul, distribuitorul și ANRE, dar nu și cu **Ministerul Energiei / Direcția Eficiență Energetică** — autoritatea la care se depune declarația anuală de consum obligatorie prin Legea 121/2014 (vezi P8). Fără această clauză, depunerea declarației în numele clientului stă pe teren juridic incert.
+
 ### Cât ne costă
 
 Dublu. **Comercial:** contractul este momentul semnăturii — orice ezitare acolo omoară o vânzare pe care am câștigat-o deja. **Juridic:** dacă ajungem în dispută cu un furnizor sau la ANRE, prima apărare a celeilalte părți va fi să atace validitatea mandatului. Un tabel care inversează părțile le oferă exact deschiderea.
@@ -436,7 +437,8 @@ Dublu. **Comercial:** contractul este momentul semnăturii — orice ezitare aco
 4. **Uniformizăm domeniul** — „energie electrică și/sau gaze naturale" în toate cele opt mandate.
 5. **Adăugăm clauza de prelucrare a datelor**, cu temei, scop și durată.
 6. **Corectură completă** a textului, cu diacritice consecvente.
-7. **Verificare de către un avocat** înainte de a-l folosi la volum, pe două puncte pe care nu le pot evalua eu: limitarea răspunderii mandatarului și validitatea clauzei prin care putem angaja avocați și experți în numele clientului.
+7. **Adăugăm clauza pentru Ministerul Energiei** — „depunerea declarațiilor și rapoartelor anuale obligatorii privind consumul de energie către Ministerul Energiei / Direcția Eficiență Energetică, conform Legii nr. 121/2014" — condiție pentru Motorul 2 din `plan-crestere-brand.md`.
+8. **Verificare de către un avocat** înainte de a-l folosi la volum, pe trei puncte pe care nu le pot evalua eu: limitarea răspunderii mandatarului, validitatea clauzei prin care putem angaja avocați și experți în numele clientului, și dacă „orice operațiune necesară" acoperă deja implicit relația cu Ministerul Energiei sau chiar cu clauza nouă de la punctul 7 e obligatorie.
 
 ### Ce am descoperit și trebuie folosit
 

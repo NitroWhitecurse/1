@@ -96,30 +96,52 @@ Contractul de mandat, cu temei în art. 2009 Cod civil, e echivalentul românesc
 
 ## Motorul 2 — Conformarea legală: vindem termen, nu promisiune
 
-*Sursa: `declansatoare-reglementare.md` (verificat pe surse legale), `plan-remediere.md` P8.*
+*Sursa: `verificare-motor2-conformare.md` — verificare aprofundată, cu textul de lege citit direct (Legea 121/2014, formă consolidată 12.07.2024) și paginile live reduco.ro. Corectează versiunea anterioară pe un punct important: termenul.*
 
 ### Ideea într-o frază
 
 Economia e o promisiune pe care firma o poate amâna oricând; un termen legal cu amendă nu se amână — iar noi putem fi cei care sună înainte de termen, nu după.
 
+### Termenul corect, confirmat din textul legii
+
+**Declarația anuală de consum total de energie se depune până la 30 iunie, nu 30 aprilie** — art. 9 alin. (4) și alin. (7) din Legea 121/2014, modificate prin OUG 184/2020, care a mutat atât termenul cât și autoritatea destinatară (de la ANRE la Direcția Eficiență Energetică din Ministerul Energiei). Se aplică **tuturor firmelor**, indiferent de mărime sau de consum — nu doar celor peste 1.000 TEP. Termenul de 30 aprilie din planul anterior era depășit, dintr-o formă mai veche a legii.
+
+### Ce poate face Reduco chiar de mâine, și ce cere neapărat un partener — tabelul simplu
+
+| | Putem face acum | Avem nevoie de partener |
+|---|---|---|
+| Audit de facturi, litigii cu furnizorul/distribuitorul/ANRE, schimbare furnizor | **DA** — deja live, sub mandatul actual | — |
+| Depunerea declarației anuale de consum (30 iunie, toate firmele) | **DA**, administrativ — dar mandatul trebuie completat cu o clauză explicită (vezi mai jos) | — |
+| Depunerea Programului de eficiență energetică (30 septembrie, doar >1.000 TEP) | **DA**, doar transmiterea | **DA** — conținutul trebuie fundamentat pe un audit energetic |
+| Auditul energetic obligatoriu propriu-zis | **NU** | **DA** — auditor atestat de Ministerul Energiei |
+| Funcția de manager energetic | **NU** intern | **DA** — poate fi contractat extern, legea permite explicit |
+
+**De ce „audit facturi" (ce facem azi) nu e „audit energetic" (cerut de lege):** obiectul e diferit — noi verificăm documentele de plată deja emise (tarife, erori, dublă facturare); legea cere o analiză tehnică a **întregului contur de consum fizic** al firmei (echipamente, procese, instalații). Și cine are dreptul să-l semneze e diferit — legea cere expres un auditor autorizat de Ministerul Energiei. Un raport de-al nostru, oricât de detaliat, nu ține loc de auditul legal.
+
+**Un fix mic, de făcut oricum: clauza de mandat pentru Ministerul Energiei.** Mandatul actual acoperă explicit relația cu furnizorul, distribuitorul și ANRE — dar declarația anuală se depune la **Ministerul Energiei / Direcția Eficiență Energetică**, o autoritate diferită, neenumerată azi în contract. De adăugat o frază simplă: *„depunerea declarațiilor și rapoartelor anuale obligatorii privind consumul de energie către Ministerul Energiei / Direcția Eficiență Energetică, conform Legii nr. 121/2014"*. Nu cere nicio atestare — doar completare de text, de verificat cu avocatul care oricum revizuiește contractul (P10). Se leagă direct de reparația de la P10 din `plan-remediere.md`.
+
+**Descoperire importantă pe site — de corectat cu prioritate:** pe **[reduco.ro/abonamente](https://reduco.ro/abonamente)**, toate cele trei trepte Business promit *„suport prioritar + 1 audit energetic complet/an"*. Formularea asta e un risc, nu doar o imprecizie: dacă un client cu peste 1.000 TEP crede că această frază îi acoperă obligația legală din art. 9, iar la un control descoperă că nu are un audit energetic valabil semnat de auditor atestat, sancțiunea cade pe el, dar reputația lovește Reduco. **De redenumit** — „audit de facturi și eficiență comercială" sau similar — până nu avem un auditor atestat în echipă sau partener.
+
 ### Cele patru declanșatoare, în ordinea aprinderii
 
-**2-zero. Criza din august (fereastra cea mai scurtă).** Cât ține starea de alertă și riscul de limitare a consumului industrial, oferim **auditul de risc și flexibilitate**: cine e expus limitării, ce consum se poate muta din orele 19:00–23:00, planul B dacă criza continuă. Nu cere atestare, cere doar cunoașterea pieței — și deschide ușa exact firmelor mari pe care le vrem apoi pe conformare și management energetic. **Primele apeluri: săptămâna aceasta.**
+**2-zero. Criza din august (fereastra cea mai scurtă).** Cât ține starea de alertă și riscul de limitare a consumului industrial, oferim **auditul de risc și flexibilitate**: cine e expus limitării, ce consum se poate muta din orele 19:00–23:00, planul B dacă criza continuă. Nu cere atestare, cere doar cunoașterea pieței. **Primele apeluri: săptămâna aceasta.**
 
-**2a. Termenul de 30 septembrie (acum!).** Firmele peste 1.000 TEP/an trebuie să depună Programul de îmbunătățire a eficienței energetice până la 30 septembrie. Suntem la ~6 săptămâni. Campanie țintită: lista firmelor mari consumatoare din Bacău–Neamț–Suceava (industrie, morărit, depozite frigorifice — racordate MT), apel direct: *„aveți Programul depus? Dacă nu, îl pregătim noi cu partenerul nostru auditor."*
-→ Cere parteneriatul cu un **auditor energetic atestat** (P8, calea 2): noi aducem clientul și relația, el semnează, împărțim. Prima discuție de parteneriat: săptămâna aceasta.
+**2a. Termenul de 30 septembrie.** Firmele peste 1.000 TEP/an trebuie să transmită Programul de îmbunătățire a eficienței energetice. Suntem la ~6 săptămâni. Campanie țintită: firme mari consumatoare din Bacău–Neamț–Suceava, apel direct: *„aveți Programul depus? Dacă nu, îl pregătim noi, cu partenerul nostru auditor pentru partea tehnică."*
+→ Cere parteneriatul cu un **auditor energetic atestat**: noi aducem clientul și ținem relația, el semnează conținutul tehnic, împărțim. Prima discuție: săptămâna aceasta.
 
-**2b. Serviciul de conformare permanent.** Toate firmele — inclusiv IMM-urile — datorează declarația anuală de consum. Aproape nimeni nu știe. Depunerea ei, gratuită, ca serviciu de intrare: firma primește conformare, noi primim **legal, cu acord, exact datele de consum** pe care altfel le cerșim sub formă de factură. ⚠️ Termenul exact (30 aprilie vs. 30 iunie — sursele diferă) se confirmă **în scris la Ministerul Energiei înainte de orice comunicare publică**.
+**2b. Serviciul de conformare permanent — acum cu termen ferm.** Toate firmele datorează declarația anuală de consum, **până la 30 iunie**. Aproape nimeni nu știe. Depunerea ei, ca serviciu de intrare: firma primește conformare, noi primim legal, cu acord, exact datele de consum pe care altfel le cerem sub formă de factură. Se poate comunica public de acum — termenul e confirmat din textul legii, nu mai așteaptă răspuns de la minister.
 
-**2b-bis. Banii publici — serviciul „dosar pregătit din timp".** Peste 10 programe de finanțare, ~1,4 miliarde EUR pentru companii, se deschid în 2026–2027 (Fondul pentru Modernizare, AFIR agroalimentar T3 2026, PRO INFRA, stocare, EU-ETS pentru energointensivi). Regula pieței, spusă explicit de experți: „primul venit, primul servit" — firmele care nu au dosarul pregătit înainte de deschiderea apelului pierd. Serviciul nostru: audit + studiu de fezabilitate + dosar, vândut **proactiv, înainte de apel**, către sectoarele eligibile (agroalimentar, materiale de construcții, energointensivi). Imediat: **SME Eco-Tech, termen 24 septembrie**, prin parteneriatul cu BT Bacău. Și onestitatea ca armă: **Electric Up nu are ediție 2026 confirmată** — spre deosebire de zecile de site-uri care o promit, noi spunem adevărul și redirecționăm către programele reale. Diferențiator de încredere gratuit.
+**2b-bis. Banii publici — serviciul „dosar pregătit din timp".** Peste 10 programe de finanțare, ~1,4 miliarde EUR pentru companii, se deschid în 2026–2027. Regula pieței: „primul venit, primul servit". Imediat: **SME Eco-Tech, termen 24 septembrie**, prin parteneriatul cu BT Bacău. Și onestitatea ca armă: **Electric Up nu are ediție 2026 confirmată** — spunem adevărul, spre deosebire de zecile de site-uri care încă îl promit.
 
-**2c. Comunitățile de energie (fereastra nouă).** Ordinul ANRE 50/25.06.2026 a operaționalizat Registrul național — piața are șapte săptămâni de existență și **nimeni nu are încă experiență practică**. Procedura e birocratică; birocrația e produsul nostru (același mușchi ca la racordare/ATR). Un singur proiect-pilot — un parc industrial, un grup de ferme, o primărie mică cu firmele din jur — ne face „primul facilitator de comunități de energie din Moldova" și aduce 10–30 de membri într-un contract.
+**2c. Comunitățile de energie.** Ordinul ANRE 50/25.06.2026 a operaționalizat Registrul național — piața are șapte săptămâni de existență și nimeni nu are încă experiență practică. Un singur proiect-pilot ne face „primul facilitator de comunități de energie din Moldova" și aduce 10–30 de membri într-un contract.
 
 ### Ținte și responsabil
 
+- **Clauza de mandat pentru Ministerul Energiei**, adăugată de jurist: **săptămâna 1**, odată cu restul corecțiilor de contract (P10).
+- **Redenumirea „audit energetic complet" pe /abonamente**: **săptămâna 1**, admin site.
 - Parteneriat auditor semnat: **săptămâna 2** (Marian + CEO).
 - Campania „30 septembrie": **20 de firme mari contactate până la 1 septembrie**, țintă 3 contracte de conformare.
-- Confirmarea scrisă a termenului declarației: cerere trimisă **săptămâna 1**.
+- Campania declarației de 30 iunie: pregătită din timp pentru anul viitor — anul acesta termenul a trecut deja, deci mesajul se comunică drept „ne ocupăm de conformare an de an", nu ca urgență imediată.
 - Un proiect-pilot de comunitate de energie identificat până în **luna 2**.
 
 ---
