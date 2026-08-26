@@ -7,7 +7,7 @@ adaugă la el, ca să existe istoric de decizii.
 
 - **Fază**: 0 — Decizie și linie de bază
 - **Zi de plan**: —  (ziua 1 = data de start declarată mai jos)
-- **Data de start (ziua 1)**: [ex: 2026-08-27]
+- **Data de start (ziua 1)**: 2026-08-27
 
 ## Faza 0 — Decizii de scris (o singură dată)
 
