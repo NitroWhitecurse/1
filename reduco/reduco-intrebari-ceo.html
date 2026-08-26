@@ -1,0 +1,337 @@
+<title>Întrebări pentru CEO</title>
+<style>
+  :root {
+    --ground:#F4F3F0; --surface:#FFFFFF; --surface-2:#EDEBE6;
+    --ink:#17140F; --muted:#6B655B; --rule:#DCD8D0;
+    --accent:#9A3E0A; --accent-fill:#F99E0A; --on-fill:#1B1409;
+    --block:#96331F; --ok:#2F6B45;
+    --f-display: ui-sans-serif, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-body: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --f-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#131110; --surface:#1C1917; --surface-2:#24201D;
+      --ink:#F1EEE8; --muted:#9C948A; --rule:#322C26;
+      --accent:#F2A03C; --accent-fill:#F99E0A; --on-fill:#1B1409;
+      --block:#E58A72; --ok:#6FBE8C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#131110; --surface:#1C1917; --surface-2:#24201D;
+    --ink:#F1EEE8; --muted:#9C948A; --rule:#322C26;
+    --accent:#F2A03C; --accent-fill:#F99E0A; --on-fill:#1B1409;
+    --block:#E58A72; --ok:#6FBE8C;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--f-body); font-size:16.5px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 clamp(1.1rem,4vw,2.6rem); }
+
+  header.top { padding:clamp(2.6rem,7vw,4.4rem) 0 1.6rem; }
+  .kicker { font-family:var(--f-data); font-size:.68rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 1.1rem; }
+  h1 { font-family:var(--f-display); font-weight:800; letter-spacing:-.028em; line-height:1.04;
+    text-wrap:balance; font-size:clamp(2rem,1.3rem+3.2vw,3.4rem); margin:0 0 1rem; }
+  .lede { font-size:clamp(1rem,.95rem+.3vw,1.15rem); max-width:48ch; margin:0 0 1.6rem; color:var(--muted); }
+  .note-box { background:var(--surface); border:1px solid var(--rule);
+    border-left:4px solid var(--accent-fill); padding:1rem 1.2rem; margin-bottom:.9rem; }
+  .note-box b { font-family:var(--f-display); }
+
+  .toolbar { position:sticky; top:0; z-index:10; background:var(--ground);
+    border-bottom:1px solid var(--rule); padding:.7rem 0; }
+  .toolbar-in { display:flex; align-items:center; gap:.8rem; flex-wrap:wrap;
+    font-family:var(--f-data); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .bar { flex:1; min-width:100px; height:4px; background:var(--rule); position:relative; }
+  .bar i { position:absolute; inset:0 auto 0 0; width:0%; background:var(--accent-fill); transition:width .25s ease; }
+  @media (prefers-reduced-motion: reduce) { .bar i { transition:none; } }
+  button.tb { font-family:var(--f-data); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
+    background:none; border:1px solid var(--rule); color:var(--muted); padding:.3rem .6rem; cursor:pointer; }
+  button.tb:hover { color:var(--accent); border-color:var(--accent); }
+  button.tb:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+
+  .block { padding:clamp(2rem,5vw,3rem) 0 .4rem; }
+  .block-bar { display:flex; align-items:baseline; gap:.9rem; flex-wrap:wrap;
+    border-top:2px solid var(--accent); padding-top:.7rem; margin-bottom:.4rem; }
+  .block.crit .block-bar { border-top-color:var(--block); }
+  .block-id { font-family:var(--f-data); font-size:.72rem; letter-spacing:.1em; color:var(--accent); }
+  .block.crit .block-id { color:var(--block); }
+  .block-bar h2 { font-family:var(--f-display); font-weight:780; letter-spacing:-.02em;
+    font-size:clamp(1.3rem,1.1rem+.9vw,1.75rem); margin:0; text-wrap:balance; }
+  .block > p.intro { color:var(--muted); margin:.4rem 0 1.4rem; max-width:62ch; font-size:.97rem; }
+
+  .q { background:var(--surface); border:1px solid var(--rule); margin-bottom:1px; padding:1.15rem 1.3rem; }
+  .block.crit .q { border-left:3px solid var(--block); }
+  .q-head { display:flex; align-items:flex-start; gap:.75rem; }
+  .q-head input { width:1.05rem; height:1.05rem; accent-color:var(--accent-fill);
+    cursor:pointer; margin:.3rem 0 0; flex:none; }
+  .q-head input:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .q-id { font-family:var(--f-data); font-size:.72rem; color:var(--accent); flex:none; margin-top:.32rem; }
+  .q-text { font-family:var(--f-display); font-weight:680; font-size:1.02rem;
+    letter-spacing:-.01em; line-height:1.35; margin:0; }
+  .q.asked .q-text { color:var(--muted); }
+  .unlock { margin:.7rem 0 0 2.55rem; font-size:.92rem; color:var(--muted); }
+  .unlock b { color:var(--accent); font-family:var(--f-data); font-size:.63rem;
+    letter-spacing:.11em; text-transform:uppercase; display:block; margin-bottom:.15rem; }
+  textarea { display:block; width:100%; margin:.8rem 0 0 0; background:var(--surface-2);
+    border:1px solid var(--rule); color:var(--ink); font-family:var(--f-body); font-size:.93rem;
+    padding:.6rem .7rem; resize:vertical; min-height:2.6rem; line-height:1.5; }
+  textarea:focus { outline:2px solid var(--accent); outline-offset:-1px; }
+  textarea::placeholder { color:var(--muted); opacity:.65; }
+
+  footer { padding:clamp(2.2rem,6vw,3.4rem) 0 clamp(3rem,8vw,4.5rem);
+    border-top:1px solid var(--rule); margin-top:2.4rem; color:var(--muted); font-size:.93rem; }
+  footer p { margin:0 0 .85rem; max-width:64ch; }
+  footer ol { margin:0 0 .85rem; padding-left:1.2rem; max-width:64ch; }
+  footer li { margin-bottom:.3rem; }
+  .final { background:var(--surface); border:1px solid var(--rule);
+    border-left:4px solid var(--ok); padding:1rem 1.2rem; color:var(--ink); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <p class="kicker">Reduco · pregătire de ședință</p>
+    <h1>Ce trebuie să aflu de la CEO</h1>
+    <p class="lede">Treizeci și șapte de întrebări, grupate pe teme. Fiecare arată ce deblochează — ca să știi de ce o pui și ce faci cu răspunsul.</p>
+    <div class="note-box"><b>Nu le pune pe toate deodată.</b> Sunt prea multe pentru o ședință și răspunsurile vor fi superficiale. Blocul A, blocant, merită 45 de minute separate. Restul vin pe măsură ce ajungi la fazele care le cer.</div>
+    <div class="note-box"><b>Cere cifre, nu impresii.</b> „Cam mulți” și „destul de des” nu se pot planifica. Când primești o impresie, întreabă „câți, mai exact?”. Dacă nu știe, ăsta e în sine un răspuns util: înseamnă că nu se măsoară.</div>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-in">
+      <span id="count">0 / 37 puse</span>
+      <span class="bar"><i id="fill"></i></span>
+      <button class="tb" id="copy" type="button">Copiază notițele</button>
+      <button class="tb" id="reset" type="button">Resetează</button>
+    </div>
+  </div>
+
+  <section class="block crit">
+    <div class="block-bar"><span class="block-id">BLOC A</span><h2>Blocante — fără ele nu pot continua</h2></div>
+    <p class="intro">Aceste cinci întrebări blochează pași concreți din plan. Dacă ai doar 30 de minute, le pui pe astea.</p>
+
+    <div class="q" data-id="A1"><div class="q-head"><input type="checkbox" aria-label="A1 pusă"><span class="q-id">A1</span><p class="q-text">Câștigăm bani din vânzarea centralelor termice, panourilor fotovoltaice și a iluminatului LED? Dacă da, cât din venitul total?</p></div>
+      <p class="unlock"><b>Deblochează</b>Tot copy-ul despre independență, deci Faza 3. Nu e o problemă să vindem echipamente — e o problemă să nu declarăm că o facem, în timp ce afirmăm independență totală.</p>
+      <textarea placeholder="Răspuns…" data-note="A1"></textarea></div>
+
+    <div class="q" data-id="A2"><div class="q-head"><input type="checkbox" aria-label="A2 pusă"><span class="q-id">A2</span><p class="q-text">Câte audituri gratuite de factură putem livra pe lună, în 48 de ore, fără să rupem promisiunea?</p></div>
+      <p class="unlock"><b>Deblochează</b>Dacă putem promite public „48 de ore” și cât trafic ne permitem să generăm. Dacă putem 10 și campania aduce 60, promisiunea se sparge exact când construim credibilitate.</p>
+      <textarea placeholder="Răspuns…" data-note="A2"></textarea></div>
+
+    <div class="q" data-id="A3"><div class="q-head"><input type="checkbox" aria-label="A3 pusă"><span class="q-id">A3</span><p class="q-text">Cine face efectiv partea juridică — reprezentarea în fața ANRE și litigiile? E angajat, colaborator sau avocat extern?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cât de tare apăsăm pe diferențiatorul juridic. Dacă e colaborator cu disponibilitate limitată, nu putem construi poziționarea principală pe el.</p>
+      <textarea placeholder="Răspuns…" data-note="A3"></textarea></div>
+
+    <div class="q" data-id="A4"><div class="q-head"><input type="checkbox" aria-label="A4 pusă"><span class="q-id">A4</span><p class="q-text">Avem manager energetic atestat în firmă, sau colaborăm cu unul?</p></div>
+      <p class="unlock"><b>Deblochează</b>Formularea exactă pe Legea 121/2014. Fără unul intern, spunem „coordonăm conformarea și lucrăm cu manager energetic atestat” — niciodată „suntem”. Greșeala se plătește în fața clientului industrial.</p>
+      <textarea placeholder="Răspuns…" data-note="A4"></textarea></div>
+
+    <div class="q" data-id="A5"><div class="q-head"><input type="checkbox" aria-label="A5 pusă"><span class="q-id">A5</span><p class="q-text">Care clienți ar accepta să publicăm rezultatul obținut, chiar anonimizat? Ai pe cineva în minte acum?</p></div>
+      <p class="unlock"><b>Deblochează</b>Studiile de caz. Azi avem un singur testimonial pe tot site-ul, de la o persoană fizică. Fără dovadă B2B, orice trafic adus se pierde.</p>
+      <textarea placeholder="Răspuns…" data-note="A5"></textarea></div>
+  </section>
+
+  <section class="block">
+    <div class="block-bar"><span class="block-id">BLOC B</span><h2>Banii: de unde vin și unde sunt</h2></div>
+    <div class="q" data-id="B1"><div class="q-head"><input type="checkbox" aria-label="B1 pusă"><span class="q-id">B1</span><p class="q-text">Care e defalcarea venitului pe ultimele 12 luni: abonamente, servicii de proiect, comisioane produse, altele?</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce punem în față pe site. Vitrina trebuie să reflecte ce ne ține în viață.</p>
+      <textarea placeholder="Răspuns…" data-note="B1"></textarea></div>
+    <div class="q" data-id="B2"><div class="q-head"><input type="checkbox" aria-label="B2 pusă"><span class="q-id">B2</span><p class="q-text">Care serviciu are cea mai bună marjă și care consumă cel mai mult timp pentru cât aduce?</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce împingem și ce descurajăm subtil prin preț și poziționare.</p>
+      <textarea placeholder="Răspuns…" data-note="B2"></textarea></div>
+    <div class="q" data-id="B3"><div class="q-head"><input type="checkbox" aria-label="B3 pusă"><span class="q-id">B3</span><p class="q-text">Cât valorează un client B2B pe an, în medie? Dar unul casnic?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cât ne permitem să cheltuim ca să câștigăm un client — deci dacă are sens plata pe reclame.</p>
+      <textarea placeholder="Răspuns…" data-note="B3"></textarea></div>
+    <div class="q" data-id="B4"><div class="q-head"><input type="checkbox" aria-label="B4 pusă"><span class="q-id">B4</span><p class="q-text">Cât rămâne un client, în medie? Câți renunță în primele trei luni?</p></div>
+      <p class="unlock"><b>Deblochează</b>Dacă problema e achiziția sau retenția. Dacă pleacă repede, nu traficul e problema.</p>
+      <textarea placeholder="Răspuns…" data-note="B4"></textarea></div>
+    <div class="q" data-id="B5"><div class="q-head"><input type="checkbox" aria-label="B5 pusă"><span class="q-id">B5</span><p class="q-text">Prețurile propuse — 149, 349, 89 per locație, 1.500+ — sunt realiste față de timpul real de livrare?</p></div>
+      <p class="unlock"><b>Deblochează</b>Publicarea grilei. Suntem primii din piață care afișează preț; dacă e greșit calibrat, e greu de retras.</p>
+      <textarea placeholder="Răspuns…" data-note="B5"></textarea></div>
+    <div class="q" data-id="B6"><div class="q-head"><input type="checkbox" aria-label="B6 pusă"><span class="q-id">B6</span><p class="q-text">Am pierdut vreodată bani pe un client? Ce a mers prost?</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce fel de client refuzăm și ce condiții punem în ofertă.</p>
+      <textarea placeholder="Răspuns…" data-note="B6"></textarea></div>
+  </section>
+
+  <section class="block">
+    <div class="block-bar"><span class="block-id">BLOC C</span><h2>Capacitatea: ce putem livra realist</h2></div>
+    <div class="q" data-id="C1"><div class="q-head"><input type="checkbox" aria-label="C1 pusă"><span class="q-id">C1</span><p class="q-text">Câți oameni suntem și cine ce face, concret?</p></div>
+      <p class="unlock"><b>Deblochează</b>Pagina „Despre noi”, prima verificată de un director financiar. Și limitele reale de livrare.</p>
+      <textarea placeholder="Răspuns…" data-note="C1"></textarea></div>
+    <div class="q" data-id="C2"><div class="q-head"><input type="checkbox" aria-label="C2 pusă"><span class="q-id">C2</span><p class="q-text">Dacă mâine primim 50 de cereri de audit, ce se rupe primul?</p></div>
+      <p class="unlock"><b>Deblochează</b>Unde investim înainte de a genera cerere. Un canal care aduce mai mult decât putem livra ne strică reputația.</p>
+      <textarea placeholder="Răspuns…" data-note="C2"></textarea></div>
+    <div class="q" data-id="C3"><div class="q-head"><input type="checkbox" aria-label="C3 pusă"><span class="q-id">C3</span><p class="q-text">Cât durează, realist, de la primirea facturii până la trimiterea raportului? Nu ținta — media reală.</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce promitem public.</p>
+      <textarea placeholder="Răspuns…" data-note="C3"></textarea></div>
+    <div class="q" data-id="C4"><div class="q-head"><input type="checkbox" aria-label="C4 pusă"><span class="q-id">C4</span><p class="q-text">Ce parte din proces se repetă identic la fiecare client și ar putea fi automatizată sau delegată?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cum creștem fără să angajăm proporțional.</p>
+      <textarea placeholder="Răspuns…" data-note="C4"></textarea></div>
+    <div class="q" data-id="C5"><div class="q-head"><input type="checkbox" aria-label="C5 pusă"><span class="q-id">C5</span><p class="q-text">Cine poate aproba modificări pe site și cine le execută? Avem dezvoltator disponibil?</p></div>
+      <p class="unlock"><b>Deblochează</b>Planificarea Fazelor 1 și 2, care cer 20–25 de ore de dezvoltator.</p>
+      <textarea placeholder="Răspuns…" data-note="C5"></textarea></div>
+  </section>
+
+  <section class="block">
+    <div class="block-bar"><span class="block-id">BLOC D</span><h2>Clienții: cine sunt și de ce vin</h2></div>
+    <div class="q" data-id="D1"><div class="q-head"><input type="checkbox" aria-label="D1 pusă"><span class="q-id">D1</span><p class="q-text">Câți clienți activi avem acum, împărțiți pe firme și persoane fizice?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cât de mare e saltul cerut de repoziționare. Dacă 90% sunt casnici, tranziția e mai lungă.</p>
+      <textarea placeholder="Răspuns…" data-note="D1"></textarea></div>
+    <div class="q" data-id="D2"><div class="q-head"><input type="checkbox" aria-label="D2 pusă"><span class="q-id">D2</span><p class="q-text">De unde au venit ultimii zece clienți B2B? Recomandare, căutare Google, telefon la rece, altceva?</p></div>
+      <p class="unlock"><b>Deblochează</b>Unde merită investit efortul. Dacă toți vin din recomandări, SEO e a doua prioritate, nu prima.</p>
+      <textarea placeholder="Răspuns…" data-note="D2"></textarea></div>
+    <div class="q" data-id="D3"><div class="q-head"><input type="checkbox" aria-label="D3 pusă"><span class="q-id">D3</span><p class="q-text">Care e cel mai profitabil client și cum a ajuns la noi?</p></div>
+      <p class="unlock"><b>Deblochează</b>Profilul de client pe care îl țintim în tot conținutul.</p>
+      <textarea placeholder="Răspuns…" data-note="D3"></textarea></div>
+    <div class="q" data-id="D4"><div class="q-head"><input type="checkbox" aria-label="D4 pusă"><span class="q-id">D4</span><p class="q-text">Ce întrebare sau obiecție auzim cel mai des înainte ca cineva să semneze?</p></div>
+      <p class="unlock"><b>Deblochează</b>Secțiunea de întrebări frecvente și structura argumentelor pe paginile de serviciu.</p>
+      <textarea placeholder="Răspuns…" data-note="D4"></textarea></div>
+    <div class="q" data-id="D5"><div class="q-head"><input type="checkbox" aria-label="D5 pusă"><span class="q-id">D5</span><p class="q-text">De ce pleacă cei care pleacă?</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce nu promitem, ca să nu atragem clienți greșiți.</p>
+      <textarea placeholder="Răspuns…" data-note="D5"></textarea></div>
+    <div class="q" data-id="D6"><div class="q-head"><input type="checkbox" aria-label="D6 pusă"><span class="q-id">D6</span><p class="q-text">Ce tip de client refuzăm sau ar trebui să refuzăm?</p></div>
+      <p class="unlock"><b>Deblochează</b>Calificarea din formular. Un formular bun respinge, nu doar colectează.</p>
+      <textarea placeholder="Răspuns…" data-note="D6"></textarea></div>
+  </section>
+
+  <section class="block">
+    <div class="block-bar"><span class="block-id">BLOC E</span><h2>Istoricul: ce s-a încercat deja</h2></div>
+    <div class="q" data-id="E1"><div class="q-head"><input type="checkbox" aria-label="E1 pusă"><span class="q-id">E1</span><p class="q-text">De ce s-a făcut trecerea de la Comparatot la Reduco și ce a rămas neterminat din ea?</p></div>
+      <p class="unlock"><b>Deblochează</b>De ce brandul vechi mai apare în titluri. Poate exista un motiv, nu doar uitare.</p>
+      <textarea placeholder="Răspuns…" data-note="E1"></textarea></div>
+    <div class="q" data-id="E2"><div class="q-head"><input type="checkbox" aria-label="E2 pusă"><span class="q-id">E2</span><p class="q-text">Ce am mai încercat pentru clienți B2B și nu a mers?</p></div>
+      <p class="unlock"><b>Deblochează</b>Evită să repet o greșeală care a costat deja timp și bani.</p>
+      <textarea placeholder="Răspuns…" data-note="E2"></textarea></div>
+    <div class="q" data-id="E3"><div class="q-head"><input type="checkbox" aria-label="E3 pusă"><span class="q-id">E3</span><p class="q-text">Există contracte sau parteneriate care ne obligă să afișăm anumite produse sau furnizori?</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce putem și ce nu putem scoate de pe site. Poate exista o obligație contractuală.</p>
+      <textarea placeholder="Răspuns…" data-note="E3"></textarea></div>
+    <div class="q" data-id="E4"><div class="q-head"><input type="checkbox" aria-label="E4 pusă"><span class="q-id">E4</span><p class="q-text">Avem relații cu furnizori care ne-ar limita ce putem spune public despre ei?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cât de direct putem vorbi despre erorile de facturare în conținut.</p>
+      <textarea placeholder="Răspuns…" data-note="E4"></textarea></div>
+    <div class="q" data-id="E5"><div class="q-head"><input type="checkbox" aria-label="E5 pusă"><span class="q-id">E5</span><p class="q-text">Ce active avem și nu le folosim? Baze de date, liste de contacte, materiale, parteneriate.</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce putem activa imediat, fără cost. De regulă e mai mult decât pare.</p>
+      <textarea placeholder="Răspuns…" data-note="E5"></textarea></div>
+  </section>
+
+  <section class="block">
+    <div class="block-bar"><span class="block-id">BLOC F</span><h2>Direcția: unde mergem</h2></div>
+    <div class="q" data-id="F1"><div class="q-head"><input type="checkbox" aria-label="F1 pusă"><span class="q-id">F1</span><p class="q-text">Unde vrem să fim peste 12 și peste 24 de luni? Venit, număr de clienți, mărimea echipei.</p></div>
+      <p class="unlock"><b>Deblochează</b>Dimensionarea întregului plan. Un obiectiv de 30% și unul de 300% cer planuri diferite.</p>
+      <textarea placeholder="Răspuns…" data-note="F1"></textarea></div>
+    <div class="q" data-id="F2"><div class="q-head"><input type="checkbox" aria-label="F2 pusă"><span class="q-id">F2</span><p class="q-text">Rămânem pe segmentul casnic sau îl lăsăm treptat în urmă?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cât spațiu primește B2C pe site și dacă merită investiție de conținut.</p>
+      <textarea placeholder="Răspuns…" data-note="F2"></textarea></div>
+    <div class="q" data-id="F3"><div class="q-head"><input type="checkbox" aria-label="F3 pusă"><span class="q-id">F3</span><p class="q-text">Acceptăm ca traficul total să scadă, dacă în schimb cresc cererile calificate de la firme?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cum interpretăm rezultatele la trei luni. Fără acordul ăsta dinainte, o scădere normală va fi citită ca eșec și planul se oprește la jumătate.</p>
+      <textarea placeholder="Răspuns…" data-note="F3"></textarea></div>
+    <div class="q" data-id="F4"><div class="q-head"><input type="checkbox" aria-label="F4 pusă"><span class="q-id">F4</span><p class="q-text">Ce nu vrem să devenim niciodată?</p></div>
+      <p class="unlock"><b>Deblochează</b>Granițele poziționării. La fel de utilă ca ambiția.</p>
+      <textarea placeholder="Răspuns…" data-note="F4"></textarea></div>
+    <div class="q" data-id="F5"><div class="q-head"><input type="checkbox" aria-label="F5 pusă"><span class="q-id">F5</span><p class="q-text">Dacă ar trebui să alegem un singur serviciu pe care să-l facem cel mai bine din România, care ar fi?</p></div>
+      <p class="unlock"><b>Deblochează</b>Ierarhia de pe homepage. Un site care spune că face opt lucruri bine nu convinge pe nimeni.</p>
+      <textarea placeholder="Răspuns…" data-note="F5"></textarea></div>
+  </section>
+
+  <section class="block">
+    <div class="block-bar"><span class="block-id">BLOC G</span><h2>Riscuri și limite</h2></div>
+    <div class="q" data-id="G1"><div class="q-head"><input type="checkbox" aria-label="G1 pusă"><span class="q-id">G1</span><p class="q-text">Dosarul aflat în litigiu — când estimăm că se închide și ce putem spune public între timp?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cea mai puternică dovadă pe care o avem, dar și cel mai mare risc juridic.</p>
+      <textarea placeholder="Răspuns…" data-note="G1"></textarea></div>
+    <div class="q" data-id="G2"><div class="q-head"><input type="checkbox" aria-label="G2 pusă"><span class="q-id">G2</span><p class="q-text">Avem asigurare de răspundere profesională?</p></div>
+      <p class="unlock"><b>Deblochează</b>Cât de ferm putem formula promisiunile pe site.</p>
+      <textarea placeholder="Răspuns…" data-note="G2"></textarea></div>
+    <div class="q" data-id="G3"><div class="q-head"><input type="checkbox" aria-label="G3 pusă"><span class="q-id">G3</span><p class="q-text">Ce buget lunar există pentru dezvoltare și marketing în următoarele șase luni?</p></div>
+      <p class="unlock"><b>Deblochează</b>Ce din plan e realist și ce rămâne pe listă de așteptare.</p>
+      <textarea placeholder="Răspuns…" data-note="G3"></textarea></div>
+    <div class="q" data-id="G4"><div class="q-head"><input type="checkbox" aria-label="G4 pusă"><span class="q-id">G4</span><p class="q-text">Cine decide, în final, pe poziționare — tu singur sau mai există cineva?</p></div>
+      <p class="unlock"><b>Deblochează</b>Procesul de aprobare. Merită știut înainte, nu la a treia revizuire.</p>
+      <textarea placeholder="Răspuns…" data-note="G4"></textarea></div>
+    <div class="q" data-id="G5"><div class="q-head"><input type="checkbox" aria-label="G5 pusă"><span class="q-id">G5</span><p class="q-text">Ce te-ar face să oprești acest proiect la jumătate?</p></div>
+      <p class="unlock"><b>Deblochează</b>Riscurile reale, spuse direct. De regulă cea mai utilă întrebare din listă și cea mai rar pusă.</p>
+      <textarea placeholder="Răspuns…" data-note="G5"></textarea></div>
+  </section>
+
+  <footer>
+    <p><b>Pentru fiecare răspuns, notează trei lucruri:</b></p>
+    <ol>
+      <li>Răspunsul, cât mai aproape de cuvintele lui.</li>
+      <li>Dacă e o cifră măsurată sau o estimare. Diferența contează enorm mai târziu.</li>
+      <li>Ce se schimbă în plan din cauza răspunsului. Dacă nu se schimbă nimic, întrebarea era de context, nu de decizie — și e în regulă.</li>
+    </ol>
+    <div class="final"><b>Întrebarea de control, la final:</b> „Ce nu te-am întrebat și ar trebui să știu?” Aproape întotdeauna scoate ceva ce nu era pe listă.</div>
+    <p style="margin-top:1.4rem">Bifele și notițele se salvează local, în browserul tău. „Copiază notițele” pune tot textul în clipboard, ca să-l lipești în minuta ședinței.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var KEY = 'reduco-ceo-v1';
+  var qs = Array.prototype.slice.call(document.querySelectorAll('.q'));
+  var countEl = document.getElementById('count');
+  var fillEl = document.getElementById('fill');
+
+  function load() {
+    try { var r = localStorage.getItem(KEY); return r ? JSON.parse(r) : {}; }
+    catch (e) { return {}; }
+  }
+  function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} }
+
+  function render() {
+    var done = 0;
+    qs.forEach(function (q) {
+      var b = q.querySelector('input');
+      if (b.checked) { done++; q.classList.add('asked'); } else { q.classList.remove('asked'); }
+    });
+    countEl.textContent = done + ' / ' + qs.length + ' puse';
+    fillEl.style.width = qs.length ? (done / qs.length * 100) + '%' : '0%';
+  }
+
+  var state = load();
+  qs.forEach(function (q) {
+    var id = q.getAttribute('data-id');
+    var box = q.querySelector('input');
+    var ta = q.querySelector('textarea');
+    var st = state[id] || {};
+    if (st.asked) box.checked = true;
+    if (st.note) ta.value = st.note;
+
+    box.addEventListener('change', function () {
+      var s = load(); s[id] = s[id] || {};
+      s[id].asked = box.checked ? 1 : 0;
+      save(s); render();
+    });
+    ta.addEventListener('input', function () {
+      var s = load(); s[id] = s[id] || {};
+      s[id].note = ta.value;
+      save(s);
+    });
+  });
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var out = ['Întrebări CEO — Reduco', ''];
+    qs.forEach(function (q) {
+      var id = q.getAttribute('data-id');
+      var txt = q.querySelector('.q-text').textContent.trim();
+      var note = q.querySelector('textarea').value.trim();
+      if (note) { out.push(id + '. ' + txt); out.push('→ ' + note); out.push(''); }
+    });
+    var body = out.length > 2 ? out.join('\n') : 'Nicio notiță încă.';
+    var btn = this;
+    function flash(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copiază notițele'; }, 1600); }
+    try {
+      navigator.clipboard.writeText(body).then(function () { flash('Copiat'); },
+        function () { flash('Nu s-a putut'); });
+    } catch (e) { flash('Nu s-a putut'); }
+  });
+
+  document.getElementById('reset').addEventListener('click', function () {
+    qs.forEach(function (q) {
+      q.querySelector('input').checked = false;
+      q.querySelector('textarea').value = '';
+    });
+    save({}); render();
+  });
+
+  render();
+})();
+</script>
