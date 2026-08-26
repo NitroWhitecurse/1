@@ -1,0 +1,543 @@
+<title>Runbook Repoziționare Reduco</title>
+<style>
+  :root {
+    --ground: #F4F3F0; --surface: #FFFFFF; --surface-2: #EDEBE6;
+    --ink: #17140F; --muted: #6B655B; --rule: #DCD8D0;
+    --accent: #9A3E0A; --accent-fill: #F99E0A; --on-fill: #1B1409;
+    --done: #2F6B45; --block: #96331F;
+    --f-display: ui-sans-serif, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-body: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --f-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #131110; --surface: #1C1917; --surface-2: #24201D;
+      --ink: #F1EEE8; --muted: #9C948A; --rule: #322C26;
+      --accent: #F2A03C; --accent-fill: #F99E0A; --on-fill: #1B1409;
+      --done: #6FBE8C; --block: #E58A72;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #131110; --surface: #1C1917; --surface-2: #24201D;
+    --ink: #F1EEE8; --muted: #9C948A; --rule: #322C26;
+    --accent: #F2A03C; --accent-fill: #F99E0A; --on-fill: #1B1409;
+    --done: #6FBE8C; --block: #E58A72;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--f-body); font-size:16.5px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:900px; margin:0 auto; padding:0 clamp(1.1rem,4vw,2.6rem); }
+
+  header.top { padding: clamp(2.6rem,7vw,4.6rem) 0 clamp(1.6rem,4vw,2.4rem); }
+  .kicker { font-family:var(--f-data); font-size:.68rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 1.2rem; }
+  h1 { font-family:var(--f-display); font-weight:800; letter-spacing:-.028em;
+    line-height:1.04; text-wrap:balance; font-size:clamp(2.1rem,1.3rem+3.4vw,3.6rem); margin:0 0 1rem; }
+  .lede { font-size:clamp(1rem,.95rem+.35vw,1.2rem); max-width:46ch; margin:0 0 1.8rem; color:var(--muted); }
+  .rule-box { background:var(--surface); border:1px solid var(--rule);
+    border-left:4px solid var(--accent-fill); padding:1.1rem 1.3rem; }
+  .rule-box b { font-family:var(--f-display); }
+
+  .progress { position:sticky; top:0; z-index:10; background:var(--ground);
+    border-bottom:1px solid var(--rule); padding:.75rem 0; margin-bottom:0; }
+  .progress-in { display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+    font-family:var(--f-data); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .bar { flex:1; min-width:120px; height:4px; background:var(--rule); position:relative; }
+  .bar i { position:absolute; inset:0 auto 0 0; width:0%; background:var(--accent-fill); transition:width .25s ease; }
+  @media (prefers-reduced-motion: reduce) { .bar i { transition:none; } }
+  .reset { font:inherit; font-family:var(--f-data); font-size:.68rem; letter-spacing:.08em;
+    text-transform:uppercase; background:none; border:1px solid var(--rule); color:var(--muted);
+    padding:.28rem .6rem; cursor:pointer; }
+  .reset:hover { color:var(--accent); border-color:var(--accent); }
+  .reset:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+
+  .phase { padding: clamp(2.2rem,5vw,3.4rem) 0 .5rem; }
+  .phase-bar { display:flex; align-items:baseline; gap:1rem; flex-wrap:wrap;
+    border-top:2px solid var(--accent); padding-top:.75rem; margin-bottom:.5rem; }
+  .phase-n { font-family:var(--f-data); font-size:.72rem; letter-spacing:.1em; color:var(--accent); }
+  .phase-bar h2 { font-family:var(--f-display); font-weight:780; letter-spacing:-.02em;
+    font-size:clamp(1.35rem,1.1rem+1vw,1.9rem); margin:0; text-wrap:balance; }
+  .phase-bar .when { font-family:var(--f-data); font-size:.68rem; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--muted); margin-left:auto; }
+  .phase > p.intro { color:var(--muted); margin:.4rem 0 1.6rem; max-width:62ch; }
+
+  .step { background:var(--surface); border:1px solid var(--rule); margin-bottom:1px;
+    display:grid; grid-template-columns:2.6rem 1fr; }
+  .step.blocker { border-left:4px solid var(--block); }
+  .box { display:flex; align-items:flex-start; justify-content:center; padding:1.25rem .4rem 0 .7rem; }
+  .box input { width:1.05rem; height:1.05rem; accent-color:var(--accent-fill); cursor:pointer; margin:0; }
+  .box input:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .step-body { padding:1.1rem 1.3rem 1.3rem 0; min-width:0; }
+  .step-head { display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap; margin-bottom:.5rem; }
+  .step-id { font-family:var(--f-data); font-size:.72rem; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .step-head h3 { font-family:var(--f-display); font-size:1.03rem; font-weight:730;
+    letter-spacing:-.012em; margin:0; }
+  .tags { display:flex; gap:.4rem; flex-wrap:wrap; margin-left:auto; }
+  .tag { font-family:var(--f-data); font-size:.6rem; letter-spacing:.09em; text-transform:uppercase;
+    padding:.16rem .45rem; border:1px solid var(--rule); color:var(--muted); white-space:nowrap; }
+  .tag.you { color:var(--block); border-color:currentColor; }
+  .step.done .step-head h3 { text-decoration:line-through; color:var(--muted); }
+  .where { font-family:var(--f-data); font-size:.73rem; color:var(--muted); margin:0 0 .7rem; }
+  .where b { color:var(--ink); font-weight:400; }
+  .step-body ol, .step-body ul { margin:0 0 .8rem; padding-left:1.15rem; font-size:.95rem; }
+  .step-body li { margin-bottom:.32rem; }
+  .step-body > p { margin:0 0 .8rem; font-size:.95rem; }
+  code { font-family:var(--f-data); font-size:.86em; background:var(--surface-2);
+    padding:.08em .32em; color:var(--accent); }
+  .check { background:var(--surface-2); border-left:3px solid var(--done);
+    padding:.65rem .9rem; margin-top:.85rem; font-size:.92rem; }
+  .check .lbl { font-family:var(--f-data); font-size:.62rem; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--done); display:block; margin-bottom:.2rem; }
+
+  .table-frame { overflow-x:auto; margin:1.4rem 0 0; }
+  table { width:100%; min-width:460px; border-collapse:collapse; font-family:var(--f-display); font-size:.9rem; }
+  th { text-align:left; font-family:var(--f-data); font-size:.63rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted); font-weight:500;
+    padding:0 .8rem .6rem 0; border-bottom:1px solid var(--rule); }
+  td { padding:.7rem .8rem .7rem 0; border-bottom:1px solid var(--rule); vertical-align:top; }
+  td.q { color:var(--muted); }
+  td.goal { font-family:var(--f-data); color:var(--done); font-variant-numeric:tabular-nums; }
+
+  footer { padding:clamp(2.4rem,6vw,3.6rem) 0 clamp(3rem,8vw,4.5rem);
+    border-top:1px solid var(--rule); margin-top:2.6rem; color:var(--muted); font-size:.9rem; }
+  footer p { margin:0 0 .8rem; max-width:66ch; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <p class="kicker">Reduco · runbook de execuție</p>
+    <h1>Cum facem mutarea, pas cu pas</h1>
+    <p class="lede">Fiecare pas are unde se face, cât durează și cum verifici că a mers. Ordinea nu e negociabilă.</p>
+    <div class="rule-box">
+      <b>Regula de aur.</b> Nu schimbi mesajul înainte să repari infrastructura. Copy nou publicat pe un site fără H1-uri, cu brandul vechi în titluri și cu butoane care duc în coșul de cumpărături, e efort cheltuit pe un mesaj pe care nimeni nu-l vede corect.
+    </div>
+  </header>
+
+  <div class="progress">
+    <div class="progress-in">
+      <span id="count">0 / 0 pași</span>
+      <span class="bar"><i id="fill"></i></span>
+      <button class="reset" id="reset" type="button">Resetează</button>
+    </div>
+  </div>
+
+  <!-- FAZA 0 -->
+  <section class="phase">
+    <div class="phase-bar"><span class="phase-n">FAZA 0</span><h2>Înainte să atingi orice</h2><span class="when">O zi</span></div>
+    <p class="intro">Nimic din faza asta nu se vede pe site. Tot ce urmează depinde de ea.</p>
+
+    <div class="step" data-id="0.1">
+      <div class="box"><input type="checkbox" aria-label="Pas 0.1 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">0.1</span><h3>Backup complet</h3>
+          <span class="tags"><span class="tag">30 min</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unde: <b>panoul de hosting + WordPress</b></p>
+        <ol>
+          <li>Snapshot din panoul de hosting (cPanel / Plesk → Backup).</li>
+          <li>În WordPress, instalează <b>UpdraftPlus</b> și fă backup manual: fișiere + bază de date.</li>
+          <li>Descarcă arhiva local. Nu o lăsa doar pe server.</li>
+          <li>Notează data și ora într-un document.</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>Ai arhiva pe calculatorul tău și poți deschide fișierul .zip.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="0.2">
+      <div class="box"><input type="checkbox" aria-label="Pas 0.2 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">0.2</span><h3>Site de staging</h3>
+          <span class="tags"><span class="tag">1 h</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unde: <b>panoul de hosting sau plugin WP Staging</b></p>
+        <p>Creează o copie a site-ului la o adresă de test. Toate modificările structurale din Faza 1 se fac întâi acolo.</p>
+        <p>Dacă nu ai staging, se poate lucra pe live — dar atunci pașii se fac unul câte unul, cu verificare după fiecare, niciodată în lot.</p>
+        <div class="check"><span class="lbl">Verificare</span>Deschizi staging-ul în browser și arată identic cu site-ul live.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="0.3">
+      <div class="box"><input type="checkbox" aria-label="Pas 0.3 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">0.3</span><h3>Fotografia de start</h3>
+          <span class="tags"><span class="tag">1 h</span><span class="tag">Marketing</span></span></div>
+        <p class="where">Unde: <b>Google Search Console + Google Analytics 4</b></p>
+        <p><b>În GSC:</b> Performance → Search results → ultimele 3 luni → Export. Apoi Pages → export lista de pagini indexate. Notează clicuri/lună, afișări, CTR mediu, poziție medie.</p>
+        <p><b>În GA4:</b> Acquisition → Traffic acquisition → ultimele 3 luni → Export. Notează sesiuni organice și număr de trimiteri de formular pe lună.</p>
+        <div class="check"><span class="lbl">Verificare</span>Ai două exporturi cu data în denumire, într-un folder „Baseline repoziționare”. Fără ele, peste trei luni nu poți demonstra nimic.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="0.4">
+      <div class="box"><input type="checkbox" aria-label="Pas 0.4 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">0.4</span><h3>Inventarul real al site-ului</h3>
+          <span class="tags"><span class="tag">2 h</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unealta: <b>Screaming Frog SEO Spider</b> (gratuit până la 500 URL-uri)</p>
+        <ol>
+          <li>Rulează crawl complet pe <code>reduco.ro</code>.</li>
+          <li>Exportă în Excel, cu coloanele: URL / Titlu / Meta / H1 / Cod răspuns / <b>Decizie</b>.</li>
+          <li>Marchează fiecare pagină: <b>PĂSTREZ / REScriu / REDIRECT / ȘTERG</b>.</li>
+          <li>Rulează filtrul <b>H1 → Missing</b> și notează cifra. O compari după Pasul 1.1.</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>Crawl-ul e sursa adevărului, nu documentele interne. Aici confirmi sau infirmi lista paginilor cu prețuri din 2022.</div>
+      </div>
+    </div>
+
+    <div class="step blocker" data-id="0.5">
+      <div class="box"><input type="checkbox" aria-label="Pas 0.5 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">0.5</span><h3>Decizia care blochează tot restul</h3>
+          <span class="tags"><span class="tag you">Doar tu</span></span></div>
+        <p>Răspunde în scris: <b>câștigă Reduco bani din vânzarea centralelor termice, panourilor fotovoltaice și a iluminatului LED?</b></p>
+        <ul>
+          <li><b>DA</b> → independența se reformulează strict: „nu primim comision de la niciun furnizor <b>de energie</b>”, iar venitul din echipamente se declară separat și vizibil.</li>
+          <li><b>NU, e intermediere fără marjă</b> → se spune explicit, altfel arată identic cu DA.</li>
+          <li><b>E linie reziduală</b> → intră în lista ȘTERG de la Pasul 0.4.</li>
+        </ul>
+        <div class="check"><span class="lbl">Verificare</span>Nu treci la Faza 3 fără acest răspuns. Tot copy-ul despre independență depinde de el.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAZA 1 -->
+  <section class="phase">
+    <div class="phase-bar"><span class="phase-n">FAZA 1</span><h2>Reparații invizibile</h2><span class="when">Săptămâna 1</span></div>
+    <p class="intro">Nimic nu schimbă mesajul încă. Sunt reparații de infrastructură. 1.1 primul — are cel mai mare efect.</p>
+
+    <div class="step" data-id="1.1">
+      <div class="box"><input type="checkbox" aria-label="Pas 1.1 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">1.1</span><h3>Repară H1 pe tot site-ul</h3>
+          <span class="tags"><span class="tag">1–2 h</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unde: <b>WordPress → Templates → Theme Builder</b></p>
+        <ol>
+          <li>Deschide fiecare șablon: Single Post, Single Page, Archive, plus cele personalizate.</li>
+          <li>Găsește widgetul <b>Post Title</b> (sau Heading folosit ca titlu principal).</li>
+          <li>Selectează-l → tab <b>Content</b> → câmpul <b>HTML Tag</b> → schimbă în <b>H1</b>.</li>
+          <li>Update. Repetă pentru fiecare șablon.</li>
+        </ol>
+        <p>Pentru paginile construite manual în Elementor, verifică widgetul Heading din hero: trebuie H1, și doar unul per pagină.</p>
+        <div class="check"><span class="lbl">Verificare</span>Rulezi din nou Screaming Frog, filtrul H1 → Missing. Cifra trebuie să fie aproape de zero. O compari cu ce ai notat la 0.4.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="1.2">
+      <div class="box"><input type="checkbox" aria-label="Pas 1.2 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">1.2</span><h3>Repară culorile și contrastul</h3>
+          <span class="tags"><span class="tag">1–2 h</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unde: <b>Elementor → Site Settings → Global Colors</b></p>
+        <ol>
+          <li>Două roluri, atât: <code>#9A3E0A</code> = orice text colorat pe fundal deschis. <code>#F99E0A</code> = exclusiv fundal de buton, cu text închis deasupra.</li>
+          <li>Șterge celelalte nuanțe de portocaliu din paletă și înlocuiește-le cu una din cele două.</li>
+          <li>Titlul H1 principal → <code>#9A3E0A</code>.</li>
+          <li>Iconițe galbene, stele de testimoniale, logo footer → varianta închisă.</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>webaim.org/resources/contrastchecker — minimum 4.5:1 pentru text, 3:1 pentru elemente grafice.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="1.3">
+      <div class="box"><input type="checkbox" aria-label="Pas 1.3 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">1.3</span><h3>Elimină brandul vechi de peste tot</h3>
+          <span class="tags"><span class="tag">1 h+</span><span class="tag">Dev + tu</span></span></div>
+        <p class="where">Unealta: <b>plugin Better Search Replace</b></p>
+        <ol>
+          <li>Tools → Better Search Replace.</li>
+          <li>Rulează pe rând, cu <b>„Run as dry run” BIFAT prima dată</b>: <code>Comparatot</code>, <code>Compară Tot</code>, <code>Compara Tot</code>, <code>Recudo</code>.</li>
+          <li>Citește rezultatul dry run înainte de a rula pe bune.</li>
+          <li>Debifează dry run, rulează, înlocuiește cu <code>Reduco</code>.</li>
+        </ol>
+        <p><b>Verifică manual și separat</b>, pentru că plugin-ul nu acoperă tot: titlurile și meta din Yoast (pagina <code>/centrale-termice-rate/</code> are „Compară Tot” chiar în titlu), alt-textele imaginilor, numele fișierelor media, meniul și footerul.</p>
+        <div class="check"><span class="lbl">Verificare</span>Caută în Google <code>site:reduco.ro comparatot</code>. Rezultatele dispar în 2–6 săptămâni, după reindexare.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="1.4">
+      <div class="box"><input type="checkbox" aria-label="Pas 1.4 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">1.4</span><h3>Curăță formularul de contact</h3>
+          <span class="tags"><span class="tag">1 h</span><span class="tag">Dev</span></span></div>
+        <p><b>Șterge:</b> „Model și capacitate”, „Sunt client Enel”, orice câmp fără legătură cu energia.</p>
+        <p><b>Adaugă, în ordinea asta:</b></p>
+        <ol>
+          <li>Comutator <b>Persoană fizică / Firmă</b> — primul câmp, obligatoriu</li>
+          <li><b>Denumire firmă</b> + <b>CUI</b> — apar doar dacă a ales Firmă</li>
+          <li><b>Puncte de consum</b> — 1 / 2-4 / 5-10 / peste 10</li>
+          <li><b>Consum lunar aproximativ</b> — intervale</li>
+          <li><b>Utilități</b> — energie / gaze / ambele</li>
+          <li><b>Atașează ultima factură</b> — opțional, max 10 MB</li>
+          <li>Nume, telefon, email</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>Trimite un test cu datele tale. Ajunge emailul? Se vede fișierul atașat? Câmpurile condiționate apar corect?</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="1.5">
+      <div class="box"><input type="checkbox" aria-label="Pas 1.5 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">1.5</span><h3>Viteză: elimină balastul</h3>
+          <span class="tags"><span class="tag">2 h</span><span class="tag">Dev</span></span></div>
+        <ol>
+          <li>Din cele patru popup-uri identice, dezactivează trei. Păstrează-l pe cel mai performant.</li>
+          <li>Chatul: treci-l pe încărcare amânată („load after page load” / „load on interaction”). Dacă nu există opțiunea, scriptul se mută la finalul body cu <code>defer</code>.</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>PageSpeed Insights pe pagina principală, înainte și după. Notează ambele scoruri.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAZA 2 -->
+  <section class="phase">
+    <div class="phase-bar"><span class="phase-n">FAZA 2</span><h2>Metadatele și primul semnal</h2><span class="when">Săptămâna 2</span></div>
+    <p class="intro">Aici site-ul începe să comunice altceva. Se face după ce Faza 1 e terminată și verificată.</p>
+
+    <div class="step" data-id="2.1">
+      <div class="box"><input type="checkbox" aria-label="Pas 2.1 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">2.1</span><h3>Rescrie titlurile și descrierile</h3>
+          <span class="tags"><span class="tag">3–4 h</span><span class="tag">Marketing</span></span></div>
+        <p class="where">Unde: <b>Yoast SEO / RankMath</b>, la baza fiecărei pagini</p>
+        <p>Textele sunt scrise deja, pentru 16 pagini, în <code>02-strategie-seo.md</code> secțiunea 4. Ordinea: pagina principală, <code>/servicii/</code>, <code>/abonamente/</code> (aici e eroarea „Recudo”), <code>/audit-facturi/</code>, <code>/litigii-anre/</code>, <code>/recuperare-compensatii/</code>, <code>/racordare-energie-gaz/</code>, <code>/solutii-imm/</code>, restul.</p>
+        <div class="check"><span class="lbl">Verificare</span>Previzualizarea Google din Yoast, pentru fiecare pagină. Citește-o ca un client: ai da click? Bara Yoast rămâne verde.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="2.2">
+      <div class="box"><input type="checkbox" aria-label="Pas 2.2 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">2.2</span><h3>Repară subdomeniul</h3>
+          <span class="tags"><span class="tag">30 min</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unde: <b>smart.reduco.ro</b>, panoul lui de administrare</p>
+        <p>Schimbă titlul care conține „Comparator Furnizori”. Propunere: <b>Analiză facturi și monitorizare consum — Reduco</b>.</p>
+        <div class="check"><span class="lbl">Verificare</span>E absurd să repoziționezi site-ul principal cât timp propriul subdomeniu se declară comparator în Google, sub același brand.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="2.3">
+      <div class="box"><input type="checkbox" aria-label="Pas 2.3 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">2.3</span><h3>Schimbă butonul care ucide leadurile B2B</h3>
+          <span class="tags"><span class="tag">2 h</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unde: <b>/abonamente/</b>, secțiunea Business</p>
+        <ol>
+          <li>Textul butoanelor „Alege” devine <b>„Cere auditul gratuit al facturii”</b>.</li>
+          <li>Linkul nu mai duce în coșul WooCommerce, ci către formularul de calificare.</li>
+          <li>Pentru abonamentul casnic de 24,20 lei, coșul poate rămâne — acolo achiziția directă are sens.</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>Click pe buton în fereastră incognito. Trebuie să ajungi la formular, nu în coș.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="2.4">
+      <div class="box"><input type="checkbox" aria-label="Pas 2.4 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">2.4</span><h3>Redirecturile</h3>
+          <span class="tags"><span class="tag">2–3 h</span><span class="tag">Dev</span></span></div>
+        <p class="where">Unealta: <b>plugin Redirection</b> sau direct în <code>.htaccess</code></p>
+        <ol>
+          <li>Ia lista de la 0.4, coloana Decizie = REDIRECT.</li>
+          <li>Pentru fiecare, regulă <b>301</b> către destinația din <code>02-strategie-seo.md</code> secțiunea 3.</li>
+          <li>Paginile vechi cu prețuri → <code>/solutii-imm/</code> sau comparatoarele curente. <code>/cine-suntem/</code> → <code>/despre-noi/</code>.</li>
+          <li><b>Nu redirecta totul către pagina principală.</b> Un redirect către o pagină irelevantă e tratat ca 404 și pierzi valoarea linkului.</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>Fiecare URL vechi, în incognito → ajungi pe pagina nouă. Apoi Screaming Frog: zero lanțuri A→B→C, doar A→C direct.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAZA 3 -->
+  <section class="phase">
+    <div class="phase-bar"><span class="phase-n">FAZA 3</span><h2>Mesajul nou</h2><span class="when">Luna 1</span></div>
+    <p class="intro">Copy-ul e deja scris în <code>06-copy-pagini.md</code>. Aici doar îl implementezi. Condiție de intrare: Pasul 0.5 are răspuns.</p>
+
+    <div class="step" data-id="3.1">
+      <div class="box"><input type="checkbox" aria-label="Pas 3.1 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">3.1</span><h3>Rescrie paginile, în această ordine</h3>
+          <span class="tags"><span class="tag">2 săpt.</span><span class="tag">Tu + dev</span></span></div>
+        <ol>
+          <li><code>/audit-facturi/</code> — primește deja trafic B2B pe care îl pierde. Recuperarea cea mai rapidă.</li>
+          <li><code>/litigii-anre/</code> — diferențiatorul cel mai puternic, azi invizibil.</li>
+          <li><code>/pentru-firme/</code> — pagină nouă, pilonul care leagă tot.</li>
+          <li><code>/despre-noi/</code> — pagina pe care o verifică un CFO înainte să semneze.</li>
+          <li><code>/servicii/</code> — regrupată pe cele 4 familii.</li>
+          <li><code>/abonamente/</code> — business primul, casnicul pe pagină separată.</li>
+        </ol>
+        <p>Pentru fiecare: deschizi în Elementor, copiezi textul, verifici structura (un singur H1, apoi H2, apoi H3), adaugi linkuri interne către celelalte servicii, adaugi CTA-ul, Update, verifici pe mobil și pe desktop.</p>
+        <div class="check"><span class="lbl">Verificare</span>Pe fiecare pagină: un singur H1, minimum două linkuri interne către alte pagini de serviciu, un singur CTA comercial.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="3.2">
+      <div class="box"><input type="checkbox" aria-label="Pas 3.2 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">3.2</span><h3>Creează pagina /pentru-firme/</h3>
+          <span class="tags"><span class="tag">1–2 zile</span><span class="tag">Tu + dev</span></span></div>
+        <p>Structura, de sus în jos: hero cu promisiunea pentru firme + CTA · cele 8 constatări verificate pe factură · cele 4 pachete, cu Multi-Locație marcat ca recomandat · serviciile de proiect cu plata la succes · <b>„Cine ne plătește”</b> · studii de caz cu cifre · întrebări frecvente · CTA final.</p>
+        <div class="check"><span class="lbl">Verificare</span>După publicare, redirect 301 de la <code>/solutii-imm/</code> către <code>/pentru-firme/</code>.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="3.3">
+      <div class="box"><input type="checkbox" aria-label="Pas 3.3 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">3.3</span><h3>Corectează afirmația de 10–55%</h3>
+          <span class="tags"><span class="tag">30 min</span><span class="tag">Tu</span></span></div>
+        <p>Scoate „economii medii între 10% și 55%”. Înlocuiește cu o cifră reală: <i>„La un punct de consum pe medie tensiune din județul Suceava, diferența dintre tariful plătit și prețul disponibil în piață era de 3.803 lei pe lună.”</i></p>
+        <div class="check"><span class="lbl">Verificare</span>O cifră exactă dintr-un caz real convinge un director financiar. Un interval de la 10 la 55% îl face suspicios.</div>
+      </div>
+    </div>
+
+    <div class="step blocker" data-id="3.4">
+      <div class="box"><input type="checkbox" aria-label="Pas 3.4 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">3.4</span><h3>Secțiunea „Cine ne plătește”</h3>
+          <span class="tags"><span class="tag you">Doar tu</span></span></div>
+        <p>Apare pe: pagina principală, <code>/pentru-firme/</code>, <code>/abonamente/</code> și în footer. Textul depinde direct de răspunsul de la Pasul 0.5.</p>
+        <div class="check"><span class="lbl">Verificare</span>Nu improviza aici. E afirmația cea mai atacabilă de pe tot site-ul și singura pe care concurența nu o poate copia.</div>
+      </div>
+    </div>
+
+    <div class="step" data-id="3.5">
+      <div class="box"><input type="checkbox" aria-label="Pas 3.5 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">3.5</span><h3>Leagă subdomeniul de site</h3>
+          <span class="tags"><span class="tag">1 h</span><span class="tag">Dev</span></span></div>
+        <p>Linkuri către <code>smart.reduco.ro/prosumatori</code> din: meniul principal, <code>/servicii/</code>, <code>/consultanta-prosumator/</code> și footer.</p>
+        <div class="check"><span class="lbl">Verificare</span>Astăzi e o platformă separată, la care nu se ajunge din site-ul principal.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAZA 4 -->
+  <section class="phase">
+    <div class="phase-bar"><span class="phase-n">FAZA 4</span><h2>Verificarea finală</h2><span class="when">Sfârșitul lunii 1</span></div>
+    <p class="intro">Un crawl complet Screaming Frog. Fiecare rând trebuie să ajungă la țintă.</p>
+    <div class="table-frame">
+      <table>
+        <thead><tr><th>Ce verifici</th><th>Ținta</th></tr></thead>
+        <tbody>
+          <tr><td class="q">Pagini fără H1</td><td class="goal">0</td></tr>
+          <tr><td class="q">Pagini cu mai multe H1</td><td class="goal">0</td></tr>
+          <tr><td class="q">Lanțuri de redirect (A→B→C)</td><td class="goal">0</td></tr>
+          <tr><td class="q">Pagini orfane, fără link intern</td><td class="goal">0</td></tr>
+          <tr><td class="q">Titluri duplicate</td><td class="goal">0</td></tr>
+          <tr><td class="q">Apariții „Comparatot” / „Recudo”</td><td class="goal">0</td></tr>
+          <tr><td class="q">Pagini de serviciu la peste 2 clicuri de homepage</td><td class="goal">0</td></tr>
+          <tr><td class="q">Erori 404 interne</td><td class="goal">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="step" data-id="4.1" style="margin-top:1.4rem">
+      <div class="box"><input type="checkbox" aria-label="Pas 4.1 finalizat"></div>
+      <div class="step-body">
+        <div class="step-head"><span class="step-id">4.1</span><h3>Anunță Google</h3>
+          <span class="tags"><span class="tag">1 h</span><span class="tag">Marketing</span></span></div>
+        <ol>
+          <li>Trimite sitemap-ul actualizat în Search Console.</li>
+          <li>URL Inspection → Request Indexing pentru fiecare pagină rescrisă.</li>
+          <li>Coverage → paginile vechi trebuie să treacă în „Redirect”, nu să rămână indexate.</li>
+        </ol>
+        <div class="check"><span class="lbl">Verificare</span>Reindexarea durează 2–6 săptămâni. Până atunci, Google va arăta în continuare textele vechi. E normal.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAZA 5 -->
+  <section class="phase">
+    <div class="phase-bar"><span class="phase-n">FAZA 5</span><h2>Măsurarea</h2><span class="when">Se citește la 3 luni</span></div>
+    <p class="intro">Nu judeca rezultatele mai devreme de 8–12 săptămâni. Repoziționarea trece printr-o perioadă în care traficul poate scădea, pentru că pierzi vizitatori care căutau un comparator gratuit. Aceia nu cumpărau nimic. E o curățare, nu o pierdere.</p>
+    <div class="rule-box">
+      <b>Indicatorul care contează cu adevărat:</b> numărul de cereri de audit gratuit venite de la firme, cu CUI completat, pe lună. Traficul nu plătește salarii. Un site cu jumătate din trafic dar cu de cinci ori mai multe cereri B2B calificate este un site mai bun.
+    </div>
+    <div class="table-frame">
+      <table>
+        <thead><tr><th>Ce mai urmărești lunar</th><th>Ținta</th></tr></thead>
+        <tbody>
+          <tr><td class="q">Formular văzut → formular trimis</td><td class="goal">&gt; 20%</td></tr>
+          <tr><td class="q">Ponderea leadurilor de firmă în total</td><td class="goal">în creștere</td></tr>
+          <tr><td class="q">Poziția pe cuvintele-cheie ancoră</td><td class="goal">GSC</td></tr>
+          <tr><td class="q">CTR pe paginile cu titluri noi</td><td class="goal">GSC</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROBLEME -->
+  <section class="phase">
+    <div class="phase-bar"><span class="phase-n">ANEXĂ</span><h2>Dacă ceva merge prost</h2></div>
+    <div class="table-frame">
+      <table>
+        <thead><tr><th>Simptom</th><th>Cauza probabilă</th><th>Ce faci</th></tr></thead>
+        <tbody>
+          <tr><td>Traficul scade brusc după redirecturi</td><td class="q">Destinații greșite sau lanțuri</td><td class="q">Verifici în Screaming Frog, corectezi destinațiile</td></tr>
+          <tr><td>Paginile nu se mai afișează corect</td><td class="q">Modificarea de șablon de la 1.1</td><td class="q">Restaurezi șablonul din backup-ul de la 0.1</td></tr>
+          <tr><td>Formularul nu mai trimite emailuri</td><td class="q">Câmp obligatoriu greșit configurat</td><td class="q">Testezi cu toate câmpurile completate; verifici SMTP</td></tr>
+          <tr><td>Google arată încă textele vechi</td><td class="q">Reindexare în curs</td><td class="q">Normal, 2–6 săptămâni. Ceri indexare manuală</td></tr>
+          <tr><td>Scad leadurile totale, cresc cele B2B</td><td class="q">Funcționează corect</td><td class="q">Nu intervii. Asta e ținta</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="rule-box" style="margin-top:1.6rem">
+      <b>Punct de retragere.</b> Dacă după patru săptămâni ceva e clar mai rău și nu identifici cauza, restaurezi backup-ul de la Pasul 0.1 și reiei pas cu pas, cu verificare după fiecare. De aceea backup-ul e Pasul 0.1 și nu Pasul 5.
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Efort tehnic estimat pentru Fazele 0–2:</b> aproximativ 20–25 de ore de dezvoltator. Faza 3 depinde de cât de repede validezi copy-ul, nu de efortul tehnic.</p>
+    <p>Doi pași nu se deleagă: <b>0.5</b> — decizia pe modelul de venit din echipamente, și <b>3.4</b> — textul „Cine ne plătește”. Restul poate merge la dezvoltator sau la omul de marketing.</p>
+    <p>Bifele se salvează local, în browserul tău, și rămân după reîncărcarea paginii.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var KEY = 'reduco-runbook-v1';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.step input[type=checkbox]'));
+  var countEl = document.getElementById('count');
+  var fillEl = document.getElementById('fill');
+  var resetEl = document.getElementById('reset');
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+  function save(state) {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function render() {
+    var done = 0;
+    boxes.forEach(function (b) {
+      var step = b.closest('.step');
+      if (b.checked) { done++; step.classList.add('done'); }
+      else { step.classList.remove('done'); }
+    });
+    countEl.textContent = done + ' / ' + boxes.length + ' pași';
+    fillEl.style.width = boxes.length ? (done / boxes.length * 100) + '%' : '0%';
+  }
+
+  var state = load();
+  boxes.forEach(function (b) {
+    var id = b.closest('.step').getAttribute('data-id');
+    if (state[id]) b.checked = true;
+    b.addEventListener('change', function () {
+      var s = load();
+      if (b.checked) s[id] = 1; else delete s[id];
+      save(s);
+      render();
+    });
+  });
+
+  resetEl.addEventListener('click', function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    save({});
+    render();
+  });
+
+  render();
+})();
+</script>
