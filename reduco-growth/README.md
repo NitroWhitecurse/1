@@ -27,6 +27,21 @@ din acest folder.
 | Revizuire Faza 1→2 | ziua 30 (2026-09-25) | Cere citirea `tracking.csv`, verificarea semnalelor de alarmă din cadru, actualizarea `plan-status.md` cu decizia explicită |
 | Revizuire Faza 2→3 | ziua 60 (2026-10-25) | Idem, plus verificarea rezultatului cererilor de recomandare din portofoliul existent |
 | Revizuire Faza 3→4 | ziua 90 (2026-11-24) | Decizia More Better New vs. canal nou, plus pregătirea Faza 4 (Lead Getters, parteneriate) |
+| Generare conținut | luni/miercuri/vineri, 06:00 UTC | Alege următorul rând nefolosit din `content/topics.csv`, generează un draft de postare (structură Hook-Retain-Reward + declanșator psihologic asignat, prin skill-ul `reduco-linkedin`), îl salvează în `content/drafts/`, actualizează `topics.csv` și `content-log.csv` |
+
+## Generare de conținut (psihologie + metoda Hormozi)
+
+`content/principles.md` codifică structura de gândire din spatele fiecărei postări — Hook-Retain-Reward
+(din *$100M Leads*) și un declanșator psihologic ales explicit (curiozitate, dovadă socială, pattern
+interrupt, aversiune la pierdere, autoritate, reciprocitate). `content/topics.csv` e rotația fixă
+`pilon serviciu × declanșator` — rutina ia rândul următor `pending`, nu alege liber, ca să nu repete
+mereu același unghi ușor.
+
+Fluxul: rutina generează → salvează draftul + 3 variante de hook în `content/drafts/AAAA-LL-ZZ-idN.md`
+→ marchează rândul din `topics.csv` ca `used` → te anunță pentru aprobare. **Postarea rămâne manuală** —
+nu există conector de postare pe LinkedIn, deci tu copiezi textul aprobat. Odată postat, notează
+performanța (leaduri generate) în `content-log.csv` — se leagă direct de `tracking.csv` din Faza 2
+(bucla conținut ↔ magnet).
 
 Rutinele sunt gestionate prin `create_trigger`/`update_trigger`/`delete_trigger` (server-side, nu depind
 de acest container). Le poți lista oricând cu `list_triggers`.
