@@ -1,5 +1,5 @@
 id,pilon_serviciu,declansator_psihologic,subiect_specific,status,data_folosire,fisier_draft
-1,audit_factura,curiozitate,doua randuri de pe factura pe care aproape nimeni nu le citeste,pending,,
+1,audit_factura,curiozitate,doua randuri de pe factura pe care aproape nimeni nu le citeste,used,2026-08-27,reduco-growth/content/drafts/2026-08-27-id1.md
 2,racordare_atr,contra_intuitiv,de ce avizul ATR intarziat nu e vina distribuitorului in cele mai multe cazuri,pending,,
 3,litigii_anre,dovada_sociala,firma anonimizata care a recuperat o suma dupa o reclamatie ANRE,pending,,
 4,abonament_persoane_juridice,aversiune_pierdere,costul ascuns al facturilor semnate fara verificare de-a lungul unui an,pending,,
