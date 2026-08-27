@@ -79,6 +79,14 @@
   textarea:focus { outline:2px solid var(--accent); outline-offset:-1px; }
   textarea::placeholder { color:var(--muted); opacity:.65; }
 
+  .dump { border:1px solid var(--accent-fill); background:var(--surface); padding:1rem 1.1rem; margin:.9rem 0 0; }
+  .dump p { margin:0 0 .6rem; font-size:.92rem; color:var(--muted); }
+  .dump p b { color:var(--ink); }
+  .dump textarea { width:100%; min-height:220px; background:var(--surface-2); border:1px solid var(--rule);
+    color:var(--ink); font-family:var(--f-data); font-size:.8rem; line-height:1.55; padding:.7rem; resize:vertical; }
+  .dump-status { font-family:var(--f-data); font-size:.66rem; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ok); margin-top:.5rem; display:block; }
+
   footer { padding:clamp(2.2rem,6vw,3.4rem) 0 clamp(3rem,8vw,4.5rem);
     border-top:1px solid var(--rule); margin-top:2.4rem; color:var(--muted); font-size:.93rem; }
   footer p { margin:0 0 .85rem; max-width:64ch; }
@@ -101,9 +109,15 @@
     <div class="toolbar-in">
       <span id="count">0 / 37 puse</span>
       <span class="bar"><i id="fill"></i></span>
-      <button class="tb" id="copy" type="button">Copiază notițele</button>
+      <button class="tb" id="copy" type="button">Arată notițele</button>
       <button class="tb" id="reset" type="button">Resetează</button>
     </div>
+  </div>
+
+  <div class="dump" id="dump" hidden>
+    <p><b>Notițele tale, ca text.</b> Sunt deja selectate — apasă Ctrl+C (sau Cmd+C pe Mac) și lipește-le în chat sau în foaia din Drive.</p>
+    <textarea id="dumpText" readonly aria-label="Notițele compilate"></textarea>
+    <span class="dump-status" id="dumpStatus"></span>
   </div>
 
   <section class="block crit">
@@ -259,7 +273,7 @@
       <li>Ce se schimbă în plan din cauza răspunsului. Dacă nu se schimbă nimic, întrebarea era de context, nu de decizie — și e în regulă.</li>
     </ol>
     <div class="final"><b>Întrebarea de control, la final:</b> „Ce nu te-am întrebat și ar trebui să știu?” Aproape întotdeauna scoate ceva ce nu era pe listă.</div>
-    <p style="margin-top:1.4rem">Bifele și notițele se salvează local, în browserul tău. „Copiază notițele” pune tot textul în clipboard, ca să-l lipești în minuta ședinței.</p>
+    <p style="margin-top:1.4rem">Bifele și notițele se salvează local, în browserul tău. „Arată notițele” le adună într-o casetă de text, gata selectate, de unde le poți copia manual.</p>
   </footer>
 </div>
 
@@ -307,21 +321,39 @@
     });
   });
 
-  document.getElementById('copy').addEventListener('click', function () {
+  var dump = document.getElementById('dump');
+  var dumpText = document.getElementById('dumpText');
+  var dumpStatus = document.getElementById('dumpStatus');
+
+  function buildNotes() {
     var out = ['Întrebări CEO — Reduco', ''];
+    var n = 0;
     qs.forEach(function (q) {
       var id = q.getAttribute('data-id');
       var txt = q.querySelector('.q-text').textContent.trim();
       var note = q.querySelector('textarea').value.trim();
-      if (note) { out.push(id + '. ' + txt); out.push('→ ' + note); out.push(''); }
+      if (note) { out.push(id + '. ' + txt); out.push('-> ' + note); out.push(''); n++; }
     });
-    var body = out.length > 2 ? out.join('\n') : 'Nicio notiță încă.';
-    var btn = this;
-    function flash(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copiază notițele'; }, 1600); }
-    try {
-      navigator.clipboard.writeText(body).then(function () { flash('Copiat'); },
-        function () { flash('Nu s-a putut'); });
-    } catch (e) { flash('Nu s-a putut'); }
+    return n ? out.join('\n') : 'Nicio notiță completată încă.';
+  }
+
+  document.getElementById('copy').addEventListener('click', function () {
+    dumpText.value = buildNotes();
+    dump.hidden = false;
+    dumpText.focus();
+    dumpText.select();
+    try { dumpText.setSelectionRange(0, dumpText.value.length); } catch (e) {}
+
+    var copied = false;
+    try { copied = document.execCommand('copy'); } catch (e) { copied = false; }
+    if (!copied && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(dumpText.value).then(
+        function () { dumpStatus.textContent = 'Copiat în clipboard'; },
+        function () { dumpStatus.textContent = 'Selectat — apasă Ctrl+C'; });
+    } else {
+      dumpStatus.textContent = copied ? 'Copiat în clipboard' : 'Selectat — apasă Ctrl+C';
+    }
+    dump.scrollIntoView({ block: 'nearest' });
   });
 
   document.getElementById('reset').addEventListener('click', function () {
@@ -329,6 +361,7 @@
       q.querySelector('input').checked = false;
       q.querySelector('textarea').value = '';
     });
+    dump.hidden = true; dumpText.value = ''; dumpStatus.textContent = '';
     save({}); render();
   });
 
