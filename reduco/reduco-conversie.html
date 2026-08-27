@@ -1,0 +1,331 @@
+<title>Playbook de Conversie Reduco</title>
+<style>
+  :root {
+    --ground:#F4F3F0; --surface:#FFFFFF; --surface-2:#EDEBE6;
+    --ink:#17140F; --muted:#6B655B; --rule:#DCD8D0;
+    --accent:#9A3E0A; --accent-fill:#F99E0A; --on-fill:#1B1409;
+    --weak:#96331F; --ok:#2F6B45;
+    --f-display: ui-sans-serif, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-body: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --f-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#131110; --surface:#1C1917; --surface-2:#24201D;
+      --ink:#F1EEE8; --muted:#9C948A; --rule:#322C26;
+      --accent:#F2A03C; --accent-fill:#F99E0A; --on-fill:#1B1409;
+      --weak:#E58A72; --ok:#6FBE8C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#131110; --surface:#1C1917; --surface-2:#24201D;
+    --ink:#F1EEE8; --muted:#9C948A; --rule:#322C26;
+    --accent:#F2A03C; --accent-fill:#F99E0A; --on-fill:#1B1409;
+    --weak:#E58A72; --ok:#6FBE8C;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--f-body); font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1000px; margin:0 auto; padding:0 clamp(1.1rem,4vw,2.8rem); }
+
+  header.top { padding:clamp(2.8rem,7vw,5rem) 0 clamp(1.8rem,4vw,2.6rem); border-bottom:1px solid var(--rule); }
+  .kicker { font-family:var(--f-data); font-size:.68rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 1.2rem; }
+  h1 { font-family:var(--f-display); font-weight:800; letter-spacing:-.028em; line-height:1.03;
+    text-wrap:balance; font-size:clamp(2.2rem,1.3rem+3.8vw,4.2rem); margin:0 0 1.1rem; }
+  .lede { font-size:clamp(1.05rem,.98rem+.4vw,1.3rem); max-width:52ch; margin:0 0 1.6rem; }
+  .flag { background:var(--accent-fill); color:var(--on-fill); padding:1rem 1.2rem;
+    font-family:var(--f-display); font-size:1rem; font-weight:600; line-height:1.45; }
+
+  section { padding:clamp(2.6rem,6vw,4.5rem) 0; border-bottom:1px solid var(--rule); }
+  .sec-head { display:grid; grid-template-columns:4.2rem 1fr; gap:0 1.4rem; align-items:start; margin-bottom:2.2rem; }
+  .tick { font-family:var(--f-data); font-size:.7rem; letter-spacing:.1em; color:var(--accent);
+    padding-top:.5rem; border-top:2px solid var(--accent); }
+  h2 { font-family:var(--f-display); font-weight:770; letter-spacing:-.021em; line-height:1.1;
+    text-wrap:balance; font-size:clamp(1.5rem,1.15rem+1.4vw,2.3rem); margin:0; }
+  .sec-head p { grid-column:2; margin:.85rem 0 0; color:var(--muted); max-width:62ch; }
+  .col { max-width:68ch; }
+  .col p { margin:0 0 1.05rem; }
+  em.t { font-style:normal; color:var(--accent); font-weight:700; }
+
+  /* value equation */
+  .eq { background:var(--surface); border:1px solid var(--rule); padding:clamp(1.3rem,3vw,2.2rem);
+    margin:0 0 1.6rem; text-align:center; }
+  .eq-top, .eq-bot { display:flex; flex-wrap:wrap; gap:.5rem 1.1rem; justify-content:center; }
+  .eq-line { height:2px; background:var(--ink); margin:.9rem auto; max-width:640px; }
+  .term { font-family:var(--f-display); font-weight:680; font-size:clamp(.88rem,.82rem+.3vw,1.05rem);
+    padding:.4rem .7rem; border:1px solid var(--rule); background:var(--surface-2); }
+  .term.bad { background:var(--weak); color:#fff; border-color:var(--weak); }
+  .term.good { border-color:var(--ok); color:var(--ok); }
+  .eq-note { font-family:var(--f-data); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); margin:.9rem 0 0; }
+
+  /* flow */
+  .flow { display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); margin-top:.4rem; }
+  .fl { background:var(--surface); padding:1rem 1.2rem; display:grid;
+    grid-template-columns:2.2rem 1fr; gap:0 1rem; align-items:baseline; }
+  .fl.hi { background:var(--surface-2); }
+  .fl-n { font-family:var(--f-data); font-size:.72rem; color:var(--accent); }
+  .fl-t { font-family:var(--f-display); font-weight:660; font-size:1rem; margin:0 0 .25rem; }
+  .fl-d { margin:0; color:var(--muted); font-size:.93rem; }
+
+  .table-frame { overflow-x:auto; }
+  table { width:100%; min-width:520px; border-collapse:collapse; font-family:var(--f-display); font-size:.92rem; }
+  th { text-align:left; font-family:var(--f-data); font-size:.63rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); font-weight:500; padding:0 .85rem .6rem 0; border-bottom:1px solid var(--rule); }
+  td { padding:.75rem .85rem .75rem 0; border-bottom:1px solid var(--rule); vertical-align:top; }
+  td.n { font-family:var(--f-data); color:var(--accent); width:2.2rem; font-variant-numeric:tabular-nums; }
+  td.q { color:var(--muted); }
+
+  .vs { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1px;
+    background:var(--rule); border:1px solid var(--rule); margin-top:.4rem; }
+  .vs > div { background:var(--surface); padding:1.3rem; }
+  .vs .yes { background:var(--surface-2); }
+  .vs-l { font-family:var(--f-data); font-size:.65rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--weak); margin:0 0 .7rem; }
+  .vs .yes .vs-l { color:var(--ok); }
+  .vs p.q { margin:0; font-family:var(--f-display); font-size:.97rem; line-height:1.45; }
+
+  .box { background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--accent-fill);
+    padding:1.1rem 1.3rem; margin:1.5rem 0 0; }
+  .box h3 { font-family:var(--f-display); font-size:1.02rem; font-weight:740; margin:0 0 .5rem; }
+  .box p { margin:0 0 .6rem; font-size:.96rem; }
+  .box p:last-child { margin-bottom:0; }
+  .box.warn { border-left-color:var(--weak); }
+
+  .qs { display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); margin-top:.4rem; }
+  .qg { background:var(--surface); padding:1.2rem 1.3rem; }
+  .qg h3 { font-family:var(--f-display); font-size:1rem; font-weight:730; margin:0 0 .3rem; }
+  .qg .who { font-family:var(--f-data); font-size:.63rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 .8rem; }
+  .qg ol { margin:0; padding-left:1.2rem; font-size:.94rem; }
+  .qg li { margin-bottom:.4rem; }
+  .qg li:last-child { margin-bottom:0; }
+
+  footer { padding:clamp(2.2rem,6vw,3.4rem) 0 clamp(3rem,8vw,4.5rem); color:var(--muted); font-size:.92rem; }
+  footer p { margin:0 0 .8rem; max-width:66ch; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <p class="kicker">Reduco · playbook de conversie</p>
+    <h1>Oferta întâi.<br>Site-ul după.</h1>
+    <p class="lede">Nu poți repara prin copywriting o ofertă slabă. Dacă oferta e bună, un copy mediocru vinde; dacă e slabă, cel mai bun copy din lume o face doar mai vizibilă.</p>
+    <div class="flag">Auditul facturii e acum automatizat. Asta dizolvă constrângerea de capacitate și deblochează cea mai puternică mutare de conversie disponibilă — vezi secțiunea 03.</div>
+  </header>
+
+  <section>
+    <div class="sec-head"><div class="tick">01</div><div>
+      <h2>Unde se pierde valoarea, matematic</h2>
+      <p>Ecuația valorii pune probabilitatea percepută la numărător, ca multiplicator. Dacă tinde spre zero, toată valoarea tinde spre zero — oricât de mare ar fi rezultatul promis.</p>
+    </div></div>
+
+    <div class="eq">
+      <div class="eq-top">
+        <span class="term good">Rezultatul visat<br><small>3.803 lei/lună · 7.000 EUR evitați</small></span>
+        <span class="term bad">Probabilitatea percepută<br><small>„dubii despre autenticitate”</small></span>
+      </div>
+      <div class="eq-line"></div>
+      <div class="eq-bot">
+        <span class="term good">Întârzierea<br><small>48h → 2 minute</small></span>
+        <span class="term good">Efortul cerut<br><small>trimiți o factură</small></span>
+      </div>
+      <p class="eq-note">Trei termeni din patru sunt puternici. Unul singur anulează tot.</p>
+    </div>
+
+    <div class="col">
+      <p>Un client care nu crede că e real evaluează oferta la zero, indiferent cât de spectaculoasă e cifra. Cadrul confirmă exact ce a spus CEO-ul: prioritatea unu nu e traficul, nu e designul, nu sunt cuvintele-cheie. E <em class="t">transferul de credibilitate</em>.</p>
+      <div class="box warn">
+        <h3>Iar „gratuit” agravează problema, dacă nu e explicat</h3>
+        <p>Un audit gratuit, instant, de la o firmă necunoscută, care promite să-ți găsească mii de lei — declanșează „unde e șmecheria?”. Gratuitatea neexplicată <b>scade</b> credibilitatea când suspiciunea preexistă.</p>
+        <p>Orice ofertă neobișnuit de bună are nevoie de un motiv întemeiat. Fără el, creierul completează golul cu cea mai proastă ipoteză. Pagina trebuie să spună de ce e gratuit: analiza e automatizată, costă minute; dacă nu găsim nimic, o spunem în scris și nu vindem nimic.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="tick">02</div><div>
+      <h2>Abonamentul nu se vinde primul</h2>
+      <p>E cea mai grea formă de vânzare la primul contact: cere încredere înainte să fi demonstrat ceva, și e o cheltuială recurentă într-o firmă unde recurentul se taie primul.</p>
+    </div></div>
+    <div class="flow">
+      <div class="fl hi"><span class="fl-n">01</span><div><p class="fl-t">Auditul instant, gratuit</p><p class="fl-d">Livrezi valoare înainte să ceri ceva. Reciprocitate.</p></div></div>
+      <div class="fl"><span class="fl-n">02</span><div><p class="fl-t">O problemă punctuală rezolvată</p><p class="fl-d">Reclamație, racordare, compensații. Ai demonstrat că funcționezi — pe banii lui.</p></div></div>
+      <div class="fl"><span class="fl-n">03</span><div><p class="fl-t">Abonamentul lunar</p><p class="fl-d">Nu ca pariu inițial, ci ca urmare logică: „am găsit asta o dată — cine se uită luna viitoare?”</p></div></div>
+      <div class="fl"><span class="fl-n">04</span><div><p class="fl-t">Extinderea pe locații și servicii</p><p class="fl-d">Facturare pe punct de consum. Crește valoarea fără să crească numărul de clienți.</p></div></div>
+    </div>
+    <div class="box">
+      <h3>Garanția care costă puțin și cumpără mult</h3>
+      <p>Refuzați deja clienții unde economiile nu acoperă abonamentul. Deci o garanție pe exact acel prag nu vă costă aproape nimic — dar elimină obiecția care blochează semnătura:</p>
+      <p><b>„Dacă în primele 90 de zile nu identificăm economii sau sume recuperabile care depășesc costul abonamentului pe un an, vă returnăm integral ce ați plătit.”</b></p>
+      <p>Iar plata din rezultat, care există deja în contracte — 20–30% din suma recuperată, 15–25% din economia primului an — trebuie mutată din contracte în vitrină. Cine își asumă riscul, crede în ce vinde. E cel mai puternic semnal de credibilitate care există.</p>
+    </div>
+    <div class="box">
+      <h3>Ancorează prețul de pierdere, nu de concurență</h3>
+      <p>Pierderea doare de aproximativ două ori mai tare decât bucură un câștig echivalent.</p>
+      <p><b>3.803 lei</b> pierduți în fiecare lună, față de <b>349 lei</b> abonamentul care îi depistează. Abonamentul costă 9% din pierdere. Nu ceri o cheltuială — oprești o hemoragie.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="tick">03</div><div>
+      <h2>Mutarea centrală: auditul instant, pe site</h2>
+      <p>Obiecția e „nu cred că e real”. Cel mai puternic contraargument nu e un testimonial — e să vadă cu ochii lui că funcționează, pe propria factură, acum.</p>
+    </div></div>
+    <div class="flow">
+      <div class="fl hi"><span class="fl-n">→</span><div><p class="fl-t">„Încarcă ultima factură. În 2 minute vezi prețul real pe care îl plătești.”</p><p class="fl-d">Singura acțiune cerută. Fără cont, fără date de contact, fără formular.</p></div></div>
+      <div class="fl"><span class="fl-n">→</span><div><p class="fl-t">Agentul analizează, la vedere</p><p class="fl-d">Cele 8 verificări se bifează pe rând: energie reactivă, nivel de tensiune, putere contractată, depășiri, facturare pe estimare, clauze de indexare…</p></div></div>
+      <div class="fl hi"><span class="fl-n">→</span><div><p class="fl-t">Rezultat parțial, gratuit, imediat</p><p class="fl-d">Prețul unitar real · media pieței pentru profilul lui · diferența anuală estimată.</p></div></div>
+      <div class="fl"><span class="fl-n">→</span><div><p class="fl-t">Poarta</p><p class="fl-d">„Raportul complet — cele 8 verificări, clauzele și pașii de urmat — pe email. Unde îl trimitem?” Acum ceri datele. După ce a primit valoare.</p></div></div>
+    </div>
+    <div class="col" style="margin-top:1.6rem">
+      <p><b>De ce funcționează:</b> reciprocitatea se declanșează la un beneficiu necondiționat. Cine a încărcat factura a făcut deja un pas, iar pasul următor devine mult mai probabil. O analiză începută și incompletă creează tensiune care cere închidere. Iar tu primești consumul real și furnizorul — deci știi, înainte de primul apel, dacă e client de 149 sau de 1.500 lei.</p>
+    </div>
+    <div class="box warn">
+      <h3>Capcana: gratuit + instant poate să însemne „superficial”</h3>
+      <p><b>Arată munca.</b> Nu doar rezultatul — cele 8 verificări, cu denumirile lor tehnice. Percepția de profunzime vine din vizibilitatea procesului.</p>
+      <p><b>Semnătură umană.</b> Raportul pleacă semnat de o persoană, cu nume și funcție. „Un algoritm a analizat” și „Marian a verificat analiza” nu sunt același lucru pentru un public sceptic.</p>
+      <p><b>Nu spune „automat”. Spune „în 2 minute”.</b> Beneficiul e viteza, nu mecanismul. „Automat” invită la „deci n-a verificat nimeni”.</p>
+      <p><b>Verificare umană înainte de trimitere</b>, cel puțin la firmele mari. Un raport greșit trimis automat unui client de 10.000 lei/lună costă mai mult decât tot ce câștigi din automatizare.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="tick">04</div><div>
+      <h2>Arhitectura de credibilitate</h2>
+      <p>Șapte active de dovadă, în ordinea puterii. Prioritatea 1 din tot planul.</p>
+    </div></div>
+    <div class="table-frame">
+      <table>
+        <thead><tr><th>#</th><th>Activul</th><th>De ce funcționează</th><th>Efort</th></tr></thead>
+        <tbody>
+          <tr><td class="n">01</td><td>Demonstrația live, pe propria factură</td><td class="q">Dovadă prin experiență, nu prin afirmație</td><td class="q">Mediu</td></tr>
+          <tr><td class="n">02</td><td>Trei studii de caz cu cifre exacte</td><td class="q">„O firmă ca a mea” — dovada socială cere similaritate</td><td class="q">Mic</td></tr>
+          <tr><td class="n">03</td><td>Plata din rezultat, afișată vizibil</td><td class="q">Cine își asumă riscul, crede în ce vinde</td><td class="q">Foarte mic</td></tr>
+          <tr><td class="n">04</td><td>Garanția de 90 de zile</td><td class="q">Elimină riscul deciziei</td><td class="q">Mic</td></tr>
+          <tr><td class="n">05</td><td>Articole de lege citate exact</td><td class="q">Competență demonstrată, nu declarată</td><td class="q">Mic</td></tr>
+          <tr><td class="n">06</td><td>Echipa, cu nume și fețe</td><td class="q">Oamenii au încredere în oameni, nu în entități</td><td class="q">Mic</td></tr>
+          <tr><td class="n">07</td><td>Asigurare de răspundere profesională</td><td class="q">Semnal instituțional de seriozitate</td><td class="q">Cost real</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box">
+      <h3>Etichetează studiile de caz pe sector și dimensiune</h3>
+      <p>Dovada socială funcționează cel mai bine când vine de la cineva perceput ca similar. Un testimonial de la o persoană fizică nu convinge un administrator de firmă. „Rețea de 6 farmacii” și „hală de producție, 40 de angajați” funcționează — ca cititorul să se recunoască.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="tick">05</div><div>
+      <h2>Cuvintele, concret</h2>
+      <p>Cifrele precise sunt crezute. Intervalele largi și superlativele sunt citite ca promisiuni de vânzător.</p>
+    </div></div>
+    <div class="vs">
+      <div><p class="vs-l">Așa nu</p><p class="q">„Economii medii între 10% și 55%, în funcție de domeniu.”</p></div>
+      <div class="yes"><p class="vs-l">Așa da</p><p class="q">„La un punct de consum pe medie tensiune în Suceava, diferența era de 3.803 lei în fiecare lună.”</p></div>
+      <div><p class="vs-l">Așa nu</p><p class="q">Buton: „Trimite”</p></div>
+      <div class="yes"><p class="vs-l">Așa da</p><p class="q">Buton: „Vezi prețul real pe care îl plătesc”</p></div>
+      <div><p class="vs-l">Așa nu</p><p class="q">„Suntem manager energetic.”</p></div>
+      <div class="yes"><p class="vs-l">Așa da</p><p class="q">„Coordonăm conformarea și lucrăm cu manager energetic atestat.”</p></div>
+      <div><p class="vs-l">Așa nu</p><p class="q">„Vă reprezentăm în litigii.”</p></div>
+      <div class="yes"><p class="vs-l">Așa da</p><p class="q">„Vă reprezentăm în reclamații și în relația cu furnizorul și distribuitorul.”</p></div>
+    </div>
+    <div class="box warn">
+      <h3>Precizie juridică, nu stilistică</h3>
+      <p>Partea juridică o face o singură persoană, care nu e avocat. Reprezentarea în proceduri administrative în fața ANRE se poate face fără să fii avocat. Reprezentarea în instanță, nu. Copy-ul nu trebuie să lase impresia de asistență în proces, dacă nu lucrați cu un avocat pentru acele cazuri.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="tick">06</div><div>
+      <h2>Ordinea de execuție</h2>
+      <p>Pașii 1–3 costă aproape nimic și atacă direct obiecția principală. Se fac primii, indiferent de orice altceva.</p>
+    </div></div>
+    <div class="table-frame">
+      <table>
+        <thead><tr><th>#</th><th>Ce faci</th><th>De ce acum</th></tr></thead>
+        <tbody>
+          <tr><td class="n">01</td><td>Trei studii de caz anonimizate, cu cifre</td><td class="q">Nimic nu convinge fără ele. Permisiunea există deja</td></tr>
+          <tr><td class="n">02</td><td>„Cine ne plătește” + plata din rezultat, vizibile</td><td class="q">Efort minim, impact mare pe credibilitate</td></tr>
+          <tr><td class="n">03</td><td>Garanția de 90 de zile, formulată și publicată</td><td class="q">Elimină obiecția care blochează semnătura</td></tr>
+          <tr><td class="n">04</td><td>Reparațiile tehnice — Faza 1 din runbook</td><td class="q">Nu depind de nimic</td></tr>
+          <tr><td class="n">05</td><td>Auditul instant pe site</td><td class="q">Mutarea cea mai puternică. Cere dezvoltare</td></tr>
+          <tr><td class="n">06</td><td>Pagina de reclamații rescrisă</td><td class="q">Serviciul-erou</td></tr>
+          <tr><td class="n">07</td><td>Pagina de racordare</td><td class="q">Serviciul de marjă mare</td></tr>
+          <tr><td class="n">08</td><td>Formularul cu micro-angajament</td><td class="q">După ce există unde să trimită</td></tr>
+          <tr><td class="n">09</td><td>Grila de abonamente refăcută</td><td class="q">După ce garanția e definită</td></tr>
+          <tr><td class="n">10</td><td>Titluri, metadate, conținut</td><td class="q">Faza 2–3 din runbook</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="tick">07</div><div>
+      <h2>Ce am nevoie să aflu</h2>
+      <p>Grupate pe cine poate răspunde. Blocul A blochează mutarea centrală.</p>
+    </div></div>
+    <div class="qs">
+      <div class="qg">
+        <h3>A · Agentul de audit</h3>
+        <p class="who">Tu sau cine l-a construit · blochează pasul 5</p>
+        <ol>
+          <li>Ce primește la intrare — PDF, fotografie, date manuale? Merge pe facturi de la orice furnizor?</li>
+          <li>Ce produce — raportul complet de 2 pagini sau doar cifrele brute?</li>
+          <li>Cât durează o analiză, de la încărcare la rezultat?</li>
+          <li><b>Poate fi apelat din site (API, interfață web) sau rulează doar intern?</b> De asta depinde dacă pasul 5 e o săptămână sau o lună.</li>
+          <li>Cât de exact e? A fost testat pe facturi cu rezultat cunoscut? Câte a greșit?</li>
+          <li>Ce face când nu poate citi factura — eșuează vizibil sau greșește în tăcere?</li>
+          <li>Verifică cineva rezultatul înainte de trimitere?</li>
+          <li>Câte analize poate face pe zi, realist?</li>
+        </ol>
+      </div>
+      <div class="qg">
+        <h3>B · Ofertă și garanții</h3>
+        <p class="who">Tu împreună cu CEO-ul · blochează pașii 3 și 9</p>
+        <ol start="9">
+          <li>Acceptăm garanția de 90 de zile? Dacă nu, care e motivul concret?</li>
+          <li><b>Din 10 audituri, în câte găsiți economii care justifică abonamentul?</b> Cifra intră direct în copy.</li>
+          <li>La compensații și licitații, procentul e ferm? Îl putem afișa public?</li>
+          <li>La racordare — onorariu fix, procent din economie, sau ambele? Publicabil?</li>
+          <li>Există minim contractual pe abonament?</li>
+        </ol>
+      </div>
+      <div class="qg">
+        <h3>C · Clienții</h3>
+        <p class="who">Cine vorbește cel mai des cu ei</p>
+        <ol start="14">
+          <li><b>Ce cuvinte exacte folosesc clienții când descriu problema?</b> Nu parafrazat — formulările lor. Copy-ul în limbajul clientului convertește semnificativ mai bine.</li>
+          <li>Care e momentul în care trec de la scepticism la încredere? Ce se spune atunci?</li>
+          <li>Ce întreabă imediat după ce primesc raportul?</li>
+          <li>Care sunt cele trei motive de refuz, în ordinea frecvenței?</li>
+          <li>Ce spun despre preț când îl aud prima dată?</li>
+        </ol>
+      </div>
+      <div class="qg">
+        <h3>D · Relația cu PPC</h3>
+        <p class="who">CEO · încă blocant pentru copy-ul de independență</p>
+        <ol start="19">
+          <li>Implică plată, comision per client sau exclusivitate?</li>
+          <li>Putem recomanda liber alt furnizor când e mai bun pentru client?</li>
+          <li>Ce anume nu putem spune public — contractual sau doar diplomatic?</li>
+        </ol>
+      </div>
+      <div class="qg">
+        <h3>E · Execuție</h3>
+        <p class="who">Tu și dezvoltatorul</p>
+        <ol start="22">
+          <li>Cine e dezvoltatorul și cât timp are pe săptămână?</li>
+          <li>GA4 și Search Console — instalate și funcționale? Cine are acces?</li>
+          <li>Ce CRM sau sistem de urmărire a leadurilor există?</li>
+          <li><b>Cine răspunde la un lead nou și în cât timp?</b> Viteza de răspuns e adesea cel mai mare factor de conversie din toată pâlnia — mai important decât orice cuvânt de pe site.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Cadrele folosite:</b> ecuația valorii și construcția ofertei irezistibile (Hormozi), principiile de influență — reciprocitate, dovadă socială, autoritate, angajament și consecvență (Cialdini), aversiunea față de pierdere (Kahneman–Tversky), efectul de obiectiv gradient și tensiunea sarcinii neterminate.</p>
+    <p>Nimic din ce e mai sus nu cere să exagerezi. Toate mecanismele funcționează pe adevăruri pe care Reduco le are deja și nu le arată: cifre reale, articole de lege, plată din rezultat, un audit care chiar funcționează.</p>
+  </footer>
+</div>
