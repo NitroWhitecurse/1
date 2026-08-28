@@ -291,3 +291,59 @@ conversie disponibilă în tot documentul — probabil mai mare decât orice mod
    cineva trebuie să numere toate rapoartele din Drive și să le împartă în „am găsit economii"
    și „am confirmat că prețul e bun". Sunt aproximativ 25 de documente; e o oră de lucru și
    produce un număr care intră direct pe site.
+
+---
+
+## 8. CORECȚIE — comisionul PPC nu e al Reduco
+
+Precizare ulterioară: proiectul care colaborează cu PPC și încasează comision per client
+**este o altă firmă, nu Reduco**. Propoziția din răspunsul 19 — „nu avem o legătură directă cu
+ei pe acest proiect, este un proiect separat" — trebuie citită literal: „acest proiect" e Reduco,
+iar „proiectul separat" cu comision aparține altcuiva.
+
+**Asta schimbă concluzia secțiunii 3.** Reduco însuși nu încasează comision de la PPC sau de la
+niciun alt furnizor de energie pentru clienții pe care îi direcționează. Blocajul pe care îl
+semnalasem — „primiți comision și nu-l puteți dezvălui" — nu se aplică Reduco.
+
+### Ce rămâne totuși adevărat, din E3 și E4
+
+Chiar și cu firma de comision scoasă din ecuație, doi factori rămân valabili și trebuie respectați:
+
+- **E3:** există un parteneriat care obligă Reduco să afișeze oferta PPC pe site.
+- **E4 / 21:** Reduco nu poate vorbi de rău PPC și nu poate spune public că **altă firmă**
+  colaborează cu PPC pe bază de comision — nu e informația Reduco de dezvăluit.
+
+Niciunul dintre acestea nu contrazice independența Reduco, **dacă** obligația de afișare nu vine
+la pachet cu plată către Reduco. Asta rămâne singurul lucru de confirmat.
+
+### Textul despre independență se restaurează
+
+Afirmația inițială e din nou valabilă:
+
+> „Nu suntem furnizor de energie și nu primim comision de la niciun furnizor pentru clienții
+> pe care îi direcționăm. Suntem plătiți exclusiv de dumneavoastră."
+
+Cu o singură precizare de adăugat, ca să rămână strict corectă față de E3:
+
+> „Afișăm și oferta PPC, în baza unui parteneriat de listare — nu primim comision pentru asta,
+> și vă recomandăm oricare furnizor e mai bun pentru situația dumneavoastră."
+
+### O singură întrebare rămasă, nu mai e blocantă
+
+**Obligația de a afișa oferta PPC vine cu vreo plată către Reduco** — fie și mică, fie și
+neregulată — sau e pur o înțelegere de listare, fără bani? Dacă răspunsul e „fără bani", textul
+de mai sus se publică exact așa. Dacă există orice formă de plată, revine nuanța de transparență
+folosită la echipamente: se declară, nu se ascunde.
+
+**Argumentul anti-comparator** („comparatoarele gratuite sunt plătite de furnizori") **rămâne
+totuși retras** — nu pentru că Reduco ar avea o problemă, ci pentru că rămâne un atac indirect la
+o practică (comisionul per client) pe care o altă firmă din apropiere o folosește, iar publicul
+nu poate face diferența. Riscul de confuzie e mai mare decât beneficiul retoric.
+
+### Ce se schimbă în plan, din nou
+
+| Element | Rundă trecută | Acum |
+| --- | --- | --- |
+| Textul despre independență | Eliminat | **Restaurat**, cu precizarea despre parteneriatul PPC |
+| Prioritatea de la secțiunea 6, rândul 3 | „Doar afirmații de rol" | **Afirmația de venit revine**, e adevărată |
+| Argumentul anti-comparator | Eliminat | **Rămâne eliminat** — risc de confuzie, nu de adevăr |
