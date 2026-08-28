@@ -347,3 +347,41 @@ nu poate face diferența. Riscul de confuzie e mai mare decât beneficiul retori
 | Textul despre independență | Eliminat | **Restaurat**, cu precizarea despre parteneriatul PPC |
 | Prioritatea de la secțiunea 6, rândul 3 | „Doar afirmații de rol" | **Afirmația de venit revine**, e adevărată |
 | Argumentul anti-comparator | Eliminat | **Rămâne eliminat** — risc de confuzie, nu de adevăr |
+
+---
+
+## 9. Confirmat — structura pe două trepte a auditului
+
+Propunerea ta formalizează exact arhitectura din secțiunea 1, cu un detaliu mai bogat decât
+varianta mea inițială: nivelul instant nu arată doar prețul unitar, ci **toate componentele
+facturii** (denumite pe factură „voci"): furnizare, distribuție, transport, certificate verzi,
+acciza, TVA — plus totalul plătit. E mai mult decât un singur număr și tot nu are nevoie de
+tabelul de prețuri de piață, deci rămâne 100% automatizabil.
+
+### Structura pe două trepte, finală
+
+| Treaptă | Ce arată | Cum se obține | Cerere de date |
+| --- | --- | --- | --- |
+| **1 — Audit instant, pe loc** | Fiecare componentă a facturii, defalcată · totalul plătit · prețul unitar real (total fără TVA / kWh) | Citire directă din factură, fără intervenție umană | Niciuna — doar factura încărcată |
+| **2 — Audit complet, prin formular** | Tot ce e la treapta 1, plus: comparația cu prețul de piață pentru profilul lui, cele 8 verificări (reactivă, nivel de tensiune, putere contractată etc.), recomandări de optimizare, economia anuală estimată | Prețul de referință introdus manual + verificare umană înainte de trimitere | Nume, email, telefon — cerute după ce a văzut treapta 1 |
+
+**De ce funcționează mai bine decât varianta mea:** vocile facturii sunt informație pe care
+aproape niciun client nu o citește sau nu o înțelege — majoritatea văd doar totalul de plată.
+Arătându-i-le defalcat, instant, produci același efect de „nu știam asta" ca prețul unitar, dar
+cu mai multă textură vizuală: mai multe rânduri care se completează unul câte unul întăresc
+percepția de proces real, nu doar o cifră aruncată pe ecran.
+
+### Ce rămâne valabil din runda trecută
+
+- **Ritmul cu pauze**, nu instant-instant — chiar dacă tehnic ar putea fi mai rapid.
+- **Predarea declarată către om**, la trecerea de la treapta 1 la 2: „pentru comparația cu piața
+  și recomandări, un coleg verifică datele — unde îți trimit raportul complet?"
+- **Nu spune „automat"**, spune „în X minute".
+
+### Un singur detaliu de implementare de clarificat
+
+Vocile de pe factură diferă ca format între furnizori (E.ON, Electrica, Engie etc. nu structurează
+identic componentele). Agentul reușește deja să citească „de la orice furnizor" (confirmat la
+întrebarea 1) — deci probabil problema e deja rezolvată tehnic. Dacă nu, treapta 1 poate începe
+cu un subset comun tuturor facturilor (total, cantitate, preț unitar) și se îmbogățește pe măsură
+ce mai multe formate sunt acoperite, fără să blocheze lansarea.
